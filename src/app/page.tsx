@@ -1,58 +1,71 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#1A202C]">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-lg flex items-center justify-center">
-                <div className="w-4 h-4 bg-white rounded-sm"></div>
-              </div>
-              <span className="text-xl font-bold text-gray-900">DELV</span>
-            </div>
+            <Link
+              href="/"
+              className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+            >
+              <Image
+                src="/delv-logo.png"
+                alt="DELV Logo"
+                width={60}
+                height={60}
+                className="w-30 h-8 object-contain"
+              />
+              <span className="text-xl font-bold text-white"></span>
+            </Link>
 
-            {/* Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <a
-                href="#services"
-                className="text-gray-700 hover:text-gray-900 transition-colors"
-              >
-                Services
-              </a>
-              <a
-                href="#team"
-                className="text-gray-700 hover:text-gray-900 transition-colors"
-              >
-                Team
-              </a>
-              <a
-                href="#about"
-                className="text-gray-700 hover:text-gray-900 transition-colors"
-              >
-                About
-              </a>
-              <a
-                href="#contact"
-                className="text-gray-700 hover:text-gray-900 transition-colors"
+            {/* Right side navigation and buttons */}
+            <div className="flex items-center space-x-4">
+              {/* Service Buttons */}
+              <div className="hidden md:flex items-center space-x-3">
+                <Link
+                  href="/legal-expansion"
+                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
+                >
+                  Global/Legal
+                </Link>
+                <Link
+                  href="/technology-consulting"
+                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
+                >
+                  Tech
+                </Link>
+                <Link
+                  href="/network-marketing"
+                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
+                >
+                  Marketing
+                </Link>
+              </div>
+
+              {/* Contact Button */}
+              <Link
+                href="mailto:delv.team@gmail.com"
+                className="bg-[#4FD1C7] text-[#FFFFFF] px-4 py-2 rounded-lg hover:bg-[#3BB5AC] transition-colors text-sm font-medium"
               >
                 Contact
-              </a>
-            </nav>
+              </Link>
 
-            {/* Language Selector */}
-            <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
-              ENG
-            </button>
+              {/* Language Selector */}
+              <button className="text-white px-4 py-2 rounded-lg hover:bg-[#3BB5AC] transition-colors text-xs font-bold">
+                ENG
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="bg-slate-900 py-20">
+      <section className="bg-gradient-to-r from-[#1A202C] to-[#2D3748] py-20 pt-32">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
             Transform Your Business
@@ -88,7 +101,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Global / Legal Expansion */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="bg-white rounded-2xl p-8 shadow-lg flex flex-col">
               <div className="w-16 h-16 bg-pink-500 rounded-2xl mb-6 flex items-center justify-center">
                 <svg
                   className="w-8 h-8 text-white"
@@ -105,7 +118,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Global / Legal Expansion
               </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
                 Corporate law, compliance, intellectual property, and contract
                 management services for comprehensive legal support.
               </p>
@@ -120,13 +133,16 @@ export default function Home() {
                   Contracts
                 </span>
               </div>
-              <button className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors">
+              <Link
+                href="/legal-expansion"
+                className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
+              >
                 Learn More
-              </button>
+              </Link>
             </div>
 
             {/* Technology Consulting */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="bg-white rounded-2xl p-8 shadow-lg flex flex-col">
               <div className="w-16 h-16 bg-purple-500 rounded-2xl mb-6 flex items-center justify-center">
                 <svg
                   className="w-8 h-8 text-white"
@@ -143,7 +159,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Technology Consulting
               </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
                 Digital transformation, software development, and IT
                 infrastructure optimization for modern businesses.
               </p>
@@ -158,13 +174,16 @@ export default function Home() {
                   DevOps
                 </span>
               </div>
-              <button className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors">
+              <Link
+                href="/technology-consulting"
+                className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
+              >
                 Learn More
-              </button>
+              </Link>
             </div>
 
             {/* Network Marketing */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="bg-white rounded-2xl p-8 shadow-lg flex flex-col">
               <div className="w-16 h-16 bg-blue-500 rounded-2xl mb-6 flex items-center justify-center">
                 <svg
                   className="w-8 h-8 text-white"
@@ -181,7 +200,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Network Marketing
               </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
                 Market entry strategies, international partnerships, and
                 cross-border business development for global growth.
               </p>
@@ -196,9 +215,12 @@ export default function Home() {
                   Localization
                 </span>
               </div>
-              <button className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors">
+              <Link
+                href="/network-marketing"
+                className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
+              >
                 Learn More
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -304,54 +326,77 @@ export default function Home() {
 
             {/* Team Member 3 */}
             <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="w-20 h-20 bg-green-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">AL</span>
+              <div className="w-20 h-20 bg-green-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/imhyeongjun.jpeg"
+                  alt="HYEONGJUN IM"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
               <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
-                Anna Lee
+                HYEONGJUN IM
               </h3>
-              <p className="text-gray-600 text-center mb-3">
-                Global Expansion Lead
-              </p>
+              <p className="text-gray-600 text-center mb-3">Tech Lead</p>
               <p className="text-gray-500 text-sm text-center mb-4">
-                10+ years in international business development
+                • aɪdentəti CEO & Builder Academy Community Founder
+                <br />
+                • UNESCO Digital lecture proffeser
+                <br />
+                • ETH Global Hackthon Award (2023,2024)
+                <br />
+                • ABB BlockChain Hackthon Award (2023)
+                <br />• Web3 Project PM / Design partment
               </p>
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                  Market Entry
+                  Tech Leadership
                 </span>
                 <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                  Partnerships
+                  Web3 Innovation
                 </span>
                 <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                  Localization
+                  Award Winner
                 </span>
               </div>
             </div>
 
             {/* Team Member 4 */}
             <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="w-20 h-20 bg-orange-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">DR</span>
+              <div className="w-20 h-20 bg-orange-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/youngdaekim.jpeg"
+                  alt="YOUNGDAE KIM"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
               <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
-                David Rodriguez
+                YOUNGDAE KIM
               </h3>
-              <p className="text-gray-600 text-center mb-3">
-                Strategy Consultant
-              </p>
+              <p className="text-gray-600 text-center mb-3">Community Lead</p>
               <p className="text-gray-500 text-sm text-center mb-4">
-                8+ years in business strategy and digital transformation
+                • aɪdentəti COO and Community Management
+                <br />
+                • Experience as a Web3 Project Community Builder
+                <br />
+                • Experience as a Moderator for Multiple Projects
+                <br />
+                • BD/Operations Manager at MEXC Exchange
+                <br />• Extensive Experience Participating in and Managing
+                Domestic & International Events (Hackathons, Meetups)
               </p>
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">
-                  Strategy
+                  Community Building
                 </span>
                 <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">
-                  Digital Transformation
+                  Network Development
                 </span>
                 <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">
-                  Innovation
+                  Engagement
                 </span>
               </div>
             </div>
@@ -366,18 +411,62 @@ export default function Home() {
             Partner
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="bg-white/10 rounded-lg p-8 h-24 flex items-center justify-center">
-              <span className="text-white text-sm">Partner Logo 1</span>
-            </div>
-            <div className="bg-white/10 rounded-lg p-8 h-24 flex items-center justify-center">
-              <span className="text-white text-sm">Partner Logo 2</span>
-            </div>
-            <div className="bg-white/10 rounded-lg p-8 h-24 flex items-center justify-center">
-              <span className="text-white text-sm">Partner Logo 3</span>
-            </div>
-            <div className="bg-white/10 rounded-lg p-8 h-24 flex items-center justify-center">
-              <span className="text-white text-sm">Partner Logo 4</span>
-            </div>
+            <Link
+              href="https://www.wiw3ch.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 rounded-lg p-8 h-32 flex items-center justify-center hover:bg-white/20 transition-colors"
+            >
+              <Image
+                src="/w3w-logo.avif"
+                alt="WiW3CH Logo"
+                width={180}
+                height={90}
+                className="max-w-full max-h-full object-contain"
+              />
+            </Link>
+            <Link
+              href="https://aidenteti.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 rounded-lg p-8 h-32 flex items-center justify-center hover:bg-white/20 transition-colors"
+            >
+              <Image
+                src="/aidenteticrew.png"
+                alt="아이덴티티크루 Logo"
+                width={180}
+                height={90}
+                className="max-w-full max-h-full object-contain"
+              />
+            </Link>
+            <Link
+              href="https://www.moalaw.kr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 rounded-lg p-8 h-32 flex items-center justify-center hover:bg-white/20 transition-colors"
+            >
+              <Image
+                src="/Moa-logo.png"
+                alt="MOA Logo"
+                width={180}
+                height={90}
+                className="max-w-full max-h-full object-contain"
+              />
+            </Link>
+            <Link
+              href="https://www.build-up.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 rounded-lg p-8 h-32 flex items-center justify-center hover:bg-white/20 transition-colors"
+            >
+              <Image
+                src="/buildup-logo.svg"
+                alt="Build-Up Logo"
+                width={180}
+                height={90}
+                className="max-w-full max-h-full object-contain"
+              />
+            </Link>
           </div>
         </div>
       </section>
@@ -393,9 +482,12 @@ export default function Home() {
             achieve your goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors">
+            <Link
+              href="mailto:we@delv.team"
+              className="bg-white text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
+            >
               Contact Us
-            </button>
+            </Link>
             <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
               Schedule Call
             </button>
@@ -410,12 +502,13 @@ export default function Home() {
             {/* Company Info */}
             <div className="md:col-span-1">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-lg flex items-center justify-center">
-                  <div className="w-4 h-4 bg-white rounded-sm"></div>
-                </div>
-                <span className="text-xl font-bold text-white">
-                  DELV CONSULTING
-                </span>
+                <Image
+                  src="/delv-logo.png"
+                  alt="DELV Logo"
+                  width={60}
+                  height={60}
+                  className="w-16 h-16 object-contain"
+                />
               </div>
               <p className="text-gray-300 leading-relaxed">
                 Empowering businesses through expert consulting services.
@@ -427,28 +520,28 @@ export default function Home() {
               <h3 className="text-white font-semibold mb-4">Services</h3>
               <ul className="space-y-2">
                 <li>
-                  <a
+                  <Link
                     href="#"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     Technology
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="#"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     Legal Advisory
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="#"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     Global Expansion
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -458,28 +551,28 @@ export default function Home() {
               <h3 className="text-white font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
                 <li>
-                  <a
+                  <Link
                     href="#"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="#"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     Team
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="#"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     Careers
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -489,20 +582,20 @@ export default function Home() {
               <h3 className="text-white font-semibold mb-4">Contact</h3>
               <ul className="space-y-2">
                 <li>
-                  <a
+                  <Link
                     href="mailto:hello@delvconsulting.com"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     hello@delvconsulting.com
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="tel:+15551234567"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     +1 (555) 123-4567
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

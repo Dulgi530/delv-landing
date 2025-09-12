@@ -1,0 +1,58 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/98c24ce931666910.js",
+      "static/chunks/b5ac0dc5c6eb9cfe.js",
+      "static/chunks/5d1bd62c91ea5307.css",
+      "static/chunks/dc95e3925a7400c9.js",
+      "static/chunks/2641911866a8a62b.js",
+      "static/chunks/6941bb9d1ff5c276.js",
+      "static/chunks/1623919f630230bf.js",
+      "static/chunks/turbopack-8d4e661d9c853204.js"
+    ],
+    "/legal-expansion/page": [
+      "static/chunks/98c24ce931666910.js",
+      "static/chunks/b5ac0dc5c6eb9cfe.js",
+      "static/chunks/5d1bd62c91ea5307.css",
+      "static/chunks/69f1c332fd170142.js",
+      "static/chunks/dc95e3925a7400c9.js",
+      "static/chunks/2641911866a8a62b.js",
+      "static/chunks/6941bb9d1ff5c276.js",
+      "static/chunks/1623919f630230bf.js",
+      "static/chunks/turbopack-8d4e661d9c853204.js"
+    ],
+    "/network-marketing/page": [
+      "static/chunks/98c24ce931666910.js",
+      "static/chunks/b5ac0dc5c6eb9cfe.js",
+      "static/chunks/5d1bd62c91ea5307.css",
+      "static/chunks/69f1c332fd170142.js",
+      "static/chunks/dc95e3925a7400c9.js",
+      "static/chunks/2641911866a8a62b.js",
+      "static/chunks/6941bb9d1ff5c276.js",
+      "static/chunks/1623919f630230bf.js",
+      "static/chunks/turbopack-8d4e661d9c853204.js"
+    ],
+    "/page": [
+      "static/chunks/98c24ce931666910.js",
+      "static/chunks/b5ac0dc5c6eb9cfe.js",
+      "static/chunks/5d1bd62c91ea5307.css",
+      "static/chunks/69f1c332fd170142.js",
+      "static/chunks/dc95e3925a7400c9.js",
+      "static/chunks/2641911866a8a62b.js",
+      "static/chunks/6941bb9d1ff5c276.js",
+      "static/chunks/1623919f630230bf.js",
+      "static/chunks/turbopack-8d4e661d9c853204.js"
+    ],
+    "/technology-consulting/page": [
+      "static/chunks/98c24ce931666910.js",
+      "static/chunks/b5ac0dc5c6eb9cfe.js",
+      "static/chunks/5d1bd62c91ea5307.css",
+      "static/chunks/69f1c332fd170142.js",
+      "static/chunks/dc95e3925a7400c9.js",
+      "static/chunks/2641911866a8a62b.js",
+      "static/chunks/6941bb9d1ff5c276.js",
+      "static/chunks/1623919f630230bf.js",
+      "static/chunks/turbopack-8d4e661d9c853204.js"
+    ]
+  }
+}

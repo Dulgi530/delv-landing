@@ -1,0 +1,3 @@
+module.exports=[15617,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(83391);a.n(d("[project]/Desktop/DELV LANDING PAGE/delv-landing/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},772,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(83391);a.n(d("[project]/Desktop/DELV LANDING PAGE/delv-landing/node_modules/next/dist/client/components/builtin/global-error.js"))},76351,a=>{"use strict";a.i(15617);var b=a.i(772);a.n(b)}];
+
+//# sourceMappingURL=b65c1_next_dist_client_components_builtin_global-error_7f71c27d.js.map
