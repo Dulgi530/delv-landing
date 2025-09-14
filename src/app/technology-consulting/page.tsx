@@ -85,13 +85,17 @@ export default function TechnologyConsulting() {
                 {/* Left Section - Service Overview */}
                 <div>
                   {/* Icon */}
-                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl mb-6 flex items-center justify-center">
+                  <div className="w-20 h-20 bg-purple-500 rounded-2xl mb-6 flex items-center justify-center">
                     <svg
                       className="w-10 h-10 text-white"
                       fill="currentColor"
-                      viewBox="0 0 24 24"
+                      viewBox="0 0 20 20"
                     >
-                      <path d="M8 3a1 1 0 011-1h6a1 1 0 011 1v1h3a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1h3V3zM10 4v1h4V4h-4zm-2 2H6v10h12V6h-2v1a1 1 0 11-2 0V6h-4v1a1 1 0 11-2 0V6z" />
+                      <path
+                        fillRule="evenodd"
+                        d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
 

@@ -1,7 +1,183 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const [language, setLanguage] = useState<"en" | "ko">("ko");
+
+  const toggleLanguage = () => {
+    setLanguage(language === "en" ? "ko" : "en");
+  };
+
+  const content = {
+    en: {
+      navigation: {
+        globalLegal: "Global/Legal",
+        tech: "Tech",
+        marketing: "Marketing",
+        contact: "Contact",
+        language: "ENG",
+      },
+      hero: {
+        title: "Transform Your Business\nWith Expert Consulting",
+        subtitle:
+          "We provide comprehensive consulting services in technology, legal advisory, and global expansion to accelerate your growth.",
+        startButton: "Start Consulting",
+        learnButton: "Learn More",
+      },
+      expertise: {
+        title: "Our Expertise",
+        subtitle:
+          "Comprehensive consulting services tailored to your business needs",
+      },
+      globalLegal: {
+        title: "Global / Legal Expansion",
+        description:
+          "Corporate law, compliance, intellectual property, and contract management services for comprehensive legal support.",
+        learnMore: "Learn More",
+      },
+      technology: {
+        title: "Technology Consulting",
+        description:
+          "Digital transformation, software development, and IT infrastructure optimization for modern businesses.",
+        learnMore: "Learn More",
+      },
+      marketing: {
+        title: "Network Marketing",
+        description:
+          "Market entry strategies, international partnerships, and cross-border business development for global growth.",
+        learnMore: "Learn More",
+      },
+      team: {
+        title: "Meet Our Team",
+        subtitle:
+          "Industry experts with proven track records across technology, legal, and global markets",
+        members: {
+          sarah: {
+            position: "Technology Director",
+            description:
+              "15+ years in digital transformation and AI implementation",
+          },
+          sungyeon: {
+            position: "Lawyer",
+            description:
+              "- B.A. in Business Administration, Korea University / J.D., Korea University School of Law<br />- Former in-house counsel at Celltrion and Pulmuone<br />- Grand Prize, ABB Blockchain Hackathon<br />- Experienced in international legal affairs, blockchain advisory, and lecturing",
+          },
+          hyeongjun: {
+            position: "Tech Lead",
+            description:
+              "- aɪdentəti CEO & Builder Academy Community Founder<br />- UNESCO Digital lecture professor<br />- ETH Global Hackathon Award (2023,2024)<br />- ABB BlockChain Hackathon Award (2023)<br />- Web3 Project PM / Design Department",
+          },
+          youngdae: {
+            position: "Community Lead",
+            description:
+              "- aɪdentəti COO and Community Management<br />- Experience as a Web3 Project Community Builder<br />- Experience as a Moderator for Multiple Projects<br />- BD/Operations Manager at MEXC Exchange<br />- Extensive Experience Participating in and Managing Domestic & International Events (Hackathons, Meetups)",
+          },
+        },
+      },
+      partner: {
+        title: "Partner",
+      },
+      ready: {
+        title: "Ready to Transform Your Business?",
+        subtitle:
+          "Get in touch with our experts today and discover how we can help you achieve your goals.",
+        contact: "Contact Us",
+        schedule: "Schedule Call",
+      },
+      footer: {
+        description:
+          "Empowering businesses through expert consulting services.",
+        services: "Services",
+        company: "Company",
+        contact: "Contact",
+      },
+    },
+    ko: {
+      navigation: {
+        globalLegal: "글로벌/법무",
+        tech: "기술",
+        marketing: "마케팅",
+        contact: "문의",
+        language: "한국어",
+      },
+      hero: {
+        title: "전문 컨설팅으로\n비즈니스를 혁신하세요",
+        subtitle:
+          "법령 검토 / 웹3 기술 자문 / 홍보, 마케팅 / 해외진출 Web3 분야의 종합적인 컨설팅 서비스를 통해 귀하의 성장을 가속화합니다.",
+        startButton: "컨설팅 시작하기",
+        learnButton: "더 알아보기",
+      },
+      expertise: {
+        title: "컨설팅 서비스",
+        subtitle: "비즈니스 요구에 맞춘 종합적인 컨설팅 서비스",
+      },
+      globalLegal: {
+        title: "글로벌 / 법무 확장",
+        description:
+          "포괄적인 법무 지원을 위한 기업법, 컴플라이언스, 지적재산권, 계약 관리 서비스",
+        learnMore: "더 알아보기",
+      },
+      technology: {
+        title: "기술 컨설팅",
+        description:
+          "현대 비즈니스를 위한 디지털 전환, 소프트웨어 개발, IT 인프라 최적화",
+        learnMore: "더 알아보기",
+      },
+      marketing: {
+        title: "네트워크 마케팅",
+        description:
+          "글로벌 성장을 위한 시장 진입 전략, 국제 파트너십, 국경 간 비즈니스 개발",
+        learnMore: "더 알아보기",
+      },
+      team: {
+        title: "팀 소개",
+        subtitle:
+          "기술, 법무, 글로벌 시장에서 입증된 실적을 가진 업계 전문가들",
+        members: {
+          sarah: {
+            position: "기술 이사",
+            description: "디지털 전환 및 AI 구현 분야 15년 이상 경험",
+          },
+          sungyeon: {
+            position: "변호사",
+            description:
+              "- 고려대학교 경영학 학사 / 법학전문대학원 법학박사<br />- 셀트리온, 풀무원 법무팀 근무 경력<br />- ABB 블록체인 해커톤 대상 수상<br />- 국제법무, 블록체인 자문, 강의 경험",
+          },
+          hyeongjun: {
+            position: "기술 리드",
+            description:
+              "- aɪˈdentəti CEO & 빌더 아카데미 커뮤니티 파운더<br />- 유네스코 디지털 강의 강사<br />- ETHGlobal 해커톤 수상(2023,2024)<br />- ABB 블록체인 해커톤 최우수상 수상<br />- Web3 Project 기획/디자인 경험 다수",
+          },
+          youngdae: {
+            position: "커뮤니티 리드",
+            description:
+              "- aɪdentəti COO 및 커뮤니티 관리<br />- Web3 프로젝트 커뮤니티 빌더 경험<br />- 다수의 프로젝트 모더레이터 경험<br />- MEXC 거래소 BD/운영 매니저<br />- 국내외 이벤트 참여 및 관리 풍부한 경험 (해커톤, 밋업)",
+          },
+        },
+      },
+      partner: {
+        title: "파트너",
+      },
+      ready: {
+        title: "비즈니스 혁신을 준비하셨나요?",
+        subtitle:
+          "오늘 우리 전문가들과 연락하여 목표 달성을 위한 방법을 알아보세요.",
+        contact: "문의하기",
+        schedule: "상담 예약",
+      },
+      footer: {
+        description: "전문 컨설팅 서비스를 통해 비즈니스를 강화합니다.",
+        services: "서비스",
+        company: "회사",
+        contact: "연락처",
+      },
+    },
+  };
+
+  const t = content[language];
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -31,19 +207,19 @@ export default function Home() {
                   href="/legal-expansion"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  Global/Legal
+                  {t.navigation.globalLegal}
                 </Link>
                 <Link
                   href="/technology-consulting"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  Tech
+                  {t.navigation.tech}
                 </Link>
                 <Link
                   href="/network-marketing"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  Marketing
+                  {t.navigation.marketing}
                 </Link>
               </div>
 
@@ -52,12 +228,15 @@ export default function Home() {
                 href="mailto:delv.team@gmail.com"
                 className="bg-[#4FD1C7] text-[#FFFFFF] px-4 py-2 rounded-lg hover:bg-[#3BB5AC] transition-colors text-sm font-medium"
               >
-                Contact
+                {t.navigation.contact}
               </Link>
 
               {/* Language Selector */}
-              <button className="text-white px-4 py-2 rounded-lg hover:bg-[#3BB5AC] transition-colors text-xs font-bold">
-                ENG
+              <button
+                onClick={toggleLanguage}
+                className="text-white px-4 py-2 rounded-lg hover:bg-[#3BB5AC] transition-colors text-xs font-bold"
+              >
+                {t.navigation.language}
               </button>
             </div>
           </div>
@@ -68,20 +247,22 @@ export default function Home() {
       <section className="bg-gradient-to-r from-[#1A202C] to-[#2D3748] py-20 pt-32">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Transform Your Business
-            <br />
-            With Expert Consulting
+            {t.hero.title.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.hero.title.split("\n").length - 1 && <br />}
+              </span>
+            ))}
           </h1>
           <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            We provide comprehensive consulting services in technology, legal
-            advisory, and global expansion to accelerate your growth.
+            {t.hero.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-cyan-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-cyan-600 transition-colors">
-              Start Consulting
+              {t.hero.startButton}
             </button>
             <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-slate-900 transition-colors">
-              Learn More
+              {t.hero.learnButton}
             </button>
           </div>
         </div>
@@ -92,10 +273,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our Expertise
+              {t.expertise.title}
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Comprehensive consulting services tailored to your business needs
+              {t.expertise.subtitle}
             </p>
           </div>
 
@@ -116,11 +297,10 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Global / Legal Expansion
+                {t.globalLegal.title}
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                Corporate law, compliance, intellectual property, and contract
-                management services for comprehensive legal support.
+                {t.globalLegal.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
@@ -137,7 +317,7 @@ export default function Home() {
                 href="/legal-expansion"
                 className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
               >
-                Learn More
+                {t.globalLegal.learnMore}
               </Link>
             </div>
 
@@ -157,11 +337,10 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Technology Consulting
+                {t.technology.title}
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                Digital transformation, software development, and IT
-                infrastructure optimization for modern businesses.
+                {t.technology.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
@@ -178,7 +357,7 @@ export default function Home() {
                 href="/technology-consulting"
                 className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
               >
-                Learn More
+                {t.technology.learnMore}
               </Link>
             </div>
 
@@ -198,11 +377,10 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Network Marketing
+                {t.marketing.title}
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                Market entry strategies, international partnerships, and
-                cross-border business development for global growth.
+                {t.marketing.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
@@ -219,7 +397,7 @@ export default function Home() {
                 href="/network-marketing"
                 className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
               >
-                Learn More
+                {t.marketing.learnMore}
               </Link>
             </div>
           </div>
@@ -263,11 +441,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Meet Our Team
+              {t.team.title}
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Industry experts with proven track records across technology,
-              legal, and global markets
+              {t.team.subtitle}
             </p>
           </div>
 
@@ -281,11 +458,14 @@ export default function Home() {
                 Sarah Johnson
               </h3>
               <p className="text-gray-600 text-center mb-3">
-                Technology Director
+                {t.team.members.sarah.position}
               </p>
-              <p className="text-gray-500 text-sm text-center mb-4">
-                15+ years in digital transformation and AI implementation
-              </p>
+              <p
+                className="text-gray-500 text-sm text-center mb-4"
+                dangerouslySetInnerHTML={{
+                  __html: t.team.members.sarah.description,
+                }}
+              />
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
                   AI/ML
@@ -301,25 +481,36 @@ export default function Home() {
 
             {/* Team Member 2 */}
             <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="w-20 h-20 bg-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">MJ</span>
+              <div className="w-20 h-20 bg-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/parksungyeon.jpeg"
+                  alt="SUNGYEON PARK"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
               <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
-                Michael Chen
+                SUNGYEON PARK
               </h3>
-              <p className="text-gray-600 text-center mb-3">Legal Advisor</p>
-              <p className="text-gray-500 text-sm text-center mb-4">
-                12+ years in corporate law and international compliance
+              <p className="text-gray-600 text-center mb-3">
+                {t.team.members.sungyeon.position}
               </p>
+              <p
+                className="text-gray-500 text-sm text-center mb-4"
+                dangerouslySetInnerHTML={{
+                  __html: t.team.members.sungyeon.description,
+                }}
+              />
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">
                   Corporate Law
                 </span>
                 <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">
-                  Compliance
+                  Blockchain Legal
                 </span>
                 <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">
-                  IP Protection
+                  International Affairs
                 </span>
               </div>
             </div>
@@ -338,17 +529,15 @@ export default function Home() {
               <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
                 HYEONGJUN IM
               </h3>
-              <p className="text-gray-600 text-center mb-3">Tech Lead</p>
-              <p className="text-gray-500 text-sm text-center mb-4">
-                • aɪdentəti CEO & Builder Academy Community Founder
-                <br />
-                • UNESCO Digital lecture proffeser
-                <br />
-                • ETH Global Hackthon Award (2023,2024)
-                <br />
-                • ABB BlockChain Hackthon Award (2023)
-                <br />• Web3 Project PM / Design partment
+              <p className="text-gray-600 text-center mb-3">
+                {t.team.members.hyeongjun.position}
               </p>
+              <p
+                className="text-gray-500 text-sm text-center mb-4"
+                dangerouslySetInnerHTML={{
+                  __html: t.team.members.hyeongjun.description,
+                }}
+              />
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
                   Tech Leadership
@@ -376,18 +565,15 @@ export default function Home() {
               <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
                 YOUNGDAE KIM
               </h3>
-              <p className="text-gray-600 text-center mb-3">Community Lead</p>
-              <p className="text-gray-500 text-sm text-center mb-4">
-                • aɪdentəti COO and Community Management
-                <br />
-                • Experience as a Web3 Project Community Builder
-                <br />
-                • Experience as a Moderator for Multiple Projects
-                <br />
-                • BD/Operations Manager at MEXC Exchange
-                <br />• Extensive Experience Participating in and Managing
-                Domestic & International Events (Hackathons, Meetups)
+              <p className="text-gray-600 text-center mb-3">
+                {t.team.members.youngdae.position}
               </p>
+              <p
+                className="text-gray-500 text-sm text-center mb-4"
+                dangerouslySetInnerHTML={{
+                  __html: t.team.members.youngdae.description,
+                }}
+              />
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">
                   Community Building
@@ -408,7 +594,7 @@ export default function Home() {
       <section className="bg-slate-900 py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-16">
-            Partner
+            {t.partner.title}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <Link
@@ -475,21 +661,20 @@ export default function Home() {
       <section className="bg-gradient-to-r from-cyan-500 to-slate-900 py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to Transform Your Business?
+            {t.ready.title}
           </h2>
           <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-            Get in touch with our experts today and discover how we can help you
-            achieve your goals.
+            {t.ready.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="mailto:we@delv.team"
               className="bg-white text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
             >
-              Contact Us
+              {t.ready.contact}
             </Link>
             <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
-              Schedule Call
+              {t.ready.schedule}
             </button>
           </div>
         </div>
@@ -511,13 +696,15 @@ export default function Home() {
                 />
               </div>
               <p className="text-gray-300 leading-relaxed">
-                Empowering businesses through expert consulting services.
+                {t.footer.description}
               </p>
             </div>
 
             {/* Services */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Services</h3>
+              <h3 className="text-white font-semibold mb-4">
+                {t.footer.services}
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <Link
@@ -548,7 +735,9 @@ export default function Home() {
 
             {/* Company */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Company</h3>
+              <h3 className="text-white font-semibold mb-4">
+                {t.footer.company}
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <Link
@@ -579,7 +768,9 @@ export default function Home() {
 
             {/* Contact */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Contact</h3>
+              <h3 className="text-white font-semibold mb-4">
+                {t.footer.contact}
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <Link
