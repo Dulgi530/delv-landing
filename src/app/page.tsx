@@ -111,7 +111,7 @@ export default function Home() {
         learnButton: "더 알아보기",
       },
       expertise: {
-        title: "컨설팅 서비스rt",
+        title: "컨설팅 서비스",
         subtitle: "비즈니스 요구에 맞춘 종합적인 컨설팅 서비스",
       },
       globalLegal: {
