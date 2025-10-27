@@ -3,7 +3,9 @@ import { supabase } from "@/lib/supabase";
 
 export async function POST(request: NextRequest) {
   try {
+    console.log("API route called");
     const body = await request.json();
+    console.log("Request body:", body);
     const { name, company, email, phone, message, privacy } = body;
 
     // 필수 필드 검증
@@ -24,6 +26,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Supabase에 데이터 저장
+    console.log("Attempting to insert data to Supabase");
     const { data, error } = await supabase
       .from("contacts")
       .insert([
@@ -38,6 +41,8 @@ export async function POST(request: NextRequest) {
         },
       ])
       .select();
+    
+    console.log("Supabase response:", { data, error });
 
     if (error) {
       console.error("Supabase error:", error);
