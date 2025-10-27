@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import { sendContactEmail } from "@/lib/email";
 
 export async function POST(request: NextRequest) {
   try {
@@ -41,7 +42,7 @@ export async function POST(request: NextRequest) {
         },
       ])
       .select();
-    
+
     console.log("Supabase response:", { data, error });
 
     if (error) {
@@ -50,6 +51,23 @@ export async function POST(request: NextRequest) {
         { error: "문의 전송에 실패했습니다. 다시 시도해주세요." },
         { status: 500 }
       );
+    }
+
+    // 이메일 발송
+    try {
+      console.log("Sending email notification");
+      await sendContactEmail({
+        name,
+        company,
+        email,
+        phone,
+        message: message || "",
+        privacy_agreed: privacy,
+      });
+      console.log("Email sent successfully");
+    } catch (emailError) {
+      console.error("Email sending failed:", emailError);
+      // 이메일 발송 실패해도 데이터는 저장되었으므로 성공으로 처리
     }
 
     return NextResponse.json(
