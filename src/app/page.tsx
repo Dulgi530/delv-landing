@@ -6,17 +6,80 @@ import { useState } from "react";
 
 export default function Home() {
   const [language, setLanguage] = useState<"en" | "ko">("ko");
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    message: "",
+    privacy: false,
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "ko" : "en");
   };
 
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, type } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]:
+        type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          company: "",
+          email: "",
+          phone: "",
+          message: "",
+          privacy: false,
+        });
+      } else {
+        setSubmitStatus("error");
+        console.error("Error:", result.error);
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+      console.error("Error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const content = {
     en: {
       navigation: {
+        company: "Company",
         globalLegal: "Global/Legal",
         tech: "Tech",
-        marketing: "Marketing",
+        network: "Network",
+        overseas: "Overseas",
         contact: "Contact",
         language: "ENG",
       },
@@ -44,7 +107,7 @@ export default function Home() {
           "Digital transformation, software development, and IT infrastructure optimization for modern businesses.",
         learnMore: "Learn More",
       },
-      marketing: {
+      network: {
         title: "Network Marketing",
         description:
           "Market entry strategies, international partnerships, and cross-border business development for global growth.",
@@ -55,10 +118,15 @@ export default function Home() {
         subtitle:
           "Industry experts with proven track records across technology, legal, and global markets",
         members: {
-          sarah: {
-            position: "Technology Director",
+          rosa: {
+            position: "주재원 (스위스)",
             description:
-              "15+ years in digital transformation and AI implementation",
+              "- 성신여자대학교 컴퓨터공학 / 정보공학 석사<br />- SKB(Swiss Korean Blockchain) Advisors 파운더<br />- Women in Web3 Switzerland (WIW3.ch) 파트너십팀 핵심 기여자<br />- 스위스와 한국 간 블록체인 산업 교류 및 협력 경험 多<br />- 스위스 스타트업의 한국 블록체인 프로젝트 투자 유치 및 자금 조달 지원 경험 多",
+          },
+          ilhun: {
+            position: "회계사",
+            description:
+              "- 고려대학교 경영 MBA 수료<br />- 前 삼정회계법인 회계사<br />- 한울회계법인 파트너<br />- 국내 대기업 금융그룹, 투자회사 회계 용역 多<br />- 국제조세 자문 수행",
           },
           sungyeon: {
             position: "Lawyer",
@@ -81,9 +149,9 @@ export default function Home() {
         title: "Partner",
       },
       ready: {
-        title: "Ready to Transform Your Business?",
+        title: "Web3, First Step to Infinite Possibilities",
         subtitle:
-          "Get in touch with our experts today and discover how we can help you achieve your goals.",
+          "Design your growth roadmap through strategic meetings with Delv.",
         contact: "Contact Us",
         schedule: "Schedule Call",
       },
@@ -97,9 +165,11 @@ export default function Home() {
     },
     ko: {
       navigation: {
-        globalLegal: "글로벌/법무",
+        company: "회사소개",
+        globalLegal: "글로벌/법률",
         tech: "기술",
-        marketing: "마케팅",
+        network: "네트워크",
+        overseas: "해외 진출",
         contact: "문의",
         language: "한국어",
       },
@@ -126,7 +196,7 @@ export default function Home() {
           "현대 비즈니스를 위한 디지털 전환, 소프트웨어 개발, IT 인프라 최적화",
         learnMore: "더 알아보기",
       },
-      marketing: {
+      network: {
         title: "네트워크 마케팅",
         description:
           "글로벌 성장을 위한 시장 진입 전략, 국제 파트너십, 국경 간 비즈니스 개발",
@@ -137,9 +207,15 @@ export default function Home() {
         subtitle:
           "기술, 법무, 글로벌 시장에서 입증된 실적을 가진 업계 전문가들",
         members: {
-          sarah: {
-            position: "기술 이사",
-            description: "디지털 전환 및 AI 구현 분야 15년 이상 경험",
+          rosa: {
+            position: "주재원 (스위스)",
+            description:
+              "- 성신여자대학교 컴퓨터공학 / 정보공학 석사<br />- SKB(Swiss Korean Blockchain) Advisors 파운더<br />- Women in Web3 Switzerland (WIW3.ch) 파트너십팀 핵심 기여자<br />- 스위스와 한국 간 블록체인 산업 교류 및 협력 경험 多<br />- 스위스 스타트업의 한국 블록체인 프로젝트 투자 유치 및 자금 조달 지원 경험 多",
+          },
+          ilhun: {
+            position: "회계사",
+            description:
+              "- 고려대학교 경영 MBA 수료<br />- 前 삼정회계법인 회계사<br />- 現 한울회계법인 이사 (회계사)<br />- 국내 대기업 금융그룹, 투자회사 회계 용역 多<br />- 국제조세 자문 수행",
           },
           sungyeon: {
             position: "변호사",
@@ -162,9 +238,8 @@ export default function Home() {
         title: "파트너",
       },
       ready: {
-        title: "비즈니스 혁신을 준비하셨나요?",
-        subtitle:
-          "오늘 우리 전문가들과 연락하여 목표 달성을 위한 방법을 알아보세요.",
+        title: "Web3, 무한한 가능성의 첫걸음",
+        subtitle: "델브와의 전략 미팅을 통해, 성장 로드맵을 설계하세요.",
         contact: "문의하기",
         schedule: "상담 예약",
       },
@@ -204,6 +279,18 @@ export default function Home() {
               {/* Service Buttons */}
               <div className="hidden md:flex items-center space-x-3">
                 <Link
+                  href="/about"
+                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
+                >
+                  {t.navigation.company}
+                </Link>
+                <Link
+                  href="#overseas"
+                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
+                >
+                  {t.navigation.overseas}
+                </Link>
+                <Link
                   href="/legal-expansion"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
@@ -219,22 +306,14 @@ export default function Home() {
                   href="/network-marketing"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.marketing}
+                  {t.navigation.network}
                 </Link>
               </div>
-
-              {/* Contact Button */}
-              <Link
-                href="mailto:delv.team@gmail.com"
-                className="bg-[#4FD1C7] text-[#FFFFFF] px-4 py-2 rounded-lg hover:bg-[#3BB5AC] transition-colors text-sm font-medium"
-              >
-                {t.navigation.contact}
-              </Link>
 
               {/* Language Selector */}
               <button
                 onClick={toggleLanguage}
-                className="text-white px-4 py-2 rounded-lg hover:bg-[#3BB5AC] transition-colors text-xs font-bold"
+                className="text-white px-4 py-2 rounded-lg border border-white hover:bg-[#3BB5AC] hover:border-[#3BB5AC] transition-colors text-xs font-bold"
               >
                 {t.navigation.language}
               </button>
@@ -258,12 +337,18 @@ export default function Home() {
             {t.hero.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-cyan-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-cyan-600 transition-colors">
+            <a
+              href="#contact-form"
+              className="bg-cyan-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-cyan-600 transition-colors inline-block"
+            >
               {t.hero.startButton}
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-slate-900 transition-colors">
+            </a>
+            <Link
+              href="/about"
+              className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-slate-900 transition-colors inline-block"
+            >
               {t.hero.learnButton}
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -377,10 +462,10 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.marketing.title}
+                {t.network.title}
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                {t.marketing.description}
+                {t.network.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
@@ -397,7 +482,7 @@ export default function Home() {
                 href="/network-marketing"
                 className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
               >
-                {t.marketing.learnMore}
+                {t.network.learnMore}
               </Link>
             </div>
           </div>
@@ -448,38 +533,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Team Member 1 */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="w-20 h-20 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">SJ</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
-                Sarah Johnson
-              </h3>
-              <p className="text-gray-600 text-center mb-3">
-                {t.team.members.sarah.position}
-              </p>
-              <p
-                className="text-gray-500 text-sm text-center mb-4"
-                dangerouslySetInnerHTML={{
-                  __html: t.team.members.sarah.description,
-                }}
-              />
-              <div className="flex flex-wrap gap-2 justify-center">
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
-                  AI/ML
-                </span>
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
-                  Cloud Architecture
-                </span>
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
-                  DevOps
-                </span>
-              </div>
-            </div>
-
-            {/* Team Member 2 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Team Member 1 - Park Sungyeon */}
             <div className="bg-white rounded-2xl p-6 shadow-lg">
               <div className="w-20 h-20 bg-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
                 <Image
@@ -515,7 +570,82 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Team Member 3 */}
+            {/* Team Member 2 - ILHUN KIM */}
+            <div className="bg-white rounded-2xl p-6 shadow-lg">
+              <div className="w-20 h-20 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/kimilhoon.jpeg"
+                  alt="ILHUN KIM"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
+                ILHUN KIM
+              </h3>
+              <p className="text-gray-600 text-center mb-3">
+                {t.team.members.ilhun.position}
+              </p>
+              <p
+                className="text-gray-500 text-sm text-center mb-4"
+                dangerouslySetInnerHTML={{
+                  __html: t.team.members.ilhun.description,
+                }}
+              />
+              <div className="flex flex-wrap gap-2 justify-center">
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+                  Accounting
+                </span>
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+                  Tax Advisory
+                </span>
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+                  Finance
+                </span>
+              </div>
+            </div>
+
+            {/* Team Member 3 - ROSA */}
+            <div className="bg-white rounded-2xl p-6 shadow-lg">
+              <div className="w-20 h-20 bg-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/rosa.jpeg"
+                  alt="JIYOUNG SUK (ROSA)"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
+                JIYOUNG SUK (ROSA)
+              </h3>
+              <p className="text-gray-600 text-center mb-3">
+                {t.team.members.rosa.position}
+              </p>
+              <p
+                className="text-gray-500 text-sm text-center mb-4"
+                dangerouslySetInnerHTML={{
+                  __html: t.team.members.rosa.description,
+                }}
+              />
+              <div className="flex flex-wrap gap-2 justify-center">
+                <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs">
+                  Blockchain
+                </span>
+                <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs">
+                  Web3
+                </span>
+                <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs">
+                  Investment
+                </span>
+                <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs">
+                  Switzerland
+                </span>
+              </div>
+            </div>
+
+            {/* Team Member 4 - Im Hyeongjun */}
             <div className="bg-white rounded-2xl p-6 shadow-lg">
               <div className="w-20 h-20 bg-green-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
                 <Image
@@ -551,7 +681,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Team Member 4 */}
+            {/* Team Member 5 - Kim Youngdae */}
             <div className="bg-white rounded-2xl p-6 shadow-lg">
               <div className="w-20 h-20 bg-orange-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
                 <Image
@@ -657,25 +787,159 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Ready to Transform Section */}
-      <section className="bg-gradient-to-r from-cyan-500 to-slate-900 py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            {t.ready.title}
-          </h2>
-          <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-            {t.ready.subtitle}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="mailto:we@delv.team"
-              className="bg-white text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
-            >
-              {t.ready.contact}
-            </Link>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
-              {t.ready.schedule}
-            </button>
+      {/* Contact Form Section */}
+      <section
+        id="contact-form"
+        className="bg-gradient-to-r from-cyan-500 to-slate-900 py-20"
+      >
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              {t.ready.title}
+            </h2>
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              {t.ready.subtitle}
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-2xl">
+            {submitStatus === "success" && (
+              <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                문의가 성공적으로 전송되었습니다! 담당자가 확인 후
+                연락드리겠습니다.
+              </div>
+            )}
+            {submitStatus === "error" && (
+              <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                문의 전송에 실패했습니다. 다시 시도해주세요.
+              </div>
+            )}
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    이름 *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-900"
+                    placeholder="이름을 입력해주세요"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="company"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    소속 *
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-900"
+                    placeholder="회사명을 입력해주세요"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    이메일 *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-900"
+                    placeholder="이메일을 입력해주세요"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    전화번호 *
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-900"
+                    placeholder="전화번호를 입력해주세요"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  문의내용 (선택)
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-900"
+                  placeholder="문의하실 내용을 입력해주세요"
+                ></textarea>
+              </div>
+
+              <div className="flex items-start">
+                <input
+                  type="checkbox"
+                  id="privacy"
+                  name="privacy"
+                  checked={formData.privacy}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-1 h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+                />
+                <label htmlFor="privacy" className="ml-3 text-sm text-gray-700">
+                  개인정보 제공에 동의합니다 *
+                </label>
+              </div>
+
+              <div className="text-center">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-cyan-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-cyan-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? "전송 중..." : "문의하기"}
+                </button>
+              </div>
+
+              <p className="text-center text-sm text-gray-500">
+                * 담당자가 확인 후 순차적으로 연락 드립니다.
+              </p>
+            </form>
           </div>
         </div>
       </section>
