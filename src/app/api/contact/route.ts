@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createConnection } from "@/lib/database";
+import { supabase } from "@/lib/supabase";
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,41 +23,38 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // MySQL에 데이터 저장
-    const connection = await createConnection();
-
-    try {
-      const insertQuery = `
-        INSERT INTO contacts (name, company, email, phone, message, privacy_agreed)
-        VALUES (?, ?, ?, ?, ?, ?)
-      `;
-
-      const [result] = await connection.execute(insertQuery, [
-        name,
-        company,
-        email,
-        phone,
-        message || "",
-        privacy,
-      ]);
-
-      return NextResponse.json(
+    // Supabase에 데이터 저장
+    const { data, error } = await supabase
+      .from("contacts")
+      .insert([
         {
-          success: true,
-          message: "문의가 성공적으로 전송되었습니다.",
-          data: result,
+          name,
+          company,
+          email,
+          phone,
+          message: message || "",
+          privacy_agreed: privacy,
+          created_at: new Date().toISOString(),
         },
-        { status: 200 }
-      );
-    } catch (dbError) {
-      console.error("Database error:", dbError);
+      ])
+      .select();
+
+    if (error) {
+      console.error("Supabase error:", error);
       return NextResponse.json(
         { error: "문의 전송에 실패했습니다. 다시 시도해주세요." },
         { status: 500 }
       );
-    } finally {
-      await connection.end();
     }
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: "문의가 성공적으로 전송되었습니다.",
+        data,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("API error:", error);
     return NextResponse.json(
