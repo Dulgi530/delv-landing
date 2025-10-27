@@ -1,6 +1,8 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY || "re_M8cpGKNd_49vHquy2cStkwEPZxQubaN6o");
+const resend = new Resend(
+  process.env.RESEND_API_KEY || "re_M8cpGKNd_49vHquy2cStkwEPZxQubaN6o"
+);
 
 export interface ContactData {
   name: string;
@@ -14,7 +16,7 @@ export interface ContactData {
 export async function sendContactEmail(contactData: ContactData) {
   try {
     const { data, error } = await resend.emails.send({
-      from: "Delv <noreply@delv.team>",
+      from: "Delv <onboarding@resend.dev>",
       to: ["delv.team@gmail.com"],
       subject: `새로운 문의: ${contactData.name} (${contactData.company})`,
       html: `

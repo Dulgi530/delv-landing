@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     // 이메일 발송
     try {
       console.log("Sending email notification");
-      await sendContactEmail({
+      const emailResult = await sendContactEmail({
         name,
         company,
         email,
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
         message: message || "",
         privacy_agreed: privacy,
       });
-      console.log("Email sent successfully");
+      console.log("Email sent successfully:", emailResult);
     } catch (emailError) {
       console.error("Email sending failed:", emailError);
       // 이메일 발송 실패해도 데이터는 저장되었으므로 성공으로 처리
