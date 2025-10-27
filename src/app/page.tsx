@@ -489,33 +489,57 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Statistics Section */}
+      {/* Reviews Section */}
       <section className="bg-slate-900 py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                200+
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              고객 리뷰
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              델브와 함께한 고객들의 생생한 경험담을 들어보세요
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Review 1 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="text-white/90 text-lg leading-relaxed mb-4">
+                "스위스 법인 설립을 준비하면서 막막함이 많았습니다. 델브의 컨설팅을 받으면서 단계별로 차근차근 준비할 수 있었고, 현지 전문가와 네트워크까지 연결해 주셔서 든든했습니다. 이제는 스위스 진출에 자신감을 갖게 되었고, 글로벌 파트너십 기회도 넓어지고 있습니다."
               </div>
-              <div className="text-gray-300 text-lg">Projects Completed</div>
+              <div className="text-cyan-300 font-semibold">— B사, 대표</div>
             </div>
-            <div>
-              <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                50+
+
+            {/* Review 2 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="text-white/90 text-lg leading-relaxed mb-4">
+                "웹3 서비스와 코인 비즈니스를 준비하면서 가장 큰 걱정은 규제와 법적 리스크였습니다. 델브는 핀테크·가상자산 관련 법령을 세밀하게 검토해주셨고, 저희 상황에 맞는 리스크 최소화 전략을 제시해 주셨습니다. 덕분에 프로젝트를 안심하고 진행할 수 있었고, 투자자에게도 신뢰를 줄 수 있었습니다."
               </div>
-              <div className="text-gray-300 text-lg">Enterprise Clients</div>
+              <div className="text-cyan-300 font-semibold">— F사, 대표</div>
             </div>
-            <div>
-              <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                15+
+
+            {/* Review 3 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="text-white/90 text-lg leading-relaxed mb-4">
+                "토큰 이코노미 설계가 막연해서 프로젝트가 늘 제자리걸음이었습니다. 델브는 저희 사업모델을 철저히 분석해 토큰 구조와 규제 리스크를 동시에 해결해 주셨습니다. 그 결과, 초기 사용자 확보와 커뮤니티 지지도 빠르게 늘어났고 투자 유치까지 이어졌습니다. 웹3를 고민하는 모든 기업에 델브를 추천합니다."
               </div>
-              <div className="text-gray-300 text-lg">Countries Served</div>
+              <div className="text-cyan-300 font-semibold">— S사, 대표</div>
             </div>
-            <div>
-              <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                98%
+
+            {/* Review 4 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="text-white/90 text-lg leading-relaxed mb-4">
+                "글로벌 ESG 기준에 맞추라는 압박이 커지던 중 델브와 함께 블록체인 기반 공급망 관리 솔루션을 도입했습니다. 원자재와 제품 이동을 실시간으로 추적할 수 있게 되었고, 해외 바이어와 투자자에게 높은 신뢰를 얻었습니다. 델브와의 협업은 단순한 컨설팅을 넘어 비즈니스 가치 그 자체를 높여주었습니다."
               </div>
-              <div className="text-gray-300 text-lg">Client Satisfaction</div>
+              <div className="text-cyan-300 font-semibold">— P사, 대표</div>
+            </div>
+
+            {/* Review 5 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="text-white/90 text-lg leading-relaxed mb-4">
+                "기존 웹2 서비스에 블록체인을 접목하고 싶었지만, 어디서부터 시작해야 할지 몰라 고민이 많았습니다. 델브는 저희의 기술 수준과 시장 상황을 고려한 단계별 로드맵을 제시했고, 그 과정에서 규제 대응부터 파트너십 구축까지 함께 해주셨습니다. 이제 자신 있게 웹3 기업으로 성장해가고 있습니다. 감사합니다!"
+              </div>
+              <div className="text-cyan-300 font-semibold">— M사, 대표</div>
             </div>
           </div>
         </div>
