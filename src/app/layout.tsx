@@ -13,8 +13,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DELV - 혁신적인 솔루션",
-  description: "DELV와 함께 새로운 가능성을 탐험하세요",
+  title: "DELV - Web3 Consulting & Global Expansion",
+  description: "델브는 웹3 컨설팅 및 글로벌 진출을 돕는 전문가 그룹입니다.",
+  openGraph: {
+    title: "DELV - Web3 Consulting & Global Expansion",
+    description: "델브는 웹3 컨설팅 및 글로벌 진출을 돕는 전문가 그룹입니다.",
+    url: "https://delv.team",
+    siteName: "DELV",
+    images: [
+      {
+        url: "/DELV 1.png",
+        width: 1200,
+        height: 630,
+        alt: "DELV Logo - Web3 Consulting",
+      },
+    ],
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DELV - Web3 Consulting & Global Expansion",
+    description: "델브는 웹3 컨설팅 및 글로벌 진출을 돕는 전문가 그룹입니다.",
+    images: ["/DELV 1.png"],
+  },
 };
 
 export default function RootLayout({
