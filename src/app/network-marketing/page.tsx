@@ -45,6 +45,12 @@ export default function NetworkMarketing() {
                 >
                   Marketing
                 </Link>
+                <Link
+                  href="https://delv-chat-lphugp3zc-juns-projects-8d9b4fd0.vercel.app/"
+                  className="text-[#c084fc] px-4 py-2 rounded-lg hover:text-[#c084fc] transition-colors text-sm font-medium"
+                >
+                  DELV CHAT
+                </Link>
               </div>
 
               {/* Contact Button */}
