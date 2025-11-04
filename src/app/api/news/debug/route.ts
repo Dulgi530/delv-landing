@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 
 // 디버깅용 API 엔드포인트
 export async function GET(request: NextRequest) {
-  const debugInfo = {
+  const debugInfo: any = {
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV,
     nodeVersion: process.version,
