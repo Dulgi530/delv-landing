@@ -17,6 +17,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "DELV - Web3 Consulting & Global Expansion",
   description: "델브는 웹3 컨설팅 및 글로벌 진출을 돕는 전문가 그룹입니다.",
+  icons: {
+    icon: [
+      { url: "/delv-logo.png", sizes: "any" },
+      { url: "/delv-logo.png", sizes: "16x16", type: "image/png" },
+      { url: "/delv-logo.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/delv-logo.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "DELV - Web3 Consulting & Global Expansion",
     description: "델브는 웹3 컨설팅 및 글로벌 진출을 돕는 전문가 그룹입니다.",
