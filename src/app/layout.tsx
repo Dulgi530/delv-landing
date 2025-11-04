@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,9 +17,9 @@ export const metadata: Metadata = {
   title: "DELV - Web3 Consulting & Global Expansion",
   description: "델브는 웹3 컨설팅 및 글로벌 진출을 돕는 전문가 그룹입니다.",
   icons: {
-    icon: [{ url: "/delv-symbol.svg", sizes: "any", type: "image/svg+xml" }],
+    icon: [{ url: "/symbol.svg", sizes: "any", type: "image/svg+xml" }],
     apple: [
-      { url: "/delv-symbol.svg", sizes: "180x180", type: "image/svg+xml" },
+      { url: "/symbol.svg", sizes: "180x180", type: "image/svg+xml" },
     ],
   },
   openGraph: {
@@ -51,11 +52,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

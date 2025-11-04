@@ -2,14 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Services() {
-  const [language, setLanguage] = useState<"en" | "ko">("ko");
-
-  const toggleLanguage = () => {
-    setLanguage(language === "en" ? "ko" : "en");
-  };
+  const { language, toggleLanguage } = useLanguage();
 
   const content = {
     en: {
