@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
           signal: AbortSignal.timeout(5000),
         });
 
-        const result = {
+        const result: any = {
           name: feed.name,
           url: feed.url,
           status: response.status,
