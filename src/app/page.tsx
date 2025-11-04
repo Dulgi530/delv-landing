@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function Home() {
   const [language, setLanguage] = useState<"en" | "ko">("ko");
@@ -18,9 +19,47 @@ export default function Home() {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+  const [newsletters, setNewsletters] = useState<any[]>([]);
 
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "ko" : "en");
+  };
+
+  useEffect(() => {
+    fetchNewsletters();
+  }, []);
+
+  const fetchNewsletters = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("newsletters")
+        .select(
+          "id, title, content, author, created_at, category, thumbnail_url"
+        )
+        .order("created_at", { ascending: false })
+        .limit(3);
+
+      if (data && !error) {
+        setNewsletters(data);
+      }
+    } catch (error) {
+      console.error("Error fetching newsletters:", error);
+    }
+  };
+
+  const truncateContent = (content: string, maxLength: number = 100) => {
+    const textOnly = content.replace(/<[^>]*>/g, "");
+    if (textOnly.length <= maxLength) return textOnly;
+    return textOnly.substring(0, maxLength) + "...";
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(language === "ko" ? "ko-KR" : "en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   };
 
   const handleInputChange = (
@@ -76,10 +115,8 @@ export default function Home() {
     en: {
       navigation: {
         company: "Company",
-        globalLegal: "Global/Legal",
-        tech: "Tech",
-        network: "Network",
-        overseas: "Overseas",
+        services: "Services",
+        newsletter: "Newsletter",
         contact: "Contact",
         language: "ENG",
       },
@@ -148,6 +185,18 @@ export default function Home() {
       partner: {
         title: "Partner",
       },
+      newsletter: {
+        title: "Newsletter",
+        subtitle: "Stay updated with our latest insights",
+        viewAll: "View All",
+        author: "Author",
+      },
+      delvChat: {
+        title: "DELV CHAT",
+        subtitle: "Your Web3 Learning Assistant",
+        description: "Learn Web3 terms and concepts through easy conversations",
+        startChat: "Start Chatting",
+      },
       ready: {
         title: "Web3, First Step to Infinite Possibilities",
         subtitle:
@@ -166,10 +215,8 @@ export default function Home() {
     ko: {
       navigation: {
         company: "회사소개",
-        globalLegal: "글로벌/법률",
-        tech: "기술",
-        network: "네트워크",
-        overseas: "해외 진출",
+        services: "서비스",
+        newsletter: "뉴스레터",
         contact: "문의",
         language: "한국어",
       },
@@ -237,6 +284,18 @@ export default function Home() {
       partner: {
         title: "파트너",
       },
+      newsletter: {
+        title: "뉴스레터",
+        subtitle: "최신 인사이트와 업데이트를 확인하세요",
+        viewAll: "전체 보기",
+        author: "작성자",
+      },
+      delvChat: {
+        title: "DELV CHAT",
+        subtitle: "Web3 학습 도우미",
+        description: "Web3 용어와 개념을 쉬운 대화로 배워보세요",
+        startChat: "채팅 시작하기",
+      },
       ready: {
         title: "Web3, 무한한 가능성의 첫걸음",
         subtitle: "델브와의 전략 미팅을 통해, 성장 로드맵을 설계하세요.",
@@ -285,31 +344,25 @@ export default function Home() {
                   {t.navigation.company}
                 </Link>
                 <Link
-                  href="#overseas"
+                  href="/services"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.overseas}
+                  {t.navigation.services}
                 </Link>
                 <Link
-                  href="/legal-expansion"
+                  href="/newsletter"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.globalLegal}
+                  {t.navigation.newsletter}
                 </Link>
                 <Link
-                  href="/technology-consulting"
+                  href="#contact-form"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.tech}
+                  {t.navigation.contact}
                 </Link>
                 <Link
-                  href="/network-marketing"
-                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
-                >
-                  {t.navigation.network}
-                </Link>
-                <Link
-                  href="https://delv-chat-lphugp3zc-juns-projects-8d9b4fd0.vercel.app/"
+                  href="/chat"
                   className="text-[#c084fc] px-4 py-2 rounded-lg hover:text-[#c084fc] transition-colors text-sm font-medium"
                 >
                   DELV CHAT
@@ -491,6 +544,122 @@ export default function Home() {
                 {t.network.learnMore}
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="bg-white py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              {t.newsletter.title}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {t.newsletter.subtitle}
+            </p>
+          </div>
+
+          {newsletters.length > 0 ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                {newsletters.map((newsletter) => (
+                  <Link
+                    key={newsletter.id}
+                    href={`/newsletter/${newsletter.id}`}
+                    className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                  >
+                    {newsletter.thumbnail_url && (
+                      <div className="h-48 overflow-hidden">
+                        <img
+                          src={newsletter.thumbnail_url}
+                          alt={newsletter.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      {newsletter.category && (
+                        <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-medium mb-3 inline-block">
+                          {newsletter.category}
+                        </span>
+                      )}
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        {newsletter.title}
+                      </h3>
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {truncateContent(newsletter.content, 120)}
+                      </p>
+                      <div className="text-sm text-gray-500">
+                        <span>
+                          {t.newsletter.author}: {newsletter.author}
+                        </span>
+                        <span className="mx-2">•</span>
+                        <span>{formatDate(newsletter.created_at)}</span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              <div className="text-center">
+                <Link
+                  href="/newsletter"
+                  className="inline-block bg-cyan-500 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-cyan-600 transition-colors"
+                >
+                  {t.newsletter.viewAll}
+                </Link>
+              </div>
+            </>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-gray-600">
+                최신 뉴스레터가 곧 업데이트됩니다.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* DELV CHAT Section */}
+      <section className="bg-gradient-to-r from-[#1A202C] to-[#2D3748] py-20">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <div className="max-w-3xl mx-auto">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full mb-6">
+              <svg
+                className="w-5 h-5 text-white mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="text-white font-semibold">
+                {t.delvChat.subtitle}
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              {t.delvChat.title}
+            </h2>
+            <p className="text-xl text-white/90 mb-8">
+              {t.delvChat.description}
+            </p>
+            <Link
+              href="/chat"
+              className="inline-flex items-center bg-[#4FD1C7] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#3BB5AC] transition-all transform hover:scale-105 shadow-2xl"
+            >
+              <svg
+                className="w-6 h-6 mr-3"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+              </svg>
+              {t.delvChat.startChat} →
+            </Link>
           </div>
         </div>
       </section>

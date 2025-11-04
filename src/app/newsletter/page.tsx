@@ -2,70 +2,142 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
 
-export default function About() {
+interface NewsletterPost {
+  id: number;
+  title: string;
+  content: string;
+  author: string;
+  created_at: string;
+  views: number;
+  category?: string;
+  thumbnail_url?: string;
+}
+
+export default function Newsletter() {
   const [language, setLanguage] = useState<"en" | "ko">("ko");
+  const [posts, setPosts] = useState<NewsletterPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "ko" : "en");
   };
 
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("newsletters")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Error fetching newsletters:", error);
+        // 에러 발생 시 예시 데이터 사용
+        setPosts([
+          {
+            id: 1,
+            title: "Web3 산업의 최신 동향",
+            content: "Web3 산업의 최신 동향에 대해 알아보세요...",
+            author: "DELV Team",
+            created_at: new Date().toISOString(),
+            views: 150,
+            category: "업계 동향",
+          },
+          {
+            id: 2,
+            title: "글로벌 법무 확장 전략",
+            content: "해외 진출을 위한 법무 전략에 대해...",
+            author: "DELV Team",
+            created_at: new Date(Date.now() - 86400000).toISOString(),
+            views: 89,
+            category: "법무",
+          },
+        ]);
+      } else {
+        setPosts(data || []);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      // 에러 발생 시 예시 데이터 사용
+      setPosts([
+        {
+          id: 1,
+          title: "Web3 산업의 최신 동향",
+          content: "Web3 산업의 최신 동향에 대해 알아보세요...",
+          author: "DELV Team",
+          created_at: new Date().toISOString(),
+          views: 150,
+          category: "업계 동향",
+        },
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(language === "ko" ? "ko-KR" : "en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  const truncateContent = (content: string, maxLength: number = 100) => {
+    // HTML 태그 제거
+    const textOnly = content.replace(/<[^>]*>/g, "");
+    if (textOnly.length <= maxLength) return textOnly;
+    return textOnly.substring(0, maxLength) + "...";
+  };
+
   const content = {
     en: {
       navigation: {
-        home: "Home",
+        company: "Company",
         services: "Services",
         newsletter: "Newsletter",
         contact: "Contact",
         language: "ENG",
       },
-      hero: {
-        title: "About DELV",
-        subtitle: "Empowering businesses through expert consulting services",
-      },
-      whatIsDelv: {
-        title: "What is Delv?",
-        description:
-          "Delv라는 이름은 '몰두하다, 깊이 파고들다'라는 뜻의 Delve에서 비롯되었습니다.",
-        content: [
-          "델브는 웹3 분야에서 활동해온 전문가들이 모여, 원스톱 웹3 컨설팅 서비스를 제공하기 위해 만들어졌습니다.",
-          "웹3 프로젝트의 성공은 단순히 기술에만 달려 있지 않습니다. 제도와 규제, 기술, 마케팅이 유기적으로 결합하고, 동시에 국경을 넘어 사용자와 커뮤니티를 확보할 때 비로소 성과를 낼 수 있습니다.",
-          "델브는 이미 웹3에서 활동 중인 기업의 해외 진출·현지화 전략은 물론, 아직 웹3 경험이 없는 기업까지도 안전하게 웹3 세계에 온보딩할 수 있도록 돕습니다.",
-          "축적된 경험과 긴밀한 글로벌 네트워크를 바탕으로, 델브는 여러분의 프로젝트가 성공적으로 안착하고 성장할 수 있도록 든든한 파트너가 되어 드립니다.",
-        ],
-      },
+      title: "Newsletter",
+      subtitle: "Stay updated with our latest insights and updates",
+      noPosts: "No newsletters available yet.",
+      readMore: "Read More",
+      author: "Author",
+      views: "Views",
+      date: "Date",
+      category: "Category",
     },
     ko: {
       navigation: {
-        home: "홈",
+        company: "회사소개",
         services: "서비스",
         newsletter: "뉴스레터",
         contact: "문의하기",
         language: "한국어",
       },
-      hero: {
-        title: "DELV 소개",
-        subtitle: "전문 컨설팅 서비스를 통해 비즈니스를 강화합니다",
-      },
-      whatIsDelv: {
-        title: "What is Delv?",
-        description:
-          "Delv라는 이름은 '몰두하다, 깊이 파고들다'라는 뜻의 Delve에서 비롯되었습니다.",
-        content: [
-          "델브는 웹3 분야에서 활동해온 전문가들이 모여, 원스톱 웹3 컨설팅 서비스를 제공하기 위해 만들어졌습니다.",
-          "웹3 프로젝트의 성공은 단순히 기술에만 달려 있지 않습니다. 제도와 규제, 기술, 마케팅이 유기적으로 결합하고, 동시에 국경을 넘어 사용자와 커뮤니티를 확보할 때 비로소 성과를 낼 수 있습니다.",
-          "델브는 이미 웹3에서 활동 중인 기업의 해외 진출·현지화 전략은 물론, 아직 웹3 경험이 없는 기업까지도 안전하게 웹3 세계에 온보딩할 수 있도록 돕습니다.",
-          "축적된 경험과 긴밀한 글로벌 네트워크를 바탕으로, 델브는 여러분의 프로젝트가 성공적으로 안착하고 성장할 수 있도록 든든한 파트너가 되어 드립니다.",
-        ],
-      },
+      title: "뉴스레터",
+      subtitle: "최신 인사이트와 업데이트를 받아보세요",
+      noPosts: "아직 뉴스레터가 없습니다.",
+      readMore: "더보기",
+      author: "작성자",
+      views: "조회수",
+      date: "작성일",
+      category: "카테고리",
     },
   };
 
   const t = content[language];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#1A202C]">
         <div className="max-w-7xl mx-auto px-6 py-4">
@@ -90,10 +162,10 @@ export default function About() {
               {/* Service Buttons */}
               <div className="hidden md:flex items-center space-x-3">
                 <Link
-                  href="/"
+                  href="/about"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.home}
+                  {t.navigation.company}
                 </Link>
                 <Link
                   href="/services"
@@ -103,7 +175,7 @@ export default function About() {
                 </Link>
                 <Link
                   href="/newsletter"
-                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
+                  className="text-[#3BB5AC] px-4 py-2 rounded-lg text-sm font-medium"
                 >
                   {t.navigation.newsletter}
                 </Link>
@@ -133,47 +205,82 @@ export default function About() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#1A202C] to-[#2D3748] py-20 pt-32">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            {t.hero.title}
-          </h1>
-          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            {t.hero.subtitle}
-          </p>
-        </div>
-      </section>
-
-      {/* What is Delv Section */}
-      <section className="bg-white py-20">
+      {/* Newsletter List Section */}
+      <section className="py-20 pt-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              {t.whatIsDelv.title}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
-              {t.whatIsDelv.description}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.title}
+            </h1>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {t.subtitle}
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-6">
-              {t.whatIsDelv.content.map((paragraph, index) => (
-                <p
-                  key={index}
-                  className="text-lg text-gray-700 leading-relaxed"
+          {/* Newsletter Posts List */}
+          {isLoading ? (
+            <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+              <p className="mt-4 text-gray-600">Loading...</p>
+            </div>
+          ) : posts.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600">{t.noPosts}</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {posts.map((post) => (
+                <Link
+                  key={post.id}
+                  href={`/newsletter/${post.id}`}
+                  className="block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
                 >
-                  {paragraph}
-                </p>
+                  <div className="flex flex-col md:flex-row gap-6">
+                    {post.thumbnail_url && (
+                      <div className="md:w-64 h-48 md:h-auto flex-shrink-0">
+                        <img
+                          src={post.thumbnail_url}
+                          alt={post.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    <div
+                      className={`flex-1 p-6 ${
+                        post.thumbnail_url ? "md:py-6 md:pr-6 md:pl-0" : ""
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        {post.category && (
+                          <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-medium">
+                            {post.category}
+                          </span>
+                        )}
+                        <h3 className="text-xl font-bold text-gray-900">
+                          {post.title}
+                        </h3>
+                      </div>
+                      <p className="text-gray-600 mb-3">
+                        {truncateContent(post.content)}
+                      </p>
+                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                        <span>
+                          {t.author}: {post.author}
+                        </span>
+                        <span>•</span>
+                        <span>{formatDate(post.created_at)}</span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
               ))}
             </div>
-          </div>
+          )}
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 py-16">
+      <footer className="bg-slate-900 py-16 mt-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Company Info */}

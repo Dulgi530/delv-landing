@@ -28,25 +28,31 @@ export default function NetworkMarketing() {
               {/* Service Buttons */}
               <div className="hidden md:flex items-center space-x-3">
                 <Link
-                  href="/legal-expansion"
+                  href="/about"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  Global/Legal
+                  Company
                 </Link>
                 <Link
-                  href="/technology-consulting"
+                  href="/services"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  Tech
+                  Services
                 </Link>
                 <Link
-                  href="/network-marketing"
-                  className="text-[#3BB5AC] px-4 py-2 rounded-lg text-sm font-medium"
+                  href="/newsletter"
+                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  Marketing
+                  Newsletter
                 </Link>
                 <Link
-                  href="https://delv-chat-lphugp3zc-juns-projects-8d9b4fd0.vercel.app/"
+                  href="/#contact-form"
+                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
+                >
+                  Contact
+                </Link>
+                <Link
+                  href="/chat"
                   className="text-[#c084fc] px-4 py-2 rounded-lg hover:text-[#c084fc] transition-colors text-sm font-medium"
                 >
                   DELV CHAT
