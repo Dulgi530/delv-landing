@@ -466,7 +466,10 @@ async function fetchNewsAPI(language = "en"): Promise<NewsItem[]> {
     console.log(`NewsAPI: ${newsItems.length}개 뉴스 처리 완료`);
     return newsItems;
   } catch (error) {
-    console.error("NewsAPI 호출 실패:", error instanceof Error ? error.message : error);
+    console.error(
+      "NewsAPI 호출 실패:",
+      error instanceof Error ? error.message : error
+    );
     return [];
   }
 }
@@ -677,7 +680,10 @@ export async function GET(request: NextRequest) {
             if (allNews.length >= 15) break; // 충분하면 중단
           }
         } catch (error) {
-          console.error(`${feed.source} RSS 처리 실패:`, error instanceof Error ? error.message : error);
+          console.error(
+            `${feed.source} RSS 처리 실패:`,
+            error instanceof Error ? error.message : error
+          );
         }
       }
     }
@@ -690,7 +696,10 @@ export async function GET(request: NextRequest) {
         console.log(`NewsAPI: ${newsApiResults.length}개 뉴스 추가`);
       }
     } catch (error) {
-      console.log("NewsAPI 처리 실패:", error instanceof Error ? error.message : error);
+      console.log(
+        "NewsAPI 처리 실패:",
+        error instanceof Error ? error.message : error
+      );
     }
 
     // RSS 수집 결과 확인
@@ -750,7 +759,7 @@ export async function GET(request: NextRequest) {
     const sourceStats = finalNews.reduce((acc, item) => {
       acc[item.source] = (acc[item.source] || 0) + 1;
       return acc;
-    }, {});
+    }, {} as Record<string, number>);
 
     return Response.json({
       success: true,
