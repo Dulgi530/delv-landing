@@ -3,77 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Services() {
-  const { language, toggleLanguage } = useLanguage();
-
-  const content = {
-    en: {
-      navigation: {
-        company: "Company",
-        services: "Services",
-        newsletter: "Newsletter",
-        contact: "Contact",
-        language: "ENG",
-      },
-      expertise: {
-        title: "Our Expertise",
-        subtitle:
-          "Comprehensive consulting services tailored to your business needs",
-      },
-      globalLegal: {
-        title: "Global / Legal Expansion",
-        description:
-          "Corporate law, compliance, intellectual property, and contract management services for comprehensive legal support.",
-        learnMore: "Learn More",
-      },
-      technology: {
-        title: "Technology Consulting",
-        description:
-          "Digital transformation, software development, and IT infrastructure optimization for modern businesses.",
-        learnMore: "Learn More",
-      },
-      network: {
-        title: "Network Marketing",
-        description:
-          "Market entry strategies, international partnerships, and cross-border business development for global growth.",
-        learnMore: "Learn More",
-      },
-    },
-    ko: {
-      navigation: {
-        company: "회사소개",
-        services: "서비스",
-        newsletter: "뉴스레터",
-        contact: "문의하기",
-        language: "한국어",
-      },
-      expertise: {
-        title: "컨설팅 서비스",
-        subtitle: "비즈니스 요구에 맞춘 종합적인 컨설팅 서비스",
-      },
-      globalLegal: {
-        title: "글로벌 / 법무 확장",
-        description:
-          "포괄적인 법무 지원을 위한 기업법, 컴플라이언스, 지적재산권, 계약 관리 서비스",
-        learnMore: "더 알아보기",
-      },
-      technology: {
-        title: "기술 컨설팅",
-        description:
-          "현대 비즈니스를 위한 디지털 전환, 소프트웨어 개발, IT 인프라 최적화",
-        learnMore: "더 알아보기",
-      },
-      network: {
-        title: "네트워크 마케팅",
-        description:
-          "글로벌 성장을 위한 시장 진입 전략, 국제 파트너십, 국경 간 비즈니스 개발",
-        learnMore: "더 알아보기",
-      },
-    },
-  };
-
-  const t = content[language];
+  const { toggleLanguage } = useLanguage();
+  const t = useTranslation();
 
   return (
     <div className="min-h-screen">
@@ -104,25 +38,25 @@ export default function Services() {
                   href="/about"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.company}
+                  {t.nav.company}
                 </Link>
                 <Link
                   href="/services"
                   className="text-[#3BB5AC] px-4 py-2 rounded-lg text-sm font-medium"
                 >
-                  {t.navigation.services}
+                  {t.nav.services}
                 </Link>
                 <Link
                   href="/newsletter"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.newsletter}
+                  {t.nav.newsletter}
                 </Link>
                 <Link
                   href="/#contact-form"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.contact}
+                  {t.nav.contact}
                 </Link>
                 <Link
                   href="/chat"
@@ -137,7 +71,7 @@ export default function Services() {
                 onClick={toggleLanguage}
                 className="text-white px-4 py-2 rounded-lg border border-white hover:bg-[#3BB5AC] hover:border-[#3BB5AC] transition-colors text-xs font-bold"
               >
-                {t.navigation.language}
+                {t.nav.language}
               </button>
             </div>
           </div>
@@ -149,10 +83,10 @@ export default function Services() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              {t.expertise.title}
+              {t.services.title}
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {t.expertise.subtitle}
+              {t.services.subtitle}
             </p>
           </div>
 
@@ -173,27 +107,23 @@ export default function Services() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.globalLegal.title}
+                {t.services.globalLegal.title}
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                {t.globalLegal.description}
+                {t.services.globalLegal.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  지적재산권 보호
-                </span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  규정 준수
-                </span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  계약 관리
-                </span>
+                {t.services.globalLegal.tags.map((tag, index) => (
+                  <span key={index} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                    {tag}
+                  </span>
+                ))}
               </div>
               <Link
                 href="/legal-expansion"
                 className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
               >
-                {t.globalLegal.learnMore}
+                {t.services.globalLegal.learnMore}
               </Link>
             </div>
 
@@ -213,27 +143,23 @@ export default function Services() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.technology.title}
+                {t.services.technology.title}
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                {t.technology.description}
+                {t.services.technology.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  AI/ML 통합
-                </span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  클라우드 마이그레이션
-                </span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  데브옵스
-                </span>
+                {t.services.technology.tags.map((tag, index) => (
+                  <span key={index} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                    {tag}
+                  </span>
+                ))}
               </div>
               <Link
                 href="/technology-consulting"
                 className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
               >
-                {t.technology.learnMore}
+                {t.services.technology.learnMore}
               </Link>
             </div>
 
@@ -253,27 +179,23 @@ export default function Services() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.network.title}
+                {t.services.network.title}
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                {t.network.description}
+                {t.services.network.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  시장 조사
-                </span>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  파트너십 구축
-                </span>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  현지화
-                </span>
+                {t.services.network.tags.map((tag, index) => (
+                  <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                    {tag}
+                  </span>
+                ))}
               </div>
               <Link
                 href="/network-marketing"
                 className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
               >
-                {t.network.learnMore}
+                {t.services.network.learnMore}
               </Link>
             </div>
           </div>
@@ -296,16 +218,14 @@ export default function Services() {
                 />
               </div>
               <p className="text-gray-300 leading-relaxed">
-                {language === "ko"
-                  ? "전문 컨설팅 서비스를 통해 비즈니스를 강화합니다."
-                  : "Empowering businesses through expert consulting services."}
+                {t.footer.description}
               </p>
             </div>
 
             {/* Services */}
             <div>
               <h3 className="text-white font-semibold mb-4">
-                {language === "ko" ? "서비스" : "Services"}
+                {t.footer.servicesTitle}
               </h3>
               <ul className="space-y-2">
                 <li>
@@ -313,7 +233,7 @@ export default function Services() {
                     href="/technology-consulting"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {language === "ko" ? "기술" : "Technology"}
+                    {t.footer.technology}
                   </Link>
                 </li>
                 <li>
@@ -321,7 +241,7 @@ export default function Services() {
                     href="/legal-expansion"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {language === "ko" ? "법무 자문" : "Legal Advisory"}
+                    {t.footer.legalAdvisory}
                   </Link>
                 </li>
                 <li>
@@ -329,7 +249,7 @@ export default function Services() {
                     href="/network-marketing"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {language === "ko" ? "글로벌 확장" : "Global Expansion"}
+                    {t.footer.globalExpansion}
                   </Link>
                 </li>
               </ul>
@@ -338,7 +258,7 @@ export default function Services() {
             {/* Company */}
             <div>
               <h3 className="text-white font-semibold mb-4">
-                {language === "ko" ? "회사" : "Company"}
+                {t.footer.companyTitle}
               </h3>
               <ul className="space-y-2">
                 <li>
@@ -346,7 +266,7 @@ export default function Services() {
                     href="/about"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {language === "ko" ? "회사소개" : "About Us"}
+                    {t.footer.aboutUs}
                   </Link>
                 </li>
                 <li>
@@ -354,7 +274,7 @@ export default function Services() {
                     href="/#team"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {language === "ko" ? "팀" : "Team"}
+                    {t.footer.teamLabel}
                   </Link>
                 </li>
               </ul>
@@ -363,7 +283,7 @@ export default function Services() {
             {/* Contact */}
             <div>
               <h3 className="text-white font-semibold mb-4">
-                {language === "ko" ? "연락처" : "Contact"}
+                {t.footer.contactTitle}
               </h3>
               <ul className="space-y-2">
                 <li>
