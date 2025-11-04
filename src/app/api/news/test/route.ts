@@ -114,7 +114,7 @@ export async function GET(request: NextRequest) {
 
   // 병렬 테스트로 속도 향상
   const testPromises = testFeeds.map(async (feed) => {
-    const testResult = {
+    const testResult: any = {
       name: feed.name,
       url: feed.url,
       priority: feed.priority,
