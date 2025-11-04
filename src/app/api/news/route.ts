@@ -466,7 +466,7 @@ async function fetchNewsAPI(language = "en"): Promise<NewsItem[]> {
     console.log(`NewsAPI: ${newsItems.length}개 뉴스 처리 완료`);
     return newsItems;
   } catch (error) {
-    console.error("NewsAPI 호출 실패:", error.message);
+    console.error("NewsAPI 호출 실패:", error instanceof Error ? error.message : error);
     return [];
   }
 }
