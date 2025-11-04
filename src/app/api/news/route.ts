@@ -677,7 +677,7 @@ export async function GET(request: NextRequest) {
             if (allNews.length >= 15) break; // 충분하면 중단
           }
         } catch (error) {
-          console.error(`${feed.source} RSS 처리 실패:`, error.message);
+          console.error(`${feed.source} RSS 처리 실패:`, error instanceof Error ? error.message : error);
         }
       }
     }
@@ -690,7 +690,7 @@ export async function GET(request: NextRequest) {
         console.log(`NewsAPI: ${newsApiResults.length}개 뉴스 추가`);
       }
     } catch (error) {
-      console.log("NewsAPI 처리 실패:", error.message);
+      console.log("NewsAPI 처리 실패:", error instanceof Error ? error.message : error);
     }
 
     // RSS 수집 결과 확인
