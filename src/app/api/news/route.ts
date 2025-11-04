@@ -390,7 +390,7 @@ async function fetchNewsAPI(language = "en"): Promise<NewsItem[]> {
     console.log(`NewsAPI 호출 중... (언어: ${language})`);
 
     // 언어별 검색 키워드 최적화
-    const searchQueries = {
+    const searchQueries: Record<string, string> = {
       ko: "암호화폐 OR 비트코인 OR 이더리움 OR 블록체인 OR 코인",
       en: "cryptocurrency OR bitcoin OR ethereum OR blockchain OR crypto OR DeFi OR NFT",
     };
