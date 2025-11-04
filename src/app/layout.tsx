@@ -16,9 +16,7 @@ export const metadata: Metadata = {
   title: "DELV - Web3 Consulting & Global Expansion",
   description: "델브는 웹3 컨설팅 및 글로벌 진출을 돕는 전문가 그룹입니다.",
   icons: {
-    icon: [
-      { url: "/delv-symbol.svg", sizes: "any", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/delv-symbol.svg", sizes: "any", type: "image/svg+xml" }],
     apple: [
       { url: "/delv-symbol.svg", sizes: "180x180", type: "image/svg+xml" },
     ],
