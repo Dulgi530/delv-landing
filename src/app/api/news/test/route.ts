@@ -206,13 +206,13 @@ export async function GET(request: NextRequest) {
             }
           }
         } catch (parseError) {
-          testResult.errors.push(`파싱 실패: ${parseError.message}`)
+          testResult.errors.push(`파싱 실패: ${parseError instanceof Error ? parseError.message : parseError}`)
           testResult.status = "parse_error"
         }
       }
     } catch (error) {
       testResult.status = "network_error"
-      testResult.errors.push(`네트워크 오류: ${error.message}`)
+      testResult.errors.push(`네트워크 오류: ${error instanceof Error ? error.message : error}`)
     }
 
     return testResult
