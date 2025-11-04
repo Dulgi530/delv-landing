@@ -1,7 +1,35 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function NetworkMarketing() {
+  const { language, toggleLanguage } = useLanguage();
+
+  const content = {
+    ko: {
+      nav: {
+        company: "회사소개",
+        services: "서비스",
+        newsletter: "뉴스레터",
+        contact: "문의하기",
+        language: "한국어"
+      }
+    },
+    en: {
+      nav: {
+        company: "Company",
+        services: "Services",
+        newsletter: "Newsletter",
+        contact: "Contact",
+        language: "ENG"
+      }
+    }
+  };
+
+  const t = content[language];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -31,25 +59,25 @@ export default function NetworkMarketing() {
                   href="/about"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  Company
+                  {t.nav.company}
                 </Link>
                 <Link
                   href="/services"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  Services
+                  {t.nav.services}
                 </Link>
                 <Link
                   href="/newsletter"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  Newsletter
+                  {t.nav.newsletter}
                 </Link>
                 <Link
                   href="/#contact-form"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  Contact
+                  {t.nav.contact}
                 </Link>
                 <Link
                   href="/chat"
@@ -59,17 +87,12 @@ export default function NetworkMarketing() {
                 </Link>
               </div>
 
-              {/* Contact Button */}
-              <Link
-                href="mailto:delv.team@gmail.com"
-                className="bg-[#4FD1C7] text-[#FFFFFF] px-4 py-2 rounded-lg hover:bg-[#3BB5AC] transition-colors text-sm font-medium"
-              >
-                Contact
-              </Link>
-
               {/* Language Selector */}
-              <button className="text-white px-4 py-2 rounded-lg hover:bg-[#3BB5AC] transition-colors text-xs font-bold">
-                ENG
+              <button
+                onClick={toggleLanguage}
+                className="text-white px-4 py-2 rounded-lg border border-white hover:bg-[#3BB5AC] hover:border-[#3BB5AC] transition-colors text-xs font-bold"
+              >
+                {t.nav.language}
               </button>
             </div>
           </div>
