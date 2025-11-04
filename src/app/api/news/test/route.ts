@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server"
 
 // RSS 피드 테스트 및 진단용 API - 업데이트된 피드 목록
 export async function GET(request: NextRequest) {
-  const testResults = {
+  const testResults: any = {
     timestamp: new Date().toISOString(),
     tests: [],
     recommendations: [],
