@@ -74,9 +74,9 @@ export async function POST(req: Request) {
           category,
           tokenUsage: result.usage
             ? {
-                prompt: result.usage.promptTokens || 0,
-                completion: result.usage.completionTokens || 0,
-                total: result.usage.totalTokens || 0,
+                prompt: (result.usage as any).promptTokens || 0,
+                completion: (result.usage as any).completionTokens || 0,
+                total: (result.usage as any).totalTokens || 0,
               }
             : undefined,
         });
