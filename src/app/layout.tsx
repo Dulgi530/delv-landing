@@ -17,12 +17,12 @@ export const metadata: Metadata = {
   description: "델브는 웹3 컨설팅 및 글로벌 진출을 돕는 전문가 그룹입니다.",
   icons: {
     icon: [
-      { url: "/delv-logo.png", sizes: "any" },
-      { url: "/delv-logo.png", sizes: "16x16", type: "image/png" },
-      { url: "/delv-logo.png", sizes: "32x32", type: "image/png" },
+      { url: "/DELV SYMBOL.svg", sizes: "any", type: "image/svg+xml" },
+      { url: "/DELV SYMBOL.svg", sizes: "16x16", type: "image/svg+xml" },
+      { url: "/DELV SYMBOL.svg", sizes: "32x32", type: "image/svg+xml" },
     ],
     apple: [
-      { url: "/delv-logo.png", sizes: "180x180", type: "image/png" },
+      { url: "/DELV SYMBOL.svg", sizes: "180x180", type: "image/svg+xml" },
     ],
   },
   openGraph: {

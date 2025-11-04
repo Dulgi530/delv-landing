@@ -184,13 +184,13 @@ export default function Services() {
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  IP Protection
+                  지적재산권 보호
                 </span>
                 <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  Compliance
+                  규정 준수
                 </span>
                 <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  Contracts
+                  계약 관리
                 </span>
               </div>
               <Link
@@ -224,13 +224,13 @@ export default function Services() {
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  AI/ML Integration
+                  AI/ML 통합
                 </span>
                 <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  Cloud Migration
+                  클라우드 마이그레이션
                 </span>
                 <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  DevOps
+                  데브옵스
                 </span>
               </div>
               <Link
@@ -264,13 +264,13 @@ export default function Services() {
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  Market Research
+                  시장 조사
                 </span>
                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  Partnerships
+                  파트너십 구축
                 </span>
                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  Localization
+                  현지화
                 </span>
               </div>
               <Link
