@@ -85,8 +85,8 @@ export async function POST(req: Request) {
 
     console.log("✅ OpenAI API call successful");
 
-    // toDataStreamResponse 메서드 사용
-    return result.toDataStreamResponse();
+    // toTextStreamResponse 메서드 사용
+    return result.toTextStreamResponse();
   } catch (error) {
     console.error("❌ Chat API Error:", error);
 
