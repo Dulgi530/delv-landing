@@ -14,8 +14,8 @@ export default function LegalExpansion() {
         services: "서비스",
         newsletter: "뉴스레터",
         contact: "문의하기",
-        language: "한국어"
-      }
+        language: "한국어",
+      },
     },
     en: {
       nav: {
@@ -23,9 +23,9 @@ export default function LegalExpansion() {
         services: "Services",
         newsletter: "Newsletter",
         contact: "Contact",
-        language: "ENG"
-      }
-    }
+        language: "ENG",
+      },
+    },
   };
 
   const t = content[language];
@@ -94,7 +94,6 @@ export default function LegalExpansion() {
               >
                 {t.nav.language}
               </button>
-
             </div>
           </div>
         </div>
