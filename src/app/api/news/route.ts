@@ -362,13 +362,17 @@ async function fetchRSSFeed(feedConfig: {
     return newsItems;
   } catch (error) {
     console.error(`RSS 피드 상세 오류 (${feedConfig.source}):`);
-    console.error("- 오류 타입:", error.constructor.name);
-    console.error("- 오류 메시지:", error.message);
-    if (error.stack) {
-      console.error(
-        "- 스택 (첫 3줄):",
-        error.stack.split("\n").slice(0, 3).join("\n")
-      );
+    if (error instanceof Error) {
+      console.error("- 오류 타입:", error.constructor.name);
+      console.error("- 오류 메시지:", error.message);
+      if (error.stack) {
+        console.error(
+          "- 스택 (첫 3줄):",
+          error.stack.split("\n").slice(0, 3).join("\n")
+        );
+      }
+    } else {
+      console.error("- 오류:", error);
     }
     return [];
   }
