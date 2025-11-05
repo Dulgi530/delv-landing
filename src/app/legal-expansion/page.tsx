@@ -3,32 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function LegalExpansion() {
-  const { language, toggleLanguage } = useLanguage();
-
-  const content = {
-    ko: {
-      nav: {
-        company: "회사소개",
-        services: "서비스",
-        newsletter: "뉴스레터",
-        contact: "문의하기",
-        language: "한국어",
-      },
-    },
-    en: {
-      nav: {
-        company: "Company",
-        services: "Services",
-        newsletter: "Newsletter",
-        contact: "Contact",
-        language: "ENG",
-      },
-    },
-  };
-
-  const t = content[language];
+  const { toggleLanguage } = useLanguage();
+  const t = useTranslation();
 
   return (
     <div className="min-h-screen bg-white">
@@ -143,8 +122,8 @@ export default function LegalExpansion() {
 
                   {/* Description */}
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    법률 전문가가 복잡한 규제 환경을 헤쳐나가고 귀사의 이익을 보호할 수 있도록 
-                    포괄적인 자문 서비스를 제공합니다.
+                    법률 전문가가 복잡한 규제 환경을 헤쳐나가고 귀사의 이익을
+                    보호할 수 있도록 포괄적인 자문 서비스를 제공합니다.
                   </p>
                 </div>
 
@@ -263,7 +242,9 @@ export default function LegalExpansion() {
 
             {/* Services */}
             <div>
-              <h3 className="text-white font-semibold mb-4">{t.footer.servicesTitle}</h3>
+              <h3 className="text-white font-semibold mb-4">
+                {t.footer.servicesTitle}
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <Link
@@ -294,7 +275,9 @@ export default function LegalExpansion() {
 
             {/* Company */}
             <div>
-              <h3 className="text-white font-semibold mb-4">{t.footer.companyTitle}</h3>
+              <h3 className="text-white font-semibold mb-4">
+                {t.footer.companyTitle}
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <Link
@@ -317,7 +300,9 @@ export default function LegalExpansion() {
 
             {/* Contact */}
             <div>
-              <h3 className="text-white font-semibold mb-4">{t.footer.contactTitle}</h3>
+              <h3 className="text-white font-semibold mb-4">
+                {t.footer.contactTitle}
+              </h3>
               <ul className="space-y-2">
                 <li>
                   <Link

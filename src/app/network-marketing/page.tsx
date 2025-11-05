@@ -3,32 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function NetworkMarketing() {
-  const { language, toggleLanguage } = useLanguage();
-
-  const content = {
-    ko: {
-      nav: {
-        company: "회사소개",
-        services: "서비스",
-        newsletter: "뉴스레터",
-        contact: "문의하기",
-        language: "한국어",
-      },
-    },
-    en: {
-      nav: {
-        company: "Company",
-        services: "Services",
-        newsletter: "Newsletter",
-        contact: "Contact",
-        language: "ENG",
-      },
-    },
-  };
-
-  const t = content[language];
+  const { toggleLanguage } = useLanguage();
+  const t = useTranslation();
 
   return (
     <div className="min-h-screen bg-white">
@@ -137,8 +116,8 @@ export default function NetworkMarketing() {
 
                   {/* Description */}
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    전략적 계획, 시장 분석, 현지 파트너십 개발을 통해 
-                    성공적인 글로벌 확장을 안내합니다.
+                    전략적 계획, 시장 분석, 현지 파트너십 개발을 통해 성공적인
+                    글로벌 확장을 안내합니다.
                   </p>
                 </div>
 

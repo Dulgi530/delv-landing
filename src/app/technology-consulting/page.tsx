@@ -3,32 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function TechnologyConsulting() {
-  const { language, toggleLanguage } = useLanguage();
-
-  const content = {
-    ko: {
-      nav: {
-        company: "회사소개",
-        services: "서비스",
-        newsletter: "뉴스레터",
-        contact: "문의하기",
-        language: "한국어"
-      }
-    },
-    en: {
-      nav: {
-        company: "Company",
-        services: "Services",
-        newsletter: "Newsletter",
-        contact: "Contact",
-        language: "ENG"
-      }
-    }
-  };
-
-  const t = content[language];
+  const { toggleLanguage } = useLanguage();
+  const t = useTranslation();
 
   return (
     <div className="min-h-screen bg-white">
@@ -141,8 +120,9 @@ export default function TechnologyConsulting() {
 
                   {/* Description */}
                   <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                    최첨단 기술을 활용하여 혁신을 주도하고 운영을 간소화하며 
-                    디지털 전환을 통해 지속 가능한 성장을 달성할 수 있도록 돕습니다.
+                    최첨단 기술을 활용하여 혁신을 주도하고 운영을 간소화하며
+                    디지털 전환을 통해 지속 가능한 성장을 달성할 수 있도록
+                    돕습니다.
                   </p>
 
                   {/* Navigation Arrows */}
