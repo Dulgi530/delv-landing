@@ -14,7 +14,8 @@ export const translations = {
       title: "전문 컨설팅으로",
       titleBreak: "비즈니스를 혁신하세요",
       subtitle: "법령 검토 / 웹3 기술 자문 / 홍보, 마케팅 / 해외진출",
-      description: "Web3 분야의 종합적인 컨설팅 서비스를 통해 귀하의 성장을 가속화합니다.",
+      description:
+        "Web3 분야의 종합적인 컨설팅 서비스를 통해 귀하의 성장을 가속화합니다.",
       ctaStart: "컨설팅 시작하기",
       ctaLearn: "더 알아보기",
     },
@@ -25,19 +26,22 @@ export const translations = {
       subtitle: "비즈니스 요구에 맞춘 종합적인 컨설팅 서비스",
       globalLegal: {
         title: "글로벌 / 법무 확장",
-        description: "포괄적인 법무 지원을 위한 기업법, 컴플라이언스, 지적재산권, 계약 관리 서비스",
+        description:
+          "포괄적인 법무 지원을 위한 기업법, 컴플라이언스, 지적재산권, 계약 관리 서비스",
         learnMore: "더 알아보기",
         tags: ["지적재산권 보호", "규정 준수", "계약 관리"],
       },
       technology: {
         title: "기술 컨설팅",
-        description: "현대 비즈니스를 위한 디지털 전환, 소프트웨어 개발, IT 인프라 최적화",
+        description:
+          "현대 비즈니스를 위한 디지털 전환, 소프트웨어 개발, IT 인프라 최적화",
         learnMore: "더 알아보기",
         tags: ["AI/ML 통합", "클라우드 마이그레이션", "데브옵스"],
       },
       network: {
         title: "네트워크 마케팅",
-        description: "글로벌 성장을 위한 시장 진입 전략, 국제 파트너십, 국경 간 비즈니스 개발",
+        description:
+          "글로벌 성장을 위한 시장 진입 전략, 국제 파트너십, 국경 간 비즈니스 개발",
         learnMore: "더 알아보기",
         tags: ["시장 조사", "파트너십 구축", "현지화"],
       },
@@ -126,8 +130,10 @@ export const translations = {
     hero: {
       title: "Transform Your Business",
       titleBreak: "with Expert Consulting",
-      subtitle: "Legal Review / Web3 Tech Advisory / Marketing / Global Expansion",
-      description: "Accelerate your growth through comprehensive consulting services in Web3.",
+      subtitle:
+        "Legal Review / Web3 Tech Advisory / Marketing / Global Expansion",
+      description:
+        "Accelerate your growth through comprehensive consulting services in Web3.",
       ctaStart: "Start Consulting",
       ctaLearn: "Learn More",
     },
@@ -135,22 +141,26 @@ export const translations = {
     // Services Section
     services: {
       title: "Our Expertise",
-      subtitle: "Comprehensive consulting services tailored to your business needs",
+      subtitle:
+        "Comprehensive consulting services tailored to your business needs",
       globalLegal: {
         title: "Global / Legal Expansion",
-        description: "Corporate law, compliance, intellectual property, and contract management services for comprehensive legal support.",
+        description:
+          "Corporate law, compliance, intellectual property, and contract management services for comprehensive legal support.",
         learnMore: "Learn More",
         tags: ["IP Protection", "Compliance", "Contracts"],
       },
       technology: {
         title: "Technology Consulting",
-        description: "Digital transformation, software development, and IT infrastructure optimization for modern businesses.",
+        description:
+          "Digital transformation, software development, and IT infrastructure optimization for modern businesses.",
         learnMore: "Learn More",
         tags: ["AI/ML Integration", "Cloud Migration", "DevOps"],
       },
       network: {
         title: "Network Marketing",
-        description: "Market entry strategies, international partnerships, and cross-border business development for global growth.",
+        description:
+          "Market entry strategies, international partnerships, and cross-border business development for global growth.",
         learnMore: "Learn More",
         tags: ["Market Research", "Partnerships", "Localization"],
       },
@@ -181,7 +191,8 @@ export const translations = {
     // Team Section
     team: {
       title: "Meet Our Team",
-      subtitle: "Industry experts with proven track records in technology, legal, and global markets",
+      subtitle:
+        "Industry experts with proven track records in technology, legal, and global markets",
     },
 
     // Partners Section
@@ -192,7 +203,8 @@ export const translations = {
     // Contact Form
     contactForm: {
       title: "Web3, The First Step to Infinite Possibilities",
-      subtitle: "Design your growth roadmap through a strategic meeting with DELV.",
+      subtitle:
+        "Design your growth roadmap through a strategic meeting with DELV.",
       nameLabel: "Name",
       companyLabel: "Company",
       emailLabel: "Email",
@@ -228,4 +240,3 @@ export const translations = {
 
 export type TranslationKey = keyof typeof translations.ko;
 export type Language = "ko" | "en";
-

@@ -114,7 +114,10 @@ export default function Services() {
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {t.services.globalLegal.tags.map((tag, index) => (
-                  <span key={index} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                  <span
+                    key={index}
+                    className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -150,7 +153,10 @@ export default function Services() {
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {t.services.technology.tags.map((tag, index) => (
-                  <span key={index} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                  <span
+                    key={index}
+                    className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -186,7 +192,10 @@ export default function Services() {
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {t.services.network.tags.map((tag, index) => (
-                  <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                  <span
+                    key={index}
+                    className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                  >
                     {tag}
                   </span>
                 ))}

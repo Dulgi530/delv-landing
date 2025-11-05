@@ -4,9 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Home() {
-  const [language, setLanguage] = useState<"en" | "ko">("ko");
+  const { language, toggleLanguage } = useLanguage();
+  const t = useTranslation();
+  
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -20,10 +24,6 @@ export default function Home() {
     "idle" | "success" | "error"
   >("idle");
   const [newsletters, setNewsletters] = useState<any[]>([]);
-
-  const toggleLanguage = () => {
-    setLanguage(language === "en" ? "ko" : "en");
-  };
 
   useEffect(() => {
     fetchNewsletters();
@@ -111,207 +111,6 @@ export default function Home() {
     }
   };
 
-  const content = {
-    en: {
-      navigation: {
-        company: "Company",
-        services: "Services",
-        newsletter: "Newsletter",
-        contact: "Contact",
-        language: "ENG",
-      },
-      hero: {
-        title: "Transform Your Business\nWith Expert Consulting",
-        subtitle:
-          "We provide comprehensive consulting services in technology, legal advisory, and global expansion to accelerate your growth.",
-        startButton: "Start Consulting",
-        learnButton: "Learn More",
-      },
-      expertise: {
-        title: "Our Expertise",
-        subtitle:
-          "Comprehensive consulting services tailored to your business needs",
-      },
-      globalLegal: {
-        title: "Global / Legal Expansion",
-        description:
-          "Corporate law, compliance, intellectual property, and contract management services for comprehensive legal support.",
-        learnMore: "Learn More",
-      },
-      technology: {
-        title: "Technology Consulting",
-        description:
-          "Digital transformation, software development, and IT infrastructure optimization for modern businesses.",
-        learnMore: "Learn More",
-      },
-      network: {
-        title: "Network Marketing",
-        description:
-          "Market entry strategies, international partnerships, and cross-border business development for global growth.",
-        learnMore: "Learn More",
-      },
-      team: {
-        title: "Meet Our Team",
-        subtitle:
-          "Industry experts with proven track records across technology, legal, and global markets",
-        members: {
-          rosa: {
-            position: "주재원 (스위스)",
-            description:
-              "- 성신여자대학교 컴퓨터공학 / 정보공학 석사<br />- SKB(Swiss Korean Blockchain) Advisors 파운더<br />- Women in Web3 Switzerland (WIW3.ch) 파트너십팀 핵심 기여자<br />- 스위스와 한국 간 블록체인 산업 교류 및 협력 경험 多<br />- 스위스 스타트업의 한국 블록체인 프로젝트 투자 유치 및 자금 조달 지원 경험 多",
-          },
-          ilhun: {
-            position: "회계사",
-            description:
-              "- 고려대학교 경영 MBA 수료<br />- 前 삼정회계법인 회계사<br />- 한울회계법인 파트너<br />- 국내 대기업 금융그룹, 투자회사 회계 용역 多<br />- 국제조세 자문 수행",
-          },
-          sungyeon: {
-            position: "Lawyer",
-            description:
-              "- B.A. in Business Administration, Korea University / J.D., Korea University School of Law<br />- Former in-house counsel at Celltrion and Pulmuone<br />- Grand Prize, ABB Blockchain Hackathon<br />- Experienced in international legal affairs, blockchain advisory, and lecturing",
-          },
-          hyeongjun: {
-            position: "Tech Lead",
-            description:
-              "- aɪdentəti CEO & Builder Academy Community Founder<br />- UNESCO Digital lecture professor<br />- ETH Global Hackathon Award (2023,2024)<br />- ABB BlockChain Hackathon Award (2023)<br />- Web3 Project PM / Design Department",
-          },
-          youngdae: {
-            position: "Community Lead",
-            description:
-              "- aɪdentəti COO and Community Management<br />- Experience as a Web3 Project Community Builder<br />- Experience as a Moderator for Multiple Projects<br />- BD/Operations Manager at MEXC Exchange<br />- Extensive Experience Participating in and Managing Domestic & International Events (Hackathons, Meetups)",
-          },
-        },
-      },
-      partner: {
-        title: "Partner",
-      },
-      newsletter: {
-        title: "Newsletter",
-        subtitle: "Stay updated with our latest insights",
-        viewAll: "View All",
-        author: "Author",
-      },
-      delvChat: {
-        title: "DELV CHAT",
-        subtitle: "Your Web3 Learning Assistant",
-        description: "Learn Web3 terms and concepts through easy conversations",
-        startChat: "Start Chatting",
-      },
-      ready: {
-        title: "Web3, First Step to Infinite Possibilities",
-        subtitle:
-          "Design your growth roadmap through strategic meetings with Delv.",
-        contact: "Contact Us",
-        schedule: "Schedule Call",
-      },
-      footer: {
-        description:
-          "Empowering businesses through expert consulting services.",
-        services: "Services",
-        company: "Company",
-        contact: "Contact",
-      },
-    },
-    ko: {
-      navigation: {
-        company: "회사소개",
-        services: "서비스",
-        newsletter: "뉴스레터",
-        contact: "문의",
-        language: "한국어",
-      },
-      hero: {
-        title: "전문 컨설팅으로\n비즈니스를 혁신하세요",
-        subtitle:
-          "법령 검토 / 웹3 기술 자문 / 홍보, 마케팅 / 해외진출 Web3 분야의 종합적인 컨설팅 서비스를 통해 귀하의 성장을 가속화합니다.",
-        startButton: "컨설팅 시작하기",
-        learnButton: "더 알아보기",
-      },
-      expertise: {
-        title: "컨설팅 서비스",
-        subtitle: "비즈니스 요구에 맞춘 종합적인 컨설팅 서비스",
-      },
-      globalLegal: {
-        title: "글로벌 / 법무 확장",
-        description:
-          "포괄적인 법무 지원을 위한 기업법, 컴플라이언스, 지적재산권, 계약 관리 서비스",
-        learnMore: "더 알아보기",
-      },
-      technology: {
-        title: "기술 컨설팅",
-        description:
-          "현대 비즈니스를 위한 디지털 전환, 소프트웨어 개발, IT 인프라 최적화",
-        learnMore: "더 알아보기",
-      },
-      network: {
-        title: "네트워크 마케팅",
-        description:
-          "글로벌 성장을 위한 시장 진입 전략, 국제 파트너십, 국경 간 비즈니스 개발",
-        learnMore: "더 알아보기",
-      },
-      team: {
-        title: "팀 소개",
-        subtitle:
-          "기술, 법무, 글로벌 시장에서 입증된 실적을 가진 업계 전문가들",
-        members: {
-          rosa: {
-            position: "주재원 (스위스)",
-            description:
-              "- 성신여자대학교 컴퓨터공학 / 정보공학 석사<br />- SKB(Swiss Korean Blockchain) Advisors 파운더<br />- Women in Web3 Switzerland (WIW3.ch) 파트너십팀 핵심 기여자<br />- 스위스와 한국 간 블록체인 산업 교류 및 협력 경험 多<br />- 스위스 스타트업의 한국 블록체인 프로젝트 투자 유치 및 자금 조달 지원 경험 多",
-          },
-          ilhun: {
-            position: "회계사",
-            description:
-              "- 고려대학교 경영 MBA 수료<br />- 前 삼정회계법인 회계사<br />- 現 한울회계법인 이사 (회계사)<br />- 국내 대기업 금융그룹, 투자회사 회계 용역 多<br />- 국제조세 자문 수행",
-          },
-          sungyeon: {
-            position: "변호사",
-            description:
-              "- 고려대학교 경영학 학사 / 법학전문대학원 법학박사<br />- 셀트리온, 풀무원 법무팀 근무 경력<br />- ABB 블록체인 해커톤 대상 수상<br />- 국제법무, 블록체인 자문, 강의 경험",
-          },
-          hyeongjun: {
-            position: "기술 리드",
-            description:
-              "- aɪˈdentəti CEO & 빌더 아카데미 커뮤니티 파운더<br />- 유네스코 디지털 강의 강사<br />- ETHGlobal 해커톤 수상(2023,2024)<br />- ABB 블록체인 해커톤 최우수상 수상<br />- Web3 Project 기획/디자인 경험 다수",
-          },
-          youngdae: {
-            position: "커뮤니티 리드",
-            description:
-              "- aɪdentəti COO 및 커뮤니티 관리<br />- Web3 프로젝트 커뮤니티 빌더 경험<br />- 다수의 프로젝트 모더레이터 경험<br />- MEXC 거래소 BD/운영 매니저<br />- 국내외 이벤트 참여 및 관리 풍부한 경험 (해커톤, 밋업)",
-          },
-        },
-      },
-      partner: {
-        title: "파트너",
-      },
-      newsletter: {
-        title: "뉴스레터",
-        subtitle: "최신 인사이트와 업데이트를 확인하세요",
-        viewAll: "전체 보기",
-        author: "작성자",
-      },
-      delvChat: {
-        title: "DELV CHAT",
-        subtitle: "Web3 학습 도우미",
-        description: "Web3 용어와 개념을 쉬운 대화로 배워보세요",
-        startChat: "채팅 시작하기",
-      },
-      ready: {
-        title: "Web3, 무한한 가능성의 첫걸음",
-        subtitle: "델브와의 전략 미팅을 통해, 성장 로드맵을 설계하세요.",
-        contact: "문의하기",
-        schedule: "상담 예약",
-      },
-      footer: {
-        description: "전문 컨설팅 서비스를 통해 비즈니스를 강화합니다.",
-        services: "서비스",
-        company: "회사",
-        contact: "연락처",
-      },
-    },
-  };
-
-  const t = content[language];
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -341,25 +140,25 @@ export default function Home() {
                   href="/about"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.company}
+                  {t.nav.company}
                 </Link>
                 <Link
                   href="/services"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.services}
+                  {t.nav.services}
                 </Link>
                 <Link
                   href="/newsletter"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.newsletter}
+                  {t.nav.newsletter}
                 </Link>
                 <Link
                   href="#contact-form"
                   className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
                 >
-                  {t.navigation.contact}
+                  {t.nav.contact}
                 </Link>
                 <Link
                   href="/chat"
@@ -374,7 +173,7 @@ export default function Home() {
                 onClick={toggleLanguage}
                 className="text-white px-4 py-2 rounded-lg border border-white hover:bg-[#3BB5AC] hover:border-[#3BB5AC] transition-colors text-xs font-bold"
               >
-                {t.navigation.language}
+                {t.nav.language}
               </button>
             </div>
           </div>
@@ -385,28 +184,27 @@ export default function Home() {
       <section className="bg-gradient-to-r from-[#1A202C] to-[#2D3748] py-20 pt-32">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            {t.hero.title.split("\n").map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < t.hero.title.split("\n").length - 1 && <br />}
-              </span>
-            ))}
+            <span>{t.hero.title}<br /></span>
+            <span>{t.hero.titleBreak}</span>
           </h1>
-          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 mb-4 max-w-3xl mx-auto">
             {t.hero.subtitle}
+          </p>
+          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+            {t.hero.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#contact-form"
               className="bg-cyan-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-cyan-600 transition-colors inline-block"
             >
-              {t.hero.startButton}
+              {t.hero.ctaStart}
             </a>
             <Link
               href="/about"
               className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-slate-900 transition-colors inline-block"
             >
-              {t.hero.learnButton}
+              {t.hero.ctaLearn}
             </Link>
           </div>
         </div>
@@ -417,10 +215,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              {t.expertise.title}
+              {t.services.title}
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {t.expertise.subtitle}
+              {t.services.subtitle}
             </p>
           </div>
 
@@ -441,27 +239,23 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.globalLegal.title}
+                {t.services.globalLegal.title}
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                {t.globalLegal.description}
+                {t.services.globalLegal.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  IP Protection
-                </span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  Compliance
-                </span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  Contracts
-                </span>
+                {t.services.globalLegal.tags.map((tag, index) => (
+                  <span key={index} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                    {tag}
+                  </span>
+                ))}
               </div>
               <Link
                 href="/legal-expansion"
                 className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
               >
-                {t.globalLegal.learnMore}
+                {t.services.globalLegal.learnMore}
               </Link>
             </div>
 
@@ -481,27 +275,23 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.technology.title}
+                {t.services.technology.title}
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                {t.technology.description}
+                {t.services.technology.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  AI/ML Integration
-                </span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  Cloud Migration
-                </span>
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                  DevOps
-                </span>
+                {t.services.technology.tags.map((tag, index) => (
+                  <span key={index} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                    {tag}
+                  </span>
+                ))}
               </div>
               <Link
                 href="/technology-consulting"
                 className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
               >
-                {t.technology.learnMore}
+                {t.services.technology.learnMore}
               </Link>
             </div>
 
@@ -521,27 +311,23 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.network.title}
+                {t.services.network.title}
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                {t.network.description}
+                {t.services.network.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  Market Research
-                </span>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  Partnerships
-                </span>
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  Localization
-                </span>
+                {t.services.network.tags.map((tag, index) => (
+                  <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                    {tag}
+                  </span>
+                ))}
               </div>
               <Link
                 href="/network-marketing"
                 className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
               >
-                {t.network.learnMore}
+                {t.services.network.learnMore}
               </Link>
             </div>
           </div>
