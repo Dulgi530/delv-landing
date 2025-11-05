@@ -59,6 +59,7 @@ export const translations = {
     // DELV CHAT 섹션
     delvChat: {
       badge: "Web3 학습 도우미",
+      subtitle: "Web3 학습 도우미",
       title: "DELV CHAT",
       description: "Web3 용어와 개념을 쉬운 대화로 배워보세요",
       cta: "채팅 시작하기",
@@ -179,6 +180,7 @@ export const translations = {
     // DELV CHAT Section
     delvChat: {
       badge: "Web3 Learning Assistant",
+      subtitle: "Web3 Learning Assistant",
       title: "DELV CHAT",
       description: "Learn Web3 terms and concepts through easy conversations",
       cta: "Start Chatting",
