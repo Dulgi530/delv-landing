@@ -813,23 +813,22 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              {t.ready.title}
+              {t.contactForm.title}
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              {t.ready.subtitle}
+              {t.contactForm.subtitle}
             </p>
           </div>
 
           <div className="bg-white rounded-2xl p-8 shadow-2xl">
             {submitStatus === "success" && (
               <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                문의가 성공적으로 전송되었습니다! 담당자가 확인 후
-                연락드리겠습니다.
+                {t.contactForm.successMessage}
               </div>
             )}
             {submitStatus === "error" && (
               <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                문의 전송에 실패했습니다. 다시 시도해주세요.
+                {t.contactForm.errorMessage}
               </div>
             )}
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -839,7 +838,7 @@ export default function Home() {
                     htmlFor="name"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    이름 *
+                    {t.contactForm.nameLabel} *
                   </label>
                   <input
                     type="text"
@@ -849,7 +848,7 @@ export default function Home() {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-900"
-                    placeholder="이름을 입력해주세요"
+                    placeholder={t.contactForm.namePlaceholder}
                   />
                 </div>
                 <div>
@@ -857,7 +856,7 @@ export default function Home() {
                     htmlFor="company"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    소속 *
+                    {t.contactForm.companyLabel} *
                   </label>
                   <input
                     type="text"
@@ -867,7 +866,7 @@ export default function Home() {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-900"
-                    placeholder="회사명을 입력해주세요"
+                    placeholder={t.contactForm.companyPlaceholder}
                   />
                 </div>
               </div>
@@ -878,7 +877,7 @@ export default function Home() {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    이메일 *
+                    {t.contactForm.emailLabel} *
                   </label>
                   <input
                     type="email"
@@ -888,7 +887,7 @@ export default function Home() {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-900"
-                    placeholder="이메일을 입력해주세요"
+                    placeholder={t.contactForm.emailPlaceholder}
                   />
                 </div>
                 <div>
@@ -896,7 +895,7 @@ export default function Home() {
                     htmlFor="phone"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    전화번호 *
+                    {t.contactForm.phoneLabel} *
                   </label>
                   <input
                     type="tel"
@@ -906,7 +905,7 @@ export default function Home() {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-900"
-                    placeholder="전화번호를 입력해주세요"
+                    placeholder={t.contactForm.phonePlaceholder}
                   />
                 </div>
               </div>
@@ -916,7 +915,7 @@ export default function Home() {
                   htmlFor="message"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  문의내용 (선택)
+                  {t.contactForm.messageLabel}
                 </label>
                 <textarea
                   id="message"
@@ -925,7 +924,7 @@ export default function Home() {
                   onChange={handleInputChange}
                   rows={4}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-900"
-                  placeholder="문의하실 내용을 입력해주세요"
+                  placeholder={t.contactForm.messagePlaceholder}
                 ></textarea>
               </div>
 
@@ -940,7 +939,7 @@ export default function Home() {
                   className="mt-1 h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
                 />
                 <label htmlFor="privacy" className="ml-3 text-sm text-gray-700">
-                  개인정보 제공에 동의합니다 *
+                  {t.contactForm.privacyLabel} *
                 </label>
               </div>
 
@@ -950,12 +949,12 @@ export default function Home() {
                   disabled={isSubmitting}
                   className="bg-cyan-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-cyan-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? "전송 중..." : "문의하기"}
+                  {t.contactForm.submitButton}
                 </button>
               </div>
 
               <p className="text-center text-sm text-gray-500">
-                * 담당자가 확인 후 순차적으로 연락 드립니다.
+                {t.contactForm.note}
               </p>
             </form>
           </div>
