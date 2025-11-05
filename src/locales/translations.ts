@@ -53,6 +53,7 @@ export const translations = {
       subtitle: "최신 인사이트와 업데이트를 확인하세요",
       viewAll: "전체 보기",
       noContent: "최신 뉴스레터가 곧 업데이트됩니다.",
+      author: "작성자",
     },
 
     // DELV CHAT 섹션
@@ -172,6 +173,7 @@ export const translations = {
       subtitle: "Stay updated with our latest insights",
       viewAll: "View All",
       noContent: "Latest newsletters coming soon.",
+      author: "Author",
     },
 
     // DELV CHAT Section

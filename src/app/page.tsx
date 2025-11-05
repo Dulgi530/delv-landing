@@ -10,7 +10,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 export default function Home() {
   const { language, toggleLanguage } = useLanguage();
   const t = useTranslation();
-  
+
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -184,7 +184,10 @@ export default function Home() {
       <section className="bg-gradient-to-r from-[#1A202C] to-[#2D3748] py-20 pt-32">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            <span>{t.hero.title}<br /></span>
+            <span>
+              {t.hero.title}
+              <br />
+            </span>
             <span>{t.hero.titleBreak}</span>
           </h1>
           <p className="text-xl text-gray-300 mb-4 max-w-3xl mx-auto">
@@ -246,7 +249,10 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {t.services.globalLegal.tags.map((tag, index) => (
-                  <span key={index} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                  <span
+                    key={index}
+                    className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -282,7 +288,10 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {t.services.technology.tags.map((tag, index) => (
-                  <span key={index} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                  <span
+                    key={index}
+                    className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -318,7 +327,10 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {t.services.network.tags.map((tag, index) => (
-                  <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                  <span
+                    key={index}
+                    className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                  >
                     {tag}
                   </span>
                 ))}
