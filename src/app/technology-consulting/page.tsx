@@ -107,10 +107,10 @@ export default function TechnologyConsulting() {
             {/* Page Title */}
             <div className="text-center mb-16">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Service Details
+                서비스 상세
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Deep dive into our specialized consulting capabilities
+                전문적인 컨설팅 역량을 자세히 알아보세요
               </p>
             </div>
 
@@ -136,14 +136,13 @@ export default function TechnologyConsulting() {
 
                   {/* Service Title */}
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                    Technology Consulting
+                    기술 컨설팅
                   </h2>
 
                   {/* Description */}
                   <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                    We help businesses leverage cutting-edge technology to drive
-                    innovation, streamline operations, and achieve sustainable
-                    growth through digital transformation.
+                    최첨단 기술을 활용하여 혁신을 주도하고 운영을 간소화하며 
+                    디지털 전환을 통해 지속 가능한 성장을 달성할 수 있도록 돕습니다.
                   </p>
 
                   {/* Navigation Arrows */}

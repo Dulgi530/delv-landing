@@ -107,10 +107,10 @@ export default function NetworkMarketing() {
             {/* Page Title */}
             <div className="text-center mb-16">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Service Details
+                서비스 상세
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Deep dive into our specialized consulting capabilities
+                전문적인 컨설팅 역량을 자세히 알아보세요
               </p>
             </div>
 
@@ -132,14 +132,13 @@ export default function NetworkMarketing() {
 
                   {/* Service Title */}
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                    Network Marketing
+                    네트워크 마케팅
                   </h2>
 
                   {/* Description */}
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    We guide companies through successful international
-                    expansion with strategic planning, market analysis, and
-                    local partnership development.
+                    전략적 계획, 시장 분석, 현지 파트너십 개발을 통해 
+                    성공적인 글로벌 확장을 안내합니다.
                   </p>
                 </div>
 

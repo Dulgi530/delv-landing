@@ -107,10 +107,10 @@ export default function LegalExpansion() {
             {/* Page Title */}
             <div className="text-center mb-16">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Service Details
+                서비스 상세
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Deep dive into our specialized consulting capabilities
+                전문적인 컨설팅 역량을 자세히 알아보세요
               </p>
             </div>
 
@@ -136,23 +136,22 @@ export default function LegalExpansion() {
 
                   {/* Service Title */}
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                    Global / Legal
+                    글로벌 / 법무
                     <br />
-                    Expansion
+                    확장
                   </h2>
 
                   {/* Description */}
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    Our legal experts provide comprehensive advisory services to
-                    help businesses navigate complex regulatory landscapes and
-                    protect their interests.
+                    법률 전문가가 복잡한 규제 환경을 헤쳐나가고 귀사의 이익을 보호할 수 있도록 
+                    포괄적인 자문 서비스를 제공합니다.
                   </p>
                 </div>
 
                 {/* Right Section - Key Services */}
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-8">
-                    Key Services
+                    주요 서비스
                   </h3>
 
                   {/* Services List */}
@@ -174,11 +173,10 @@ export default function LegalExpansion() {
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-gray-900 mb-2">
-                          Corporate Governance
+                          기업 지배구조
                         </h4>
                         <p className="text-gray-600 leading-relaxed">
-                          Board advisory, compliance frameworks, and risk
-                          management
+                          이사회 자문, 컴플라이언스 프레임워크, 리스크 관리
                         </p>
                       </div>
                     </div>
@@ -200,11 +198,10 @@ export default function LegalExpansion() {
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-gray-900 mb-2">
-                          Intellectual Property
+                          지적재산권
                         </h4>
                         <p className="text-gray-600 leading-relaxed">
-                          Patent protection, trademark registration, and IP
-                          strategy
+                          특허 보호, 상표 등록, IP 전략
                         </p>
                       </div>
                     </div>
@@ -226,11 +223,10 @@ export default function LegalExpansion() {
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-gray-900 mb-2">
-                          Contract Management
+                          계약 관리
                         </h4>
                         <p className="text-gray-600 leading-relaxed">
-                          International agreements, negotiations, and dispute
-                          resolution
+                          국제 계약, 협상, 분쟁 해결
                         </p>
                       </div>
                     </div>
@@ -261,36 +257,36 @@ export default function LegalExpansion() {
                 />
               </Link>
               <p className="text-gray-300 leading-relaxed">
-                Empowering businesses through expert consulting services.
+                {t.footer.description}
               </p>
             </div>
 
             {/* Services */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Services</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.servicesTitle}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
                     href="/legal-expansion"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Legal Expansion
+                    {t.footer.legalAdvisory}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/#services"
+                    href="/technology-consulting"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Technology
+                    {t.footer.technology}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/#services"
+                    href="/network-marketing"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Global Expansion
+                    {t.footer.globalExpansion}
                   </Link>
                 </li>
               </ul>
@@ -298,14 +294,14 @@ export default function LegalExpansion() {
 
             {/* Company */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Company</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.companyTitle}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/#about"
+                    href="/about"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    About Us
+                    {t.footer.aboutUs}
                   </Link>
                 </li>
                 <li>
@@ -313,15 +309,7 @@ export default function LegalExpansion() {
                     href="/#team"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Team
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/#contact"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    Careers
+                    {t.footer.teamLabel}
                   </Link>
                 </li>
               </ul>
@@ -329,7 +317,7 @@ export default function LegalExpansion() {
 
             {/* Contact */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Contact</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.contactTitle}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
