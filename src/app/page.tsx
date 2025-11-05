@@ -984,31 +984,31 @@ export default function Home() {
             {/* Services */}
             <div>
               <h3 className="text-white font-semibold mb-4">
-                {t.footer.services}
+                {t.footer.servicesTitle}
               </h3>
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="#"
+                    href="/technology-consulting"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Technology
+                    {t.footer.technology}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/legal-expansion"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Legal Advisory
+                    {t.footer.legalAdvisory}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/network-marketing"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Global Expansion
+                    {t.footer.globalExpansion}
                   </Link>
                 </li>
               </ul>
@@ -1017,31 +1017,23 @@ export default function Home() {
             {/* Company */}
             <div>
               <h3 className="text-white font-semibold mb-4">
-                {t.footer.company}
+                {t.footer.companyTitle}
               </h3>
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="#"
+                    href="/about"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    About Us
+                    {t.footer.aboutUs}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="#"
+                    href="/#team"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Team
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    Careers
+                    {t.footer.teamLabel}
                   </Link>
                 </li>
               </ul>
@@ -1050,7 +1042,7 @@ export default function Home() {
             {/* Contact */}
             <div>
               <h3 className="text-white font-semibold mb-4">
-                {t.footer.contact}
+                {t.footer.contactTitle}
               </h3>
               <ul className="space-y-2">
                 <li>
