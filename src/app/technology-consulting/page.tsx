@@ -132,7 +132,7 @@ export default function TechnologyConsulting() {
                 {/* Right Section - Our Process */}
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-8">
-                    Our Process
+                    진행 프로세스
                   </h3>
 
                   {/* Process Steps */}
@@ -144,11 +144,10 @@ export default function TechnologyConsulting() {
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-gray-900 mb-2">
-                          Technology Assessment
+                          기술 평가
                         </h4>
                         <p className="text-gray-600 leading-relaxed">
-                          Evaluate current infrastructure and identify
-                          opportunities
+                          현재 인프라를 평가하고 개선 기회를 파악합니다
                         </p>
                       </div>
                     </div>
@@ -160,10 +159,10 @@ export default function TechnologyConsulting() {
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-gray-900 mb-2">
-                          Strategy Development
+                          전략 수립
                         </h4>
                         <p className="text-gray-600 leading-relaxed">
-                          Create comprehensive digital transformation roadmap
+                          포괄적인 디지털 전환 로드맵을 작성합니다
                         </p>
                       </div>
                     </div>
@@ -175,11 +174,10 @@ export default function TechnologyConsulting() {
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-gray-900 mb-2">
-                          Implementation
+                          구현 및 지원
                         </h4>
                         <p className="text-gray-600 leading-relaxed">
-                          Execute solutions with ongoing support and
-                          optimization
+                          지속적인 지원과 최적화로 솔루션을 실행합니다
                         </p>
                       </div>
                     </div>
@@ -210,20 +208,20 @@ export default function TechnologyConsulting() {
                 />
               </Link>
               <p className="text-gray-300 leading-relaxed">
-                Empowering businesses through expert consulting services.
+                {t.footer.description}
               </p>
             </div>
 
             {/* Services */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Services</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.servicesTitle}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
                     href="/technology-consulting"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Technology
+                    {t.footer.technology}
                   </Link>
                 </li>
                 <li>
@@ -231,15 +229,15 @@ export default function TechnologyConsulting() {
                     href="/legal-expansion"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Legal Advisory
+                    {t.footer.legalAdvisory}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/#services"
+                    href="/network-marketing"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Global Expansion
+                    {t.footer.globalExpansion}
                   </Link>
                 </li>
               </ul>
@@ -247,14 +245,14 @@ export default function TechnologyConsulting() {
 
             {/* Company */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Company</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.companyTitle}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/#about"
+                    href="/about"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    About Us
+                    {t.footer.aboutUs}
                   </Link>
                 </li>
                 <li>
@@ -262,15 +260,7 @@ export default function TechnologyConsulting() {
                     href="/#team"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Team
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/#contact"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    Careers
+                    {t.footer.teamLabel}
                   </Link>
                 </li>
               </ul>
@@ -278,7 +268,7 @@ export default function TechnologyConsulting() {
 
             {/* Contact */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Contact</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.contactTitle}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link

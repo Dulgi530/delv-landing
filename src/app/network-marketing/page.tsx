@@ -124,7 +124,7 @@ export default function NetworkMarketing() {
                 {/* Right Section - Expansion Strategy */}
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-8">
-                    Expansion Strategy
+                    확장 전략
                   </h3>
 
                   {/* Strategy List */}
@@ -146,11 +146,10 @@ export default function NetworkMarketing() {
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-gray-900 mb-2">
-                          Market Analysis
+                          시장 분석
                         </h4>
                         <p className="text-gray-600 leading-relaxed">
-                          In-depth research of target markets and competitive
-                          landscape
+                          목표 시장과 경쟁 환경에 대한 심층 조사
                         </p>
                       </div>
                     </div>
@@ -172,10 +171,10 @@ export default function NetworkMarketing() {
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-gray-900 mb-2">
-                          Strategic Partnerships
+                          전략적 파트너십
                         </h4>
                         <p className="text-gray-600 leading-relaxed">
-                          Connect with local partners and distribution channels
+                          현지 파트너 및 유통 채널과 연결
                         </p>
                       </div>
                     </div>
@@ -197,11 +196,10 @@ export default function NetworkMarketing() {
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-gray-900 mb-2">
-                          Operational Setup
+                          운영 구축
                         </h4>
                         <p className="text-gray-600 leading-relaxed">
-                          Establish legal entities, compliance, and local
-                          operations
+                          법인 설립, 컴플라이언스, 현지 운영 구축
                         </p>
                       </div>
                     </div>
@@ -232,20 +230,20 @@ export default function NetworkMarketing() {
                 />
               </Link>
               <p className="text-gray-300 leading-relaxed">
-                Empowering businesses through expert consulting services.
+                {t.footer.description}
               </p>
             </div>
 
             {/* Services */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Services</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.servicesTitle}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
                     href="/technology-consulting"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Technology
+                    {t.footer.technology}
                   </Link>
                 </li>
                 <li>
@@ -253,7 +251,7 @@ export default function NetworkMarketing() {
                     href="/legal-expansion"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Legal Advisory
+                    {t.footer.legalAdvisory}
                   </Link>
                 </li>
                 <li>
@@ -261,7 +259,7 @@ export default function NetworkMarketing() {
                     href="/network-marketing"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Global Expansion
+                    {t.footer.globalExpansion}
                   </Link>
                 </li>
               </ul>
@@ -269,14 +267,14 @@ export default function NetworkMarketing() {
 
             {/* Company */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Company</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.companyTitle}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/#about"
+                    href="/about"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    About Us
+                    {t.footer.aboutUs}
                   </Link>
                 </li>
                 <li>
@@ -284,15 +282,7 @@ export default function NetworkMarketing() {
                     href="/#team"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    Team
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/#contact"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    Careers
+                    {t.footer.teamLabel}
                   </Link>
                 </li>
               </ul>
@@ -300,7 +290,7 @@ export default function NetworkMarketing() {
 
             {/* Contact */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Contact</h3>
+              <h3 className="text-white font-semibold mb-4">{t.footer.contactTitle}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link
