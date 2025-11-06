@@ -24,26 +24,50 @@ export const translations = {
     services: {
       title: "컨설팅 서비스",
       subtitle: "비즈니스 요구에 맞춘 종합적인 컨설팅 서비스",
-      globalLegal: {
-        title: "글로벌 / 법무 확장",
+      legal: {
+        icon: "⚖️",
+        title: "법률 자문",
+        titleEn: "Legal Advisory",
         description:
-          "포괄적인 법무 지원을 위한 기업법, 컴플라이언스, 지적재산권, 계약 관리 서비스",
+          "DAO·해외 법인 설립 자문, 스위스 법인 운영 지원, 토큰 발행 구조 검토, 계약서 검토(MOU·SAFE·Token Warrant), 규제 대응(VASP·금감원), IP/데이터 라이선스 자문, 투자 유치 법률 자문 LDD (Legal Due Diligence)",
         learnMore: "더 알아보기",
-        tags: ["지적재산권 보호", "규정 준수", "계약 관리"],
+        tags: ["DAO 법인화", "VASP 등록", "LDD"],
       },
-      technology: {
-        title: "기술 컨설팅",
+      accounting: {
+        icon: "📊",
+        title: "회계·세무 자문",
+        titleEn: "Accounting & Tax Advisory",
         description:
-          "현대 비즈니스를 위한 디지털 전환, 소프트웨어 개발, IT 인프라 최적화",
+          "토큰 회계처리 설계, 원천세·부가세·법인세 신고 대행, 토큰 수익 인식 구조화, 분기별 재무·KPI 보고, 투자유치용 재무검증 FDD / TDD (Financial Due Diligence / Tax Due Diligence)",
         learnMore: "더 알아보기",
-        tags: ["AI/ML 통합", "클라우드 마이그레이션", "데브옵스"],
+        tags: ["토큰 회계처리", "세무 신고", "FDD/TDD"],
       },
-      network: {
-        title: "네트워크 마케팅",
+      technical: {
+        icon: "🧠",
+        title: "기술 자문·설계",
+        titleEn: "Technical Advisory & Audit",
         description:
-          "글로벌 성장을 위한 시장 진입 전략, 국제 파트너십, 국경 간 비즈니스 개발",
+          "스마트컨트랙트 설계, ERC, 토큰, 디파이 Paymaster/SBT/DID/NFT 구조 자문 및 개발, 코드 보안·기능 Audit, Web3 프로젝트용 API·SDK 설계",
         learnMore: "더 알아보기",
-        tags: ["시장 조사", "파트너십 구축", "현지화"],
+        tags: ["스마트컨트랙트", "보안 감사", "Web3 설계"],
+      },
+      business: {
+        icon: "💼",
+        title: "비즈니스 개발",
+        titleEn: "Business Development & IR",
+        description:
+          "스위스 Crypto Valley 네트워크 연결, 해외 재단 설립 지원, VC·PE 매칭 및 협상, IR Deck·투자전략 수립, Tokenomics 설계, 글로벌 투자 리포트·Valuation 발행",
+        learnMore: "더 알아보기",
+        tags: ["투자 유치", "재단 설립", "Tokenomics"],
+      },
+      networking: {
+        icon: "🌐",
+        title: "네트워킹·커뮤니티",
+        titleEn: "Networking & Growth",
+        description:
+          "DAO·Social-Fi 커뮤니티 운영, 글로벌 커뮤니티 세팅, 밋업·해커톤·포럼 기획, DELV 인증 프로젝트 파트너십 구축, 전문가 네트워크 운영",
+        learnMore: "더 알아보기",
+        tags: ["커뮤니티 운영", "해커톤", "파트너십"],
       },
     },
 
@@ -78,23 +102,28 @@ export const translations = {
       members: {
         sungyeon: {
           position: "변호사",
-          description: "- 고려대학교 경영학 학사 / 법학전문대학원 법학박사<br />- 셀트리온, 풀무원 법무팀 근무 경력<br />- ABB 블록체인 해커톤 대상 수상<br />- 국제법무, 블록체인 자문, 강의 경험",
+          description:
+            "- 고려대학교 경영학 학사 / 법학전문대학원 법학박사<br />- 셀트리온, 풀무원 법무팀 근무 경력<br />- ABB 블록체인 해커톤 대상 수상<br />- 국제법무, 블록체인 자문, 강의 경험",
         },
         ilhun: {
           position: "회계사",
-          description: "- 고려대학교 경영 MBA 수료<br />- 前 삼정회계법인 회계사<br />- 現 한울회계법인 이사 (회계사)<br />- 국내 대기업 금융그룹, 투자회사 회계 용역 多<br />- 국제조세 자문 수행",
+          description:
+            "- 고려대학교 경영 MBA 수료<br />- 前 삼정회계법인 회계사<br />- 現 한울회계법인 이사 (회계사)<br />- 국내 대기업 금융그룹, 투자회사 회계 용역 多<br />- 국제조세 자문 수행",
         },
         rosa: {
           position: "주재원 (스위스)",
-          description: "- 성신여자대학교 컴퓨터공학 / 정보공학 석사<br />- SKB(Swiss Korean Blockchain) Advisors 파운더<br />- Women in Web3 Switzerland (WIW3.ch) 파트너십팀 핵심 기여자<br />- 스위스와 한국 간 블록체인 산업 교류 및 협력 경험 多<br />- 스위스 스타트업의 한국 블록체인 프로젝트 투자 유치 및 자금 조달 지원 경험 多",
+          description:
+            "- 성신여자대학교 컴퓨터공학 / 정보공학 석사<br />- SKB(Swiss Korean Blockchain) Advisors 파운더<br />- Women in Web3 Switzerland (WIW3.ch) 파트너십팀 핵심 기여자<br />- 스위스와 한국 간 블록체인 산업 교류 및 협력 경험 多<br />- 스위스 스타트업의 한국 블록체인 프로젝트 투자 유치 및 자금 조달 지원 경험 多",
         },
         hyeongjun: {
           position: "기술 리드",
-          description: "- aɪˈdentəti CEO & 빌더 아카데미 커뮤니티 파운더<br />- 유네스코 디지털 강의 강사<br />- ETHGlobal 해커톤 수상(2023,2024)<br />- ABB 블록체인 해커톤 최우수상 수상<br />- Web3 Project 기획/디자인 경험 다수",
+          description:
+            "- aɪˈdentəti CEO & 빌더 아카데미 커뮤니티 파운더<br />- 유네스코 디지털 강의 강사<br />- ETHGlobal 해커톤 수상(2023,2024)<br />- ABB 블록체인 해커톤 최우수상 수상<br />- Web3 Project 기획/디자인 경험 다수",
         },
         youngdae: {
           position: "커뮤니티 리드",
-          description: "- aɪdentəti COO 및 커뮤니티 관리<br />- Web3 프로젝트 커뮤니티 빌더 경험<br />- 다수의 프로젝트 모더레이터 경험<br />- MEXC 거래소 BD/운영 매니저<br />- 국내외 이벤트 참여 및 관리 풍부한 경험 (해커톤, 밋업)",
+          description:
+            "- aɪdentəti COO 및 커뮤니티 관리<br />- Web3 프로젝트 커뮤니티 빌더 경험<br />- 다수의 프로젝트 모더레이터 경험<br />- MEXC 거래소 BD/운영 매니저<br />- 국내외 이벤트 참여 및 관리 풍부한 경험 (해커톤, 밋업)",
         },
       },
     },
@@ -167,26 +196,50 @@ export const translations = {
       title: "Our Expertise",
       subtitle:
         "Comprehensive consulting services tailored to your business needs",
-      globalLegal: {
-        title: "Global / Legal Expansion",
+      legal: {
+        icon: "⚖️",
+        title: "Legal Advisory",
+        titleEn: "Legal Advisory",
         description:
-          "Corporate law, compliance, intellectual property, and contract management services for comprehensive legal support.",
+          "DAO incorporation & overseas entity setup advisory (Korea, Switzerland, Singapore, etc.), Swiss entity establishment & operation support, Token issuance structure review (securities & investment contract analysis), MOU, SAFE, Token Warrant contract drafting & review, Regulatory compliance advisory (VASP registration, FSC/FSS response, disclosure risk analysis), Web3 business IP & data licensing advisory, Investment fundraising legal advisory LDD (Legal Due Diligence)",
         learnMore: "Learn More",
-        tags: ["IP Protection", "Compliance", "Contracts"],
+        tags: ["DAO Incorporation", "VASP Registration", "LDD"],
       },
-      technology: {
-        title: "Technology Consulting",
+      accounting: {
+        icon: "📊",
+        title: "Accounting & Tax Advisory",
+        titleEn: "Accounting & Tax Advisory",
         description:
-          "Digital transformation, software development, and IT infrastructure optimization for modern businesses.",
+          "Financial statements & token accounting ledger design (token issuance, burning, reward accounting), Withholding tax, VAT, corporate tax filing agency & advisory, Token revenue recognition structuring, Quarterly accounting reports & KPI/financial reporting, Investment fundraising financial verification FDD / TDD (Financial Due Diligence / Tax Due Diligence)",
         learnMore: "Learn More",
-        tags: ["AI/ML Integration", "Cloud Migration", "DevOps"],
+        tags: ["Token Accounting", "Tax Filing", "FDD/TDD"],
       },
-      network: {
-        title: "Network Marketing",
+      technical: {
+        icon: "🧠",
+        title: "Technical Advisory & Audit",
+        titleEn: "Technical Advisory & Audit",
         description:
-          "Market entry strategies, international partnerships, and cross-border business development for global growth.",
+          "Smart contract design, ERC, Token, DeFi Paymaster/SBT/DID/NFT structure advisory & development, Code security·functional audit, Web3 project API·SDK design",
         learnMore: "Learn More",
-        tags: ["Market Research", "Partnerships", "Localization"],
+        tags: ["Smart Contracts", "Security Audit", "Web3 Design"],
+      },
+      business: {
+        icon: "💼",
+        title: "Business Development & IR",
+        titleEn: "Business Development & IR",
+        description:
+          "Swiss Crypto Valley network connection, overseas foundation setup support, VC·PE matching & negotiation, IR deck·investment strategy development, Tokenomics design, global investment report·valuation issuance",
+        learnMore: "Learn More",
+        tags: ["Fundraising", "Foundation", "Tokenomics"],
+      },
+      networking: {
+        icon: "🌐",
+        title: "Networking & Growth",
+        titleEn: "Networking & Growth",
+        description:
+          "DAO·Social-Fi community management, global community setup, meetup·hackathon·forum planning, DELV certified project partnership building, expert network operation",
+        learnMore: "Learn More",
+        tags: ["Community", "Hackathons", "Partnerships"],
       },
     },
 
@@ -222,23 +275,28 @@ export const translations = {
       members: {
         sungyeon: {
           position: "Lawyer",
-          description: "- B.A. in Business Administration, Korea University / J.D., Korea University School of Law<br />- Former in-house counsel at Celltrion and Pulmuone<br />- Grand Prize, ABB Blockchain Hackathon<br />- Experienced in international legal affairs, blockchain advisory, and lecturing",
+          description:
+            "- B.A. in Business Administration, Korea University / J.D., Korea University School of Law<br />- Former in-house counsel at Celltrion and Pulmuone<br />- Grand Prize, ABB Blockchain Hackathon<br />- Experienced in international legal affairs, blockchain advisory, and lecturing",
         },
         ilhun: {
           position: "Accountant",
-          description: "- MBA, Korea University<br />- Former Accountant at Samjong Accounting Corporation<br />- Current Director (Accountant) at Hanwool Accounting Corporation<br />- Extensive accounting services for major domestic corporate financial groups and investment companies<br />- International tax advisory",
+          description:
+            "- MBA, Korea University<br />- Former Accountant at Samjong Accounting Corporation<br />- Current Director (Accountant) at Hanwool Accounting Corporation<br />- Extensive accounting services for major domestic corporate financial groups and investment companies<br />- International tax advisory",
         },
         rosa: {
           position: "Representative (Switzerland)",
-          description: "- Master's in Computer Engineering / Information Engineering, Sungshin Women's University<br />- Founder of SKB (Swiss Korean Blockchain) Advisors<br />- Key contributor to Women in Web3 Switzerland (WIW3.ch) Partnership Team<br />- Extensive experience in blockchain industry exchange and cooperation between Switzerland and Korea<br />- Extensive experience in supporting Swiss startups with investment attraction and fundraising for Korean blockchain projects",
+          description:
+            "- Master's in Computer Engineering / Information Engineering, Sungshin Women's University<br />- Founder of SKB (Swiss Korean Blockchain) Advisors<br />- Key contributor to Women in Web3 Switzerland (WIW3.ch) Partnership Team<br />- Extensive experience in blockchain industry exchange and cooperation between Switzerland and Korea<br />- Extensive experience in supporting Swiss startups with investment attraction and fundraising for Korean blockchain projects",
         },
         hyeongjun: {
           position: "Tech Lead",
-          description: "- aɪˈdentəti CEO & Builder Academy Community Founder<br />- UNESCO Digital lecture professor<br />- ETH Global Hackathon Award (2023,2024)<br />- ABB BlockChain Hackathon Award (2023)<br />- Web3 Project PM / Design Department",
+          description:
+            "- aɪˈdentəti CEO & Builder Academy Community Founder<br />- UNESCO Digital lecture professor<br />- ETH Global Hackathon Award (2023,2024)<br />- ABB BlockChain Hackathon Award (2023)<br />- Web3 Project PM / Design Department",
         },
         youngdae: {
           position: "Community Lead",
-          description: "- aɪdentəti COO and Community Management<br />- Experience as a Web3 Project Community Builder<br />- Experience as a Moderator for Multiple Projects<br />- BD/Operations Manager at MEXC Exchange<br />- Extensive Experience Participating in and Managing Domestic & International Events (Hackathons, Meetups)",
+          description:
+            "- aɪdentəti COO and Community Management<br />- Experience as a Web3 Project Community Builder<br />- Experience as a Moderator for Multiple Projects<br />- BD/Operations Manager at MEXC Exchange<br />- Extensive Experience Participating in and Managing Domestic & International Events (Hackathons, Meetups)",
         },
       },
     },

@@ -9,6 +9,14 @@ export default function Services() {
   const { toggleLanguage } = useLanguage();
   const t = useTranslation();
 
+  const servicesList = [
+    { key: "legal" as const, colorClass: "purple" },
+    { key: "accounting" as const, colorClass: "blue" },
+    { key: "technical" as const, colorClass: "green" },
+    { key: "business" as const, colorClass: "yellow" },
+    { key: "networking" as const, colorClass: "pink" },
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -90,123 +98,38 @@ export default function Services() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Global / Legal Expansion */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg flex flex-col">
-              <div className="w-16 h-16 bg-pink-500 rounded-2xl mb-6 flex items-center justify-center">
-                <svg
-                  className="w-8 h-8 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.services.globalLegal.title}
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                {t.services.globalLegal.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {t.services.globalLegal.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link
-                href="/legal-expansion"
-                className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {servicesList.map(({ key, colorClass }) => (
+              <div
+                key={key}
+                id={key}
+                className="bg-white rounded-2xl p-6 shadow-lg flex flex-col hover:shadow-xl transition-shadow"
               >
-                {t.services.globalLegal.learnMore}
-              </Link>
-            </div>
-
-            {/* Technology Consulting */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg flex flex-col">
-              <div className="w-16 h-16 bg-purple-500 rounded-2xl mb-6 flex items-center justify-center">
-                <svg
-                  className="w-8 h-8 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+                <div className="text-4xl mb-4">{t.services[key].icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  {t.services[key].title}
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed flex-grow text-sm">
+                  {t.services[key].description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {t.services[key].tags.map((tag: string, index: number) => (
+                    <span
+                      key={index}
+                      className={`bg-${colorClass}-100 text-${colorClass}-800 px-2 py-1 rounded-full text-xs`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  href={`/services/${key}`}
+                  className="border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto text-sm"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                  {t.services[key].learnMore}
+                </Link>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.services.technology.title}
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                {t.services.technology.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {t.services.technology.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link
-                href="/technology-consulting"
-                className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
-              >
-                {t.services.technology.learnMore}
-              </Link>
-            </div>
-
-            {/* Network Marketing */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg flex flex-col">
-              <div className="w-16 h-16 bg-blue-500 rounded-2xl mb-6 flex items-center justify-center">
-                <svg
-                  className="w-8 h-8 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t.services.network.title}
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                {t.services.network.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {t.services.network.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link
-                href="/network-marketing"
-                className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto"
-              >
-                {t.services.network.learnMore}
-              </Link>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -239,26 +162,42 @@ export default function Services() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/technology-consulting"
+                    href="#legal"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {t.footer.technology}
+                    {t.services.legal.title}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/legal-expansion"
+                    href="#accounting"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {t.footer.legalAdvisory}
+                    {t.services.accounting.title}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/network-marketing"
+                    href="#technical"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {t.footer.globalExpansion}
+                    {t.services.technical.title}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#business"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {t.services.business.title}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#networking"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {t.services.networking.title}
                   </Link>
                 </li>
               </ul>
