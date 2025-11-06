@@ -134,8 +134,21 @@ export default function About() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#1A202C] to-[#2D3748] py-20 pt-32">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="relative py-20 pt-32 overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/delvteam.jpeg"
+            alt="DELV Team Background"
+            fill
+            className="object-cover opacity-95"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1A202C]/90 to-[#2D3748]/90"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
             {t.hero.title}
           </h1>
