@@ -140,15 +140,18 @@ export default function Services() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="md:col-span-1">
-              <div className="flex items-center space-x-3 mb-4">
+              <Link
+                href="/about"
+                className="flex items-start space-x-3 mb-4 hover:opacity-80 transition-opacity"
+              >
                 <Image
                   src="/delv-logo.png"
                   alt="DELV Logo"
-                  width={60}
-                  height={60}
-                  className="w-16 h-16 object-contain"
+                  width={120}
+                  height={120}
+                  className="w-32 h-32 object-contain"
                 />
-              </div>
+              </Link>
               <p className="text-gray-300 leading-relaxed">
                 {t.footer.description}
               </p>
@@ -162,7 +165,7 @@ export default function Services() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="#legal"
+                    href="/services/legal"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     {t.services.legal.title}
@@ -170,7 +173,7 @@ export default function Services() {
                 </li>
                 <li>
                   <Link
-                    href="#accounting"
+                    href="/services/accounting"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     {t.services.accounting.title}
@@ -178,7 +181,7 @@ export default function Services() {
                 </li>
                 <li>
                   <Link
-                    href="#technical"
+                    href="/services/technical"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     {t.services.technical.title}
@@ -186,7 +189,7 @@ export default function Services() {
                 </li>
                 <li>
                   <Link
-                    href="#business"
+                    href="/services/business"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     {t.services.business.title}
@@ -194,7 +197,7 @@ export default function Services() {
                 </li>
                 <li>
                   <Link
-                    href="#networking"
+                    href="/services/networking"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     {t.services.networking.title}

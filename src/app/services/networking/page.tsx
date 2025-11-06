@@ -351,15 +351,15 @@ export default function NetworkingGrowth() {
             {/* Company Info */}
             <div className="md:col-span-1">
               <Link
-                href="/"
-                className="flex items-center space-x-3 mb-4 hover:opacity-80 transition-opacity"
+                href="/about"
+                className="flex items-start space-x-3 mb-4 hover:opacity-80 transition-opacity"
               >
                 <Image
                   src="/delv-logo.png"
                   alt="DELV Logo"
-                  width={60}
-                  height={60}
-                  className="w-16 h-16 object-contain"
+                  width={120}
+                  height={120}
+                  className="w-32 h-32 object-contain"
                 />
               </Link>
               <p className="text-gray-300 leading-relaxed">

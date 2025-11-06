@@ -285,15 +285,18 @@ export default function Newsletter() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="md:col-span-1">
-              <div className="flex items-center space-x-3 mb-4">
+              <Link
+                href="/about"
+                className="flex items-start space-x-3 mb-4 hover:opacity-80 transition-opacity"
+              >
                 <Image
                   src="/delv-logo.png"
                   alt="DELV Logo"
-                  width={60}
-                  height={60}
-                  className="w-16 h-16 object-contain"
+                  width={120}
+                  height={120}
+                  className="w-32 h-32 object-contain"
                 />
-              </div>
+              </Link>
               <p className="text-gray-300 leading-relaxed">
                 {language === "ko"
                   ? "전문 컨설팅 서비스를 통해 비즈니스를 강화합니다."
@@ -309,26 +312,48 @@ export default function Newsletter() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/technology-consulting"
+                    href="/services/legal"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {language === "ko" ? "기술" : "Technology"}
+                    {language === "ko" ? "법률자문" : "Legal Advisory"}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/legal-expansion"
+                    href="/services/accounting"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {language === "ko" ? "법무 자문" : "Legal Advisory"}
+                    {language === "ko" ? "회계 세무 자문" : "Accounting & Tax"}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/network-marketing"
+                    href="/services/technical"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {language === "ko" ? "글로벌 확장" : "Global Expansion"}
+                    {language === "ko"
+                      ? "기술 자문 설계"
+                      : "Technical Advisory"}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/business"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {language === "ko"
+                      ? "비지니스 개발"
+                      : "Business Development"}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/networking"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {language === "ko"
+                      ? "네트워킹 커뮤니티"
+                      : "Networking Community"}
                   </Link>
                 </li>
               </ul>

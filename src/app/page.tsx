@@ -985,15 +985,18 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="md:col-span-1">
-              <div className="flex items-center space-x-3 mb-4">
+              <Link
+                href="/about"
+                className="flex items-start space-x-3 mb-4 hover:opacity-80 transition-opacity"
+              >
                 <Image
                   src="/delv-logo.png"
                   alt="DELV Logo"
-                  width={60}
-                  height={60}
-                  className="w-16 h-16 object-contain"
+                  width={120}
+                  height={120}
+                  className="w-32 h-32 object-contain"
                 />
-              </div>
+              </Link>
               <p className="text-gray-300 leading-relaxed">
                 {t.footer.description}
               </p>
@@ -1007,26 +1010,42 @@ export default function Home() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="/technology-consulting"
+                    href="/services/legal"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {t.footer.technology}
+                    {t.services.legal.title}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/legal-expansion"
+                    href="/services/accounting"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {t.footer.legalAdvisory}
+                    {t.services.accounting.title}
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/network-marketing"
+                    href="/services/technical"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    {t.footer.globalExpansion}
+                    {t.services.technical.title}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/business"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {t.services.business.title}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/networking"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {t.services.networking.title}
                   </Link>
                 </li>
               </ul>
@@ -1069,14 +1088,6 @@ export default function Home() {
                     className="text-gray-300 hover:text-white transition-colors"
                   >
                     delv.web3@gmail.com
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="tel:+15551234567"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    +1 (555) 123-4567
                   </Link>
                 </li>
               </ul>
