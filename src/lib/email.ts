@@ -17,7 +17,7 @@ export async function sendContactEmail(contactData: ContactData) {
   try {
     const { data, error } = await resend.emails.send({
       from: "Delv <hello@delv.team>",
-      to: ["delv.web3@gmail.com"],
+      to: ["admin@delv.team"],
       subject: `새로운 문의: ${contactData.name} (${contactData.company})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

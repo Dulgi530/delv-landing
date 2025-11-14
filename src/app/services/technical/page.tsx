@@ -427,10 +427,10 @@ export default function TechnicalAdvisory() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="mailto:delv.team@gmail.com"
+                    href="mailto:admin@delv.team"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    delv.team@gmail.com
+                    admin@delv.team
                   </Link>
                 </li>
               </ul>

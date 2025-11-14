@@ -1084,10 +1084,10 @@ export default function Home() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="mailto:delv.web3@gmail.com"
+                    href="mailto:admin@delv.team"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    delv.web3@gmail.com
+                    admin@delv.team
                   </Link>
                 </li>
               </ul>
