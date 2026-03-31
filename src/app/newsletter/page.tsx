@@ -4,6 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { translations } from "@/locales/translations";
+import {
+  SERVICE_CARD_KEYS,
+  type ServiceCardKey,
+} from "@/lib/serviceCards";
 
 interface NewsletterPost {
   id: number;
@@ -310,52 +315,16 @@ export default function Newsletter() {
                 {language === "ko" ? "서비스" : "Services"}
               </h3>
               <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/services/legal"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {language === "ko" ? "법률자문" : "Legal Advisory"}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services/accounting"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {language === "ko" ? "회계 세무 자문" : "Accounting & Tax"}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services/technical"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {language === "ko"
-                      ? "기술 자문 설계"
-                      : "Technical Advisory"}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services/business"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {language === "ko"
-                      ? "비지니스 개발"
-                      : "Business Development"}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services/networking"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {language === "ko"
-                      ? "네트워킹 커뮤니티"
-                      : "Networking Community"}
-                  </Link>
-                </li>
+                {SERVICE_CARD_KEYS.map((key: ServiceCardKey) => (
+                  <li key={key}>
+                    <Link
+                      href={`/#service-${key}`}
+                      className="text-gray-300 hover:text-white transition-colors"
+                    >
+                      {translations[language].services[key].title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 

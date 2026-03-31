@@ -1,6 +1,5 @@
 export const translations = {
   ko: {
-    // 네비게이션
     nav: {
       company: "회사소개",
       services: "서비스",
@@ -8,70 +7,66 @@ export const translations = {
       contact: "문의하기",
       language: "한국어",
     },
-
-    // 메인 페이지
     hero: {
       title: "전문 컨설팅으로",
       titleBreak: "비즈니스를 혁신하세요",
-      subtitle: "법령 검토 / 웹3 기술 자문 / 홍보, 마케팅 / 해외진출",
-      description:
-        "Web3 분야의 종합적인 컨설팅 서비스를 통해 귀하의 성장을 가속화합니다.",
+      subtitle: "BM 개발 / 블록체인 기술 / ICO 상장 / RWA / 해외진출 / 세무",
+      description: "Web3 분야의 종합적인 컨설팅 서비스를 통해 귀하의 성장을 가속화합니다.",
       ctaStart: "컨설팅 시작하기",
       ctaLearn: "더 알아보기",
     },
-
-    // 서비스 섹션
     services: {
       title: "컨설팅 서비스",
-      subtitle: "비즈니스 요구에 맞춘 종합적인 컨설팅 서비스",
-      legal: {
-        icon: "⚖️",
-        title: "법률 자문",
-        titleEn: "Legal Advisory",
-        description:
-          "DAO·해외 법인 설립 자문, 스위스 법인 운영 지원, 토큰 발행 구조 검토, 계약서 검토(MOU·SAFE·Token Warrant), 규제 대응(VASP·금감원), IP/데이터 라이선스 자문, 투자 유치 법률 자문 LDD (Legal Due Diligence)",
+      subtitle: "비즈니스 요구에 맞춘 종합적인 Web3 컨설팅 서비스",
+      bm: {
+        icon: "🚀",
+        title: "BM 개발 패키지",
+        titleEn: "Business Model Development Package",
+        description: "Web3 비즈니스 모델 설계부터 수익 구조 검증, 시장 진입 전략 수립까지 — 사업의 핵심 기반을 함께 만들어 드립니다. 토큰 이코노미 설계, 경쟁사 분석, IR 피치덱 제작을 포함합니다.",
         learnMore: "더 알아보기",
-        tags: ["DAO 법인화", "VASP 등록", "LDD"],
+        tags: ["비즈니스 모델", "Tokenomics", "IR Deck"],
       },
-      accounting: {
-        icon: "📊",
-        title: "회계·세무 자문",
-        titleEn: "Accounting & Tax Advisory",
-        description:
-          "토큰 회계처리 설계, 원천세·부가세·법인세 신고 대행, 토큰 수익 인식 구조화, 분기별 재무·KPI 보고, 투자유치용 재무검증 FDD / TDD (Financial Due Diligence / Tax Due Diligence)",
+      token: {
+        icon: "⛓️",
+        title: "토큰/마이크로결제 개발",
+        titleEn: "Token & Micropayment Development",
+        description: "스마트 컨트랙트 설계·개발, X402 프로토콜 도입, DApp 구축, 토큰노믹스 설계까지. ERC 표준, Paymaster, SBT, DID, NFT 구조 자문 및 코드 보안 감사(Audit)를 제공합니다.",
         learnMore: "더 알아보기",
-        tags: ["토큰 회계처리", "세무 신고", "FDD/TDD"],
+        tags: ["스마트 컨트랙트", "X402", "DApp", "Audit"],
       },
-      technical: {
-        icon: "🧠",
-        title: "기술 자문·설계",
-        titleEn: "Technical Advisory & Audit",
-        description:
-          "스마트컨트랙트 설계, ERC, 토큰, 디파이 Paymaster/SBT/DID/NFT 구조 자문 및 개발, 코드 보안·기능 Audit, Web3 프로젝트용 API·SDK 설계",
+      ico: {
+        icon: "📋",
+        title: "ICO 상장 패키지",
+        titleEn: "ICO Listing Package",
+        description: "거래소 상장에 필요한 3종 보고서를 원스톱으로 제공합니다. 법률검토의견서, 재무보고서, 코드 감사보고서를 통해 투자자와 거래소의 신뢰를 확보하세요.",
         learnMore: "더 알아보기",
-        tags: ["스마트컨트랙트", "보안 감사", "Web3 설계"],
+        tags: ["법률검토의견서", "재무보고서", "코드감사보고서"],
       },
-      business: {
-        icon: "💼",
-        title: "비즈니스 개발",
-        titleEn: "Business Development & IR",
-        description:
-          "스위스 Crypto Valley 네트워크 연결, 해외 재단 설립 지원, VC·PE 매칭 및 협상, IR Deck·투자전략 수립, Tokenomics 설계, 글로벌 투자 리포트·Valuation 발행",
+      rwa: {
+        icon: "🏛️",
+        title: "RWA 도입 자문",
+        titleEn: "RWA (Real World Asset) Advisory",
+        description: "실물 자산(갤러리·부동산·현물 등)을 블록체인에 토큰화하여 새로운 자금조달 경로를 열어드립니다. RWA 구조 설계, 법적 검토, 투자자 매칭까지 전 과정을 지원합니다.",
         learnMore: "더 알아보기",
-        tags: ["투자 유치", "재단 설립", "Tokenomics"],
+        tags: ["부동산 토큰화", "갤러리", "자금조달"],
       },
-      networking: {
-        icon: "🌐",
-        title: "네트워킹·커뮤니티",
-        titleEn: "Networking & Growth",
-        description:
-          "DAO·Social-Fi 커뮤니티 운영, 글로벌 커뮤니티 세팅, 밋업·해커톤·포럼 기획, DELV 인증 프로젝트 파트너십 구축, 전문가 네트워크 운영",
+      global: {
+        icon: "🌏",
+        title: "자회사 설립·해외진출",
+        titleEn: "Subsidiary & Global Expansion",
+        description: "스위스·싱가포르·한국 등 주요 거점의 재단·법인 설립을 지원합니다. Korean Market Entry 서비스로 해외 기업의 한국 진출도 원스톱으로 도와드립니다.",
         learnMore: "더 알아보기",
-        tags: ["커뮤니티 운영", "해커톤", "파트너십"],
+        tags: ["해외법인 설립", "스위스", "Korean Market Entry"],
+      },
+      tax: {
+        icon: "🧾",
+        title: "세무 진단",
+        titleEn: "Tax Diagnosis (2027 Crypto Tax)",
+        description: "2027년 가상자산 과세 시행을 앞두고 지금 준비하세요. 보유 자산 세무 진단, 절세 전략 수립, 신고 대행까지 — 불필요한 세금 부담 없이 대비할 수 있도록 도와드립니다.",
+        learnMore: "더 알아보기",
+        tags: ["2027 과세", "절세 전략", "가상자산 세무"],
       },
     },
-
-    // 뉴스레터 섹션
     newsletter: {
       title: "뉴스레터",
       subtitle: "최신 인사이트와 업데이트를 확인하세요",
@@ -79,8 +74,6 @@ export const translations = {
       noContent: "최신 뉴스레터가 곧 업데이트됩니다.",
       author: "작성자",
     },
-
-    // DELV CHAT 섹션
     delvChat: {
       badge: "Web3 학습 도우미",
       subtitle: "Web3 학습 도우미",
@@ -88,52 +81,33 @@ export const translations = {
       description: "Web3 용어와 개념을 쉬운 대화로 배워보세요",
       cta: "채팅 시작하기",
     },
-
-    // 고객 리뷰
-    reviews: {
-      title: "고객 리뷰",
-      subtitle: "델브와 함께한 고객들의 생생한 경험담을 들어보세요",
-    },
-
-    // 팀 섹션
     team: {
       title: "팀 소개",
       subtitle: "기술, 법무, 글로벌 시장에서 입증된 실적을 가진 업계 전문가들",
       members: {
         sungyeon: {
           position: "변호사",
-          description:
-            "- 고려대학교 경영학 학사 / 고려대 법학전문대학원 석사<br />- 셀트리온, 풀무원 법무팀 근무 경력<br />- ABB 블록체인 해커톤 최우수상 수상<br />- 국제법무, 블록체인 자문, 강의 경험",
+          description: "- 고려대학교 경영학 학사 / 고려대 법학전문대학원 석사<br />- 셀트리온, 풀무원 법무팀 근무 경력<br />- ABB 블록체인 해커톤 최우수상 수상<br />- 국제법무, 블록체인 자문, 강의 경험",
         },
         ilhun: {
           position: "회계사",
-          description:
-            "- 고려대학교 경영 MBA 수료<br />- 前 삼정회계법인 회계사<br />- 現 한울회계법인 이사 (회계사)<br />- 국내 대기업 금융그룹, 투자회사 회계 용역 多<br />- 국제조세 자문 수행",
+          description: "- 고려대학교 경영 MBA 수료<br />- 前 삼정회계법인 회계사<br />- 現 한울회계법인 이사 (회계사)<br />- 국내 대기업 금융그룹, 투자회사 회계 용역 多<br />- 국제조세 자문 수행",
         },
         rosa: {
           position: "주재원 (스위스)",
-          description:
-            "- 성신여자대학교 컴퓨터공학 / 정보공학 석사<br />- SKB(Swiss Korean Blockchain) Advisors 파운더<br />- Women in Web3 Switzerland (WIW3.ch) 파트너십팀 핵심 기여자<br />- 스위스와 한국 간 블록체인 산업 교류 및 협력 경험 多<br />- 스위스 스타트업의 한국 블록체인 프로젝트 투자 유치 및 자금 조달 지원 경험 多",
+          description: "- 성신여자대학교 컴퓨터공학 / 정보공학 석사<br />- SKB(Swiss Korean Blockchain) Advisors 파운더<br />- Women in Web3 Switzerland (WIW3.ch) 파트너십팀 핵심 기여자<br />- 스위스와 한국 간 블록체인 산업 교류 및 협력 경험 多",
         },
         hyeongjun: {
           position: "기술 리드",
-          description:
-            "- aɪˈdentəti CEO & 빌더 아카데미 커뮤니티 파운더<br />- 유네스코 디지털 강의 강사<br />- ETHGlobal 해커톤 수상(2023,2024)<br />- ABB 블록체인 해커톤 최우수상 수상<br />- Web3 Project 기획/디자인 경험 다수",
+          description: "- aɪˈdentəti CEO & 빌더 아카데미 커뮤니티 파운더<br />- 유네스코 디지털 강의 강사<br />- ETHGlobal 해커톤 수상(2023,2024)<br />- ABB 블록체인 해커톤 최우수상 수상",
         },
         youngdae: {
           position: "커뮤니티 리드",
-          description:
-            "- aɪdentəti COO 및 커뮤니티 관리<br />- Web3 프로젝트 커뮤니티 빌더 경험<br />- 다수의 프로젝트 모더레이터 경험<br />- MEXC 거래소 BD/운영 매니저<br />- 국내외 이벤트 참여 및 관리 풍부한 경험 (해커톤, 밋업)",
+          description: "- aɪdentəti COO 및 커뮤니티 관리<br />- Web3 프로젝트 커뮤니티 빌더 경험<br />- MEXC 거래소 BD/운영 매니저<br />- 국내외 이벤트 참여 및 관리 풍부한 경험",
         },
       },
     },
-
-    // 파트너 섹션
-    partners: {
-      title: "파트너",
-    },
-
-    // 문의하기 폼
+    partners: { title: "파트너" },
     contactForm: {
       title: "Web3, 무한한 가능성의 첫걸음",
       subtitle: "델브와의 전략 미팅을 통해, 성장 로드맵을 설계하세요.",
@@ -153,8 +127,6 @@ export const translations = {
       phonePlaceholder: "전화번호를 입력해주세요",
       messagePlaceholder: "문의하실 내용을 입력해주세요",
     },
-
-    // Footer
     footer: {
       description: "전문 컨설팅 서비스를 통해 비즈니스를 강화합니다.",
       servicesTitle: "서비스",
@@ -168,9 +140,7 @@ export const translations = {
       careers: "채용",
     },
   },
-
   en: {
-    // Navigation
     nav: {
       company: "Company",
       services: "Services",
@@ -178,72 +148,66 @@ export const translations = {
       contact: "Contact",
       language: "ENG",
     },
-
-    // Hero Section
     hero: {
       title: "Transform Your Business",
-      titleBreak: "with Expert Consulting",
-      subtitle:
-        "Legal Review / Web3 Tech Advisory / Marketing / Global Expansion",
-      description:
-        "Accelerate your growth through comprehensive consulting services in Web3.",
+      titleBreak: "with Expert Web3 Consulting",
+      subtitle: "BM Development / Blockchain Tech / ICO Listing / RWA / Global Expansion / Tax",
+      description: "Accelerate your growth through comprehensive consulting services in Web3.",
       ctaStart: "Start Consulting",
       ctaLearn: "Learn More",
     },
-
-    // Services Section
     services: {
-      title: "Our Expertise",
-      subtitle:
-        "Comprehensive consulting services tailored to your business needs",
-      legal: {
-        icon: "⚖️",
-        title: "Legal Advisory",
-        titleEn: "Legal Advisory",
-        description:
-          "DAO incorporation & overseas entity setup advisory (Korea, Switzerland, Singapore, etc.), Swiss entity establishment & operation support, Token issuance structure review (securities & investment contract analysis), MOU, SAFE, Token Warrant contract drafting & review, Regulatory compliance advisory (VASP registration, FSC/FSS response, disclosure risk analysis), Web3 business IP & data licensing advisory, Investment fundraising legal advisory LDD (Legal Due Diligence)",
+      title: "Our Services",
+      subtitle: "Comprehensive Web3 consulting tailored to your business needs",
+      bm: {
+        icon: "🚀",
+        title: "BM Development Package",
+        titleEn: "Business Model Development Package",
+        description: "From Web3 business model design to revenue structure validation and market entry strategy — we help build your core business foundation. Includes token economy design, competitor analysis, and IR pitch deck creation.",
         learnMore: "Learn More",
-        tags: ["DAO Incorporation", "VASP Registration", "LDD"],
+        tags: ["Business Model", "Tokenomics", "IR Deck"],
       },
-      accounting: {
-        icon: "📊",
-        title: "Accounting & Tax Advisory",
-        titleEn: "Accounting & Tax Advisory",
-        description:
-          "Financial statements & token accounting ledger design (token issuance, burning, reward accounting), Withholding tax, VAT, corporate tax filing agency & advisory, Token revenue recognition structuring, Quarterly accounting reports & KPI/financial reporting, Investment fundraising financial verification FDD / TDD (Financial Due Diligence / Tax Due Diligence)",
+      token: {
+        icon: "⛓️",
+        title: "Token / Micropayment Dev",
+        titleEn: "Token & Micropayment Development",
+        description: "Smart contract design & development, X402 protocol integration, DApp building, and tokenomics design. ERC standards, Paymaster, SBT, DID, NFT structure advisory and security audit included.",
         learnMore: "Learn More",
-        tags: ["Token Accounting", "Tax Filing", "FDD/TDD"],
+        tags: ["Smart Contract", "X402", "DApp", "Audit"],
       },
-      technical: {
-        icon: "🧠",
-        title: "Technical Advisory & Audit",
-        titleEn: "Technical Advisory & Audit",
-        description:
-          "Smart contract design, ERC, Token, DeFi Paymaster/SBT/DID/NFT structure advisory & development, Code security·functional audit, Web3 project API·SDK design",
+      ico: {
+        icon: "📋",
+        title: "ICO Listing Package",
+        titleEn: "ICO Listing Package",
+        description: "One-stop solution for the 3 key reports required for exchange listing: Legal Review Opinion, Financial Report, and Code Audit Report. Build trust with investors and exchanges.",
         learnMore: "Learn More",
-        tags: ["Smart Contracts", "Security Audit", "Web3 Design"],
+        tags: ["Legal Opinion", "Financial Report", "Code Audit"],
       },
-      business: {
-        icon: "💼",
-        title: "Business Development & IR",
-        titleEn: "Business Development & IR",
-        description:
-          "Swiss Crypto Valley network connection, overseas foundation setup support, VC·PE matching & negotiation, IR deck·investment strategy development, Tokenomics design, global investment report·valuation issuance",
+      rwa: {
+        icon: "🏛️",
+        title: "RWA Advisory",
+        titleEn: "Real World Asset Advisory",
+        description: "Tokenize real-world assets (galleries, real estate, commodities, etc.) on the blockchain to open new fundraising channels. We support the full process: structure design, legal review, and investor matching.",
         learnMore: "Learn More",
-        tags: ["Fundraising", "Foundation", "Tokenomics"],
+        tags: ["Real Estate", "Tokenization", "Fundraising"],
       },
-      networking: {
-        icon: "🌐",
-        title: "Networking & Growth",
-        titleEn: "Networking & Growth",
-        description:
-          "DAO·Social-Fi community management, global community setup, meetup·hackathon·forum planning, DELV certified project partnership building, expert network operation",
+      global: {
+        icon: "🌏",
+        title: "Subsidiary & Global Expansion",
+        titleEn: "Subsidiary & Global Expansion",
+        description: "We support foundation and entity establishment in Switzerland, Singapore, Korea, and beyond. Our Korean Market Entry service also helps overseas companies enter the Korean market end-to-end.",
         learnMore: "Learn More",
-        tags: ["Community", "Hackathons", "Partnerships"],
+        tags: ["Overseas Entity", "Switzerland", "Korean Market Entry"],
+      },
+      tax: {
+        icon: "🧾",
+        title: "Tax Diagnosis",
+        titleEn: "Tax Diagnosis (2027 Crypto Tax)",
+        description: "Prepare now for the 2027 virtual asset taxation enforcement. We offer asset tax diagnostics, tax minimization strategy, and filing agency services — so you can stay ahead without unnecessary tax burdens.",
+        learnMore: "Learn More",
+        tags: ["2027 Tax", "Tax Strategy", "Crypto Tax"],
       },
     },
-
-    // Newsletter Section
     newsletter: {
       title: "Newsletter",
       subtitle: "Stay updated with our latest insights",
@@ -251,8 +215,6 @@ export const translations = {
       noContent: "Latest newsletters coming soon.",
       author: "Author",
     },
-
-    // DELV CHAT Section
     delvChat: {
       badge: "Web3 Learning Assistant",
       subtitle: "Web3 Learning Assistant",
@@ -260,57 +222,36 @@ export const translations = {
       description: "Learn Web3 terms and concepts through easy conversations",
       cta: "Start Chatting",
     },
-
-    // Reviews
-    reviews: {
-      title: "Client Reviews",
-      subtitle: "Hear from our clients about their experience with DELV",
-    },
-
-    // Team Section
     team: {
       title: "Meet Our Team",
-      subtitle:
-        "Industry experts with proven track records in technology, legal, and global markets",
+      subtitle: "Industry experts with proven track records in technology, legal, and global markets",
       members: {
         sungyeon: {
           position: "Lawyer",
-          description:
-            "- B.A. in Business Administration, Korea University / J.D., Korea University School of Law<br />- Former in-house counsel at Celltrion and Pulmuone<br />- Grand Prize, ABB Blockchain Hackathon<br />- Experienced in international legal affairs, blockchain advisory, and lecturing",
+          description: "- B.A. in Business Administration, Korea University / J.D., Korea University School of Law<br />- Former in-house counsel at Celltrion and Pulmuone<br />- Grand Prize, ABB Blockchain Hackathon<br />- International legal affairs, blockchain advisory experience",
         },
         ilhun: {
           position: "Accountant",
-          description:
-            "- MBA, Korea University<br />- Former Accountant at Samjong Accounting Corporation<br />- Current Director (Accountant) at Hanwool Accounting Corporation<br />- Extensive accounting services for major domestic corporate financial groups and investment companies<br />- International tax advisory",
+          description: "- MBA, Korea University<br />- Former Accountant at Samjong Accounting Corporation<br />- Current Director at Hanwool Accounting Corporation<br />- International tax advisory experience",
         },
         rosa: {
           position: "Representative (Switzerland)",
-          description:
-            "- Master's in Computer Engineering / Information Engineering, Sungshin Women's University<br />- Founder of SKB (Swiss Korean Blockchain) Advisors<br />- Key contributor to Women in Web3 Switzerland (WIW3.ch) Partnership Team<br />- Extensive experience in blockchain industry exchange and cooperation between Switzerland and Korea<br />- Extensive experience in supporting Swiss startups with investment attraction and fundraising for Korean blockchain projects",
+          description: "- Master's in Computer Engineering, Sungshin Women's University<br />- Founder of SKB (Swiss Korean Blockchain) Advisors<br />- Key contributor, Women in Web3 Switzerland (WIW3.ch)<br />- Extensive Korea-Switzerland blockchain industry exchange experience",
         },
         hyeongjun: {
           position: "Tech Lead",
-          description:
-            "- aɪˈdentəti CEO & Builder Academy Community Founder<br />- UNESCO Digital lecture professor<br />- ETH Global Hackathon Award (2023,2024)<br />- ABB BlockChain Hackathon Award (2023)<br />- Web3 Project PM / Design Department",
+          description: "- aɪˈdentəti CEO & Builder Academy Community Founder<br />- UNESCO Digital lecture professor<br />- ETH Global Hackathon Award (2023, 2024)<br />- ABB Blockchain Hackathon Grand Prize",
         },
         youngdae: {
           position: "Community Lead",
-          description:
-            "- aɪdentəti COO and Community Management<br />- Experience as a Web3 Project Community Builder<br />- Experience as a Moderator for Multiple Projects<br />- BD/Operations Manager at MEXC Exchange<br />- Extensive Experience Participating in and Managing Domestic & International Events (Hackathons, Meetups)",
+          description: "- aɪdentəti COO and Community Management<br />- Web3 Project Community Builder<br />- BD/Operations Manager at MEXC Exchange<br />- Extensive hackathon & meetup event experience",
         },
       },
     },
-
-    // Partners Section
-    partners: {
-      title: "Partners",
-    },
-
-    // Contact Form
+    partners: { title: "Partners" },
     contactForm: {
       title: "Web3, The First Step to Infinite Possibilities",
-      subtitle:
-        "Design your growth roadmap through a strategic meeting with DELV.",
+      subtitle: "Design your growth roadmap through a strategic meeting with DELV.",
       nameLabel: "Name",
       companyLabel: "Company",
       emailLabel: "Email",
@@ -327,8 +268,6 @@ export const translations = {
       phonePlaceholder: "Enter your phone number",
       messagePlaceholder: "Enter your message",
     },
-
-    // Footer
     footer: {
       description: "Empowering businesses through expert consulting services.",
       servicesTitle: "Services",

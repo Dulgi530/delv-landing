@@ -6,6 +6,11 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
+import {
+  SERVICE_CARD_KEYS,
+  SERVICE_CARD_TAG_CLASSES,
+  type ServiceCardKey,
+} from "@/lib/serviceCards";
 
 export default function Home() {
   const { language, toggleLanguage } = useLanguage();
@@ -226,140 +231,40 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Legal Advisory */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg flex flex-col hover:shadow-xl transition-shadow">
-              <div className="text-4xl mb-4">{t.services.legal.icon}</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                {t.services.legal.title}
-              </h3>
-              <p className="text-gray-600 mb-4 leading-relaxed flex-grow text-sm">
-                {t.services.legal.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {t.services.legal.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs"
+            {SERVICE_CARD_KEYS.map((key: ServiceCardKey) => {
+              const s = t.services[key];
+              return (
+                <div
+                  key={key}
+                  id={`service-${key}`}
+                  className="bg-white rounded-2xl p-6 shadow-lg flex flex-col hover:shadow-xl transition-shadow scroll-mt-28"
+                >
+                  <div className="text-4xl mb-4">{s.icon}</div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {s.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed flex-grow text-sm">
+                    {s.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {s.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className={`${SERVICE_CARD_TAG_CLASSES[key]} px-2 py-1 rounded-full text-xs`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <Link
+                    href="/#contact-form"
+                    className="border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto text-sm"
                   >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link
-                href="/services/legal"
-                className="border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto text-sm"
-              >
-                {t.services.legal.learnMore}
-              </Link>
-            </div>
-
-            {/* Accounting & Tax Advisory */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg flex flex-col hover:shadow-xl transition-shadow">
-              <div className="text-4xl mb-4">{t.services.accounting.icon}</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                {t.services.accounting.title}
-              </h3>
-              <p className="text-gray-600 mb-4 leading-relaxed flex-grow text-sm">
-                {t.services.accounting.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {t.services.accounting.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link
-                href="/services/accounting"
-                className="border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto text-sm"
-              >
-                {t.services.accounting.learnMore}
-              </Link>
-            </div>
-
-            {/* Technical Advisory */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg flex flex-col hover:shadow-xl transition-shadow">
-              <div className="text-4xl mb-4">{t.services.technical.icon}</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                {t.services.technical.title}
-              </h3>
-              <p className="text-gray-600 mb-4 leading-relaxed flex-grow text-sm">
-                {t.services.technical.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {t.services.technical.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link
-                href="/services/technical"
-                className="border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto text-sm"
-              >
-                {t.services.technical.learnMore}
-              </Link>
-            </div>
-
-            {/* Business Development */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg flex flex-col hover:shadow-xl transition-shadow">
-              <div className="text-4xl mb-4">{t.services.business.icon}</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                {t.services.business.title}
-              </h3>
-              <p className="text-gray-600 mb-4 leading-relaxed flex-grow text-sm">
-                {t.services.business.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {t.services.business.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link
-                href="/services/business"
-                className="border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto text-sm"
-              >
-                {t.services.business.learnMore}
-              </Link>
-            </div>
-
-            {/* Networking & Community */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg flex flex-col hover:shadow-xl transition-shadow">
-              <div className="text-4xl mb-4">{t.services.networking.icon}</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                {t.services.networking.title}
-              </h3>
-              <p className="text-gray-600 mb-4 leading-relaxed flex-grow text-sm">
-                {t.services.networking.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {t.services.networking.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link
-                href="/services/networking"
-                className="border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto text-sm"
-              >
-                {t.services.networking.learnMore}
-              </Link>
-            </div>
+                    {s.learnMore}
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1008,46 +913,16 @@ export default function Home() {
                 {t.footer.servicesTitle}
               </h3>
               <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/services/legal"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {t.services.legal.title}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services/accounting"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {t.services.accounting.title}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services/technical"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {t.services.technical.title}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services/business"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {t.services.business.title}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services/networking"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {t.services.networking.title}
-                  </Link>
-                </li>
+                {SERVICE_CARD_KEYS.map((key: ServiceCardKey) => (
+                  <li key={key}>
+                    <Link
+                      href={`/#service-${key}`}
+                      className="text-gray-300 hover:text-white transition-colors"
+                    >
+                      {t.services[key].title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
