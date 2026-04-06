@@ -52,11 +52,11 @@ export const translations = {
       },
       global: {
         icon: "🌏",
-        title: "자회사 설립·해외진출",
-        titleEn: "Subsidiary & Global Expansion",
-        description: "스위스·싱가포르·한국 등 주요 거점의 재단·법인 설립을 지원합니다. Korean Market Entry 서비스로 해외 기업의 한국 진출도 원스톱으로 도와드립니다.",
+        title: "자회사 설립·해외진출 자문",
+        titleEn: "Subsidiary Setup · Global Expansion Advisory",
+        description: "자회사 설립, 해외진출 자문, 국내외 재단·법인 설립을 지원합니다. 스위스·싱가포르 글로벌 거점 진출과 Korean Market Entry 서비스로 해외 기업의 한국 시장 진출도 원스톱으로 지원합니다.",
         learnMore: "더 알아보기",
-        tags: ["해외법인 설립", "스위스", "Korean Market Entry"],
+        tags: ["국내외 법인 설립", "해외진출 자문", "Korean Market Entry"],
       },
       tax: {
         icon: "🧾",
@@ -193,11 +193,11 @@ export const translations = {
       },
       global: {
         icon: "🌏",
-        title: "Subsidiary & Global Expansion",
-        titleEn: "Subsidiary & Global Expansion",
-        description: "We support foundation and entity establishment in Switzerland, Singapore, Korea, and beyond. Our Korean Market Entry service also helps overseas companies enter the Korean market end-to-end.",
+        title: "Subsidiary Setup · Global Expansion Advisory",
+        titleEn: "Subsidiary Setup · Global Expansion Advisory",
+        description: "We support subsidiary establishment, global expansion advisory, and domestic/overseas foundation & entity setup. From Swiss/Singapore entry to Korean Market Entry — guiding overseas companies into Korea end-to-end.",
         learnMore: "Learn More",
-        tags: ["Overseas Entity", "Switzerland", "Korean Market Entry"],
+        tags: ["Entity Setup", "Global Expansion", "Korean Market Entry"],
       },
       tax: {
         icon: "🧾",
