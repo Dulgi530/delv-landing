@@ -46,9 +46,9 @@ export const translations = {
         icon: "🏛️",
         title: "RWA 도입 자문",
         titleEn: "RWA (Real World Asset) Advisory",
-        description: "실물 자산(갤러리·부동산·현물 등)을 블록체인에 토큰화하여 새로운 자금조달 경로를 열어드립니다. RWA 구조 설계, 법적 검토, 투자자 매칭까지 전 과정을 지원합니다.",
+        description: "갤러리·부동산·현물 등 실물 자산을 블록체인 토큰으로 표현하여 새로운 자금조달 채널을 엽니다. 소유권 분할, 글로벌 투자자 유치, 유동성 확보까지 — RWA 도입 전 과정을 자문합니다.",
         learnMore: "더 알아보기",
-        tags: ["부동산 토큰화", "갤러리", "자금조달"],
+        tags: ["갤러리·부동산·현물", "토큰화", "자금조달"],
       },
       global: {
         icon: "🌏",
