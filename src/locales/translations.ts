@@ -28,11 +28,11 @@ export const translations = {
       },
       token: {
         icon: "⛓️",
-        title: "토큰/마이크로결제 개발",
-        titleEn: "Token & Micropayment Development",
-        description: "스마트 컨트랙트 설계·개발, X402 프로토콜 도입, DApp 구축, 토큰노믹스 설계까지. ERC 표준, Paymaster, SBT, DID, NFT 구조 자문 및 코드 보안 감사(Audit)를 제공합니다.",
+        title: "스마트 컨트랙트 · X402 · DApp · 토큰노믹스",
+        titleEn: "Smart Contract · X402 · DApp · Tokenomics",
+        description: "스마트 컨트랙트 설계·개발부터 X402 마이크로결제 도입, DApp 구축, 토큰노믹스 설계까지 — 귀사 서비스에 필요한 블록체인 기술을 통합 개발합니다. Paymaster, SBT, DID, NFT 구조 자문 및 코드 보안 감사(Audit) 포함.",
         learnMore: "더 알아보기",
-        tags: ["스마트 컨트랙트", "X402", "DApp", "Audit"],
+        tags: ["스마트 컨트랙트", "X402", "DApp", "Tokenomics"],
       },
       ico: {
         icon: "📋",
@@ -169,11 +169,11 @@ export const translations = {
       },
       token: {
         icon: "⛓️",
-        title: "Token / Micropayment Dev",
-        titleEn: "Token & Micropayment Development",
-        description: "Smart contract design & development, X402 protocol integration, DApp building, and tokenomics design. ERC standards, Paymaster, SBT, DID, NFT structure advisory and security audit included.",
+        title: "Smart Contract · X402 · DApp · Tokenomics",
+        titleEn: "Smart Contract · X402 · DApp · Tokenomics",
+        description: "From smart contract design & development to X402 micropayment integration, DApp building, and tokenomics design — we build the blockchain technology your service needs. Includes Paymaster, SBT, DID, NFT advisory and security audit.",
         learnMore: "Learn More",
-        tags: ["Smart Contract", "X402", "DApp", "Audit"],
+        tags: ["Smart Contract", "X402", "DApp", "Tokenomics"],
       },
       ico: {
         icon: "📋",
