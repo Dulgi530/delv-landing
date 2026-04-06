@@ -60,11 +60,11 @@ export const translations = {
       },
       tax: {
         icon: "🧾",
-        title: "세무 진단",
-        titleEn: "Tax Diagnosis (2027 Crypto Tax)",
-        description: "2027년 가상자산 과세 시행을 앞두고 지금 준비하세요. 보유 자산 세무 진단, 절세 전략 수립, 신고 대행까지 — 불필요한 세금 부담 없이 대비할 수 있도록 도와드립니다.",
+        title: "법률·세무 진단",
+        titleEn: "Legal & Tax Diagnosis (2027)",
+        description: "법률 컴플라이언스(VASP·이용자보호법·내부통제)와 세무 진단(스테이킹 회계·온체인 실사·세무 리스크)을 통합 제공합니다. 2027년 과세 전에 미리 대비하세요.",
         learnMore: "더 알아보기",
-        tags: ["2027 과세", "절세 전략", "가상자산 세무"],
+        tags: ["법률 컴플라이언스", "2027 과세", "세무·회계"],
       },
     },
     newsletter: {
@@ -201,11 +201,11 @@ export const translations = {
       },
       tax: {
         icon: "🧾",
-        title: "Tax Diagnosis",
-        titleEn: "Tax Diagnosis (2027 Crypto Tax)",
-        description: "Prepare now for the 2027 virtual asset taxation enforcement. We offer asset tax diagnostics, tax minimization strategy, and filing agency services — so you can stay ahead without unnecessary tax burdens.",
+        title: "Legal & Tax Diagnosis",
+        titleEn: "Legal & Tax Diagnosis (2027)",
+        description: "We provide integrated Legal Compliance (VASP, User Protection Act, internal control) and Tax Diagnosis (staking accounting, on-chain due diligence, tax risk). Prepare before the 2027 enforcement.",
         learnMore: "Learn More",
-        tags: ["2027 Tax", "Tax Strategy", "Crypto Tax"],
+        tags: ["Legal Compliance", "2027 Tax", "Tax & Accounting"],
       },
     },
     newsletter: {
