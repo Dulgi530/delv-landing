@@ -21,10 +21,10 @@ export const translations = {
       bm: {
         icon: "🚀",
         title: "BM 개발 패키지",
-        titleEn: "Business Model Development Package",
-        description: "Web3 비즈니스 모델 설계부터 수익 구조 검증, 시장 진입 전략 수립까지 — 사업의 핵심 기반을 함께 만들어 드립니다. 토큰 이코노미 설계, 경쟁사 분석, IR 피치덱 제작을 포함합니다.",
+        titleEn: "BM Development Package",
+        description: "이미 운영 중인 귀사의 서비스에 Web3를 도입하는 전략을 설계합니다. 도입 타당성 진단부터 전환 로드맵, 토큰 이코노미, IR 피치덱까지 — 기존 비즈니스의 Web3 전환을 원스톱으로 지원합니다.",
         learnMore: "더 알아보기",
-        tags: ["비즈니스 모델", "Tokenomics", "IR Deck"],
+        tags: ["Web3 도입", "Tokenomics", "로드맵"],
       },
       token: {
         icon: "⛓️",
@@ -162,10 +162,10 @@ export const translations = {
       bm: {
         icon: "🚀",
         title: "BM Development Package",
-        titleEn: "Business Model Development Package",
-        description: "From Web3 business model design to revenue structure validation and market entry strategy — we help build your core business foundation. Includes token economy design, competitor analysis, and IR pitch deck creation.",
+        titleEn: "BM Development Package",
+        description: "We design strategies to introduce Web3 into your existing service. From feasibility diagnosis to transformation roadmap, tokenomics, and IR pitch deck — we support your business's Web3 transition end-to-end.",
         learnMore: "Learn More",
-        tags: ["Business Model", "Tokenomics", "IR Deck"],
+        tags: ["Web3 Adoption", "Tokenomics", "Roadmap"],
       },
       token: {
         icon: "⛓️",

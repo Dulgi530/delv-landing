@@ -5,30 +5,30 @@ import { ServicePageLayout } from "@/components/ServicePageLayout";
 
 const content = {
   ko: {
-    badge: "서비스 01", title: "BM 개발 패키지", accentTitle: "비즈니스의 핵심을\n처음부터 함께 설계합니다",
-    desc: "Web3 비즈니스 모델 설계부터 수익 구조 검증, 시장 진입 전략, IR 피치덱 제작까지 — 사업의 기반을 완성합니다.", cta: "상담 문의하기",
+    badge: "서비스 01", title: "BM 개발 패키지", accentTitle: "귀사의 기존 서비스에\nWeb3를 접목합니다",
+    desc: "이미 운영 중인 비즈니스에 Web3를 도입하여 새로운 가치와 수익 모델을 창출합니다. 도입 타당성 진단부터 전환 로드맵, 토큰 이코노미, IR 자료까지 — 기존 서비스의 Web3 전환을 원스톱으로 설계합니다.", cta: "상담 문의하기",
     items: [
-      { num: "01", title: "Web3 비즈니스 모델 설계", desc: "탈중앙화 구조에 적합한 수익 모델과 가치 제안을 설계합니다.", tag: "Business Model" },
-      { num: "02", title: "토큰 이코노미 설계", desc: "토큰 발행·유통·소각 구조, 인센티브 모델, 거버넌스 구조를 설계합니다.", tag: "Tokenomics" },
-      { num: "03", title: "시장 조사 및 경쟁사 분석", desc: "목표 시장의 규모와 트렌드를 분석하고 차별화 포인트를 도출합니다.", tag: "Market Research" },
-      { num: "04", title: "IR 피치덱 제작", desc: "투자자를 설득할 수 있는 전문적인 IR 피치덱을 제작합니다.", tag: "IR Deck" },
-      { num: "05", title: "GTM 전략 수립", desc: "제품 출시 전략, 초기 사용자 확보 방법, 커뮤니티 빌딩 계획을 수립합니다.", tag: "Go-To-Market" },
-      { num: "06", title: "재무 모델링 및 수익 예측", desc: "3~5년 재무 모델을 구축하고 현실적인 수익 예측 시나리오를 제시합니다.", tag: "Financial Model" },
+      { num: "01", title: "Web3 도입 타당성 분석", desc: "기존 비즈니스에 Web3 기술이 실제로 필요한지, 도입 시 기대 효과와 리스크를 객관적으로 진단합니다.", tag: "Business Audit" },
+      { num: "02", title: "Web3 전환 로드맵 설계", desc: "단계별 Web3 도입 계획, 기술 스택 선정, 일정 및 예산 계획을 수립합니다.", tag: "Roadmap" },
+      { num: "03", title: "토큰 이코노미 설계", desc: "기존 서비스와 연계된 토큰 발행·유통·소각 구조와 인센티브 모델을 설계합니다.", tag: "Tokenomics" },
+      { num: "04", title: "신규 수익 모델 설계", desc: "Web3 도입으로 창출 가능한 새로운 수익 구조와 가치 제안을 도출합니다.", tag: "Revenue Model" },
+      { num: "05", title: "IR 피치덱 및 투자자 전략", desc: "Web3 전환 스토리를 담은 전문 IR 자료와 투자자 유치 전략을 수립합니다.", tag: "IR Deck" },
+      { num: "06", title: "GTM 전략 및 커뮤니티 빌딩", desc: "Web3 전환 후 시장 진입 전략, 초기 사용자 확보, 커뮤니티 운영 계획을 수립합니다.", tag: "Go-To-Market" },
     ],
-    ctaTitle: "BM 개발이 필요하신가요?", ctaDesc: "델브가 귀사의 Web3 비즈니스 기반을 함께 설계합니다.",
+    ctaTitle: "귀사 서비스에 Web3 도입을 검토 중이신가요?", ctaDesc: "델브가 기존 비즈니스에 최적화된 Web3 전환 전략을 함께 설계합니다.",
   },
   en: {
-    badge: "Service 01", title: "BM Development Package", accentTitle: "We design the core of\nyour business from scratch",
-    desc: "From Web3 business model design to revenue structure validation, market entry strategy, and IR pitch deck — we complete your business foundation.", cta: "Contact Us",
+    badge: "Service 01", title: "BM Development Package", accentTitle: "We integrate Web3 into\nyour existing service",
+    desc: "We create new value and revenue models by introducing Web3 to your existing business. From feasibility diagnosis to roadmap, tokenomics, and IR materials — we design your Web3 transformation end-to-end.", cta: "Contact Us",
     items: [
-      { num: "01", title: "Web3 Business Model Design", desc: "Design revenue models and value propositions suited for decentralized structures.", tag: "Business Model" },
-      { num: "02", title: "Token Economy Design", desc: "Design token issuance, circulation, burning structures, incentive models, and governance.", tag: "Tokenomics" },
-      { num: "03", title: "Market Research & Competitor Analysis", desc: "Analyze target market size and trends, and identify differentiation points.", tag: "Market Research" },
-      { num: "04", title: "IR Pitch Deck Creation", desc: "Create professional IR pitch decks to persuade investors.", tag: "IR Deck" },
-      { num: "05", title: "Go-To-Market Strategy", desc: "Establish product launch strategy, initial user acquisition, and community building plans.", tag: "Go-To-Market" },
-      { num: "06", title: "Financial Modeling & Revenue Projection", desc: "Build 3-5 year financial models and present realistic revenue projection scenarios.", tag: "Financial Model" },
+      { num: "01", title: "Web3 Feasibility Analysis", desc: "We objectively diagnose whether Web3 technology is truly needed for your existing business and assess expected benefits and risks.", tag: "Business Audit" },
+      { num: "02", title: "Web3 Transformation Roadmap", desc: "We establish a phased Web3 adoption plan including technology stack selection, timeline, and budget.", tag: "Roadmap" },
+      { num: "03", title: "Token Economy Design", desc: "We design token issuance, circulation, and burning structures with incentive models linked to your existing service.", tag: "Tokenomics" },
+      { num: "04", title: "New Revenue Model Design", desc: "We identify new revenue structures and value propositions achievable through Web3 adoption.", tag: "Revenue Model" },
+      { num: "05", title: "IR Pitch Deck & Investor Strategy", desc: "We create professional IR materials showcasing your Web3 transformation story and develop investor attraction strategies.", tag: "IR Deck" },
+      { num: "06", title: "GTM Strategy & Community Building", desc: "We establish market entry strategy, initial user acquisition, and community management plans post-Web3 transition.", tag: "Go-To-Market" },
     ],
-    ctaTitle: "Need BM Development?", ctaDesc: "DELV will design your Web3 business foundation together.",
+    ctaTitle: "Considering Web3 adoption for your service?", ctaDesc: "DELV will design a Web3 transformation strategy optimized for your existing business.",
   },
 };
 
