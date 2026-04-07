@@ -731,7 +731,7 @@ export default function Home() {
               className="bg-white rounded-lg p-8 h-32 flex items-center justify-center hover:bg-gray-100 transition-colors"
             >
               <Image
-                src="/artstore-logo.png"
+                src="/artsotre.png"
                 alt="ARTSTORE Logo"
                 width={180}
                 height={90}
@@ -745,7 +745,7 @@ export default function Home() {
               className="bg-white/10 rounded-lg p-8 h-32 flex items-center justify-center hover:bg-white/20 transition-colors"
             >
               <Image
-                src="/konbini-logo.png"
+                src="/logo_konbini_horizontal_white_1.png"
                 alt="KONBINI FINANCE Logo"
                 width={180}
                 height={90}
