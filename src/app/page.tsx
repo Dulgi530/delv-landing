@@ -700,7 +700,7 @@ export default function Home() {
               href="https://www.moalaw.kr"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white/10 rounded-lg p-8 h-32 flex items-center justify-center hover:bg-white/20 transition-colors"
+              className="bg-white rounded-lg p-8 h-32 flex items-center justify-center hover:bg-gray-100 transition-colors"
             >
               <Image
                 src="/Moa-logo.png"
