@@ -667,7 +667,7 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-16">
             {t.partners.title}
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             <Link
               href="https://www.wiw3ch.com/"
               target="_blank"
@@ -719,6 +719,34 @@ export default function Home() {
               <Image
                 src="/buildup-logo.svg"
                 alt="Build-Up Logo"
+                width={180}
+                height={90}
+                className="max-w-full max-h-full object-contain"
+              />
+            </Link>
+            <Link
+              href="https://store-art.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-lg p-8 h-32 flex items-center justify-center hover:bg-gray-100 transition-colors"
+            >
+              <Image
+                src="/artstore-logo.png"
+                alt="ARTSTORE Logo"
+                width={180}
+                height={90}
+                className="max-w-full max-h-full object-contain"
+              />
+            </Link>
+            <Link
+              href="https://www.konbini.finance/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 rounded-lg p-8 h-32 flex items-center justify-center hover:bg-white/20 transition-colors"
+            >
+              <Image
+                src="/konbini-logo.png"
+                alt="KONBINI FINANCE Logo"
                 width={180}
                 height={90}
                 className="max-w-full max-h-full object-contain"
