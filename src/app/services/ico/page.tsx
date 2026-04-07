@@ -14,9 +14,9 @@ const content = {
     packagesTitle: "3종 패키지 구성",
     packagesDesc: "법률 · 재무 · 기술 전문가가 동시에 진행합니다",
     packages: [
-      { num: "01", title: "법률검토의견서", en: "Legal Review Opinion", items: ["토큰의 증권성 여부 분석", "VASP 등록 필요 여부 검토", "해당 국가 법령 적합성 검토", "투자자 보호 조항 검토", "공식 법률 의견서 발행"] },
-      { num: "02", title: "재무보고서", en: "Financial Report", items: ["토큰 발행·유통·소각 회계처리", "자금 사용 계획 검증", "분기별 재무 현황 보고", "투자유치용 재무 모델링", "공인 회계사 서명 보고서"] },
-      { num: "03", title: "코드 감사보고서", en: "Code Audit Report", items: ["스마트 컨트랙트 보안 취약점 분석", "재진입 공격·오버플로우 등 검사", "비즈니스 로직 정확성 검증", "가스 최적화 점검", "공식 Audit 보고서 발행"] },
+      { num: "01", title: "법률검토의견서", en: "Legal Review Opinion", items: ["토큰의 증권성 여부 분석 (자본시장법)", "특금법상 VASP 신고 대상 여부 및 수리 조건 검토", "가상자산 이용자 보호법 준수 여부 검토", "해당 국가 법령 적합성 및 규제 리스크 분석", "공식 법률 의견서 발행 (변호사 서명)"] },
+      { num: "02", title: "재무보고서", en: "Financial Report", items: ["토큰 발행·유통·소각 회계처리 기준 수립", "자금 사용 계획 검증 및 투명성 보고", "가상자산 평가 손익 처리 기준 제시", "투자유치용 재무 모델링 및 수익 예측", "공인 회계사 서명 공식 재무보고서 발행"] },
+      { num: "03", title: "코드 감사보고서", en: "Code Audit Report", items: ["스마트 컨트랙트 보안 취약점 전수 분석", "재진입 공격·오버플로우·접근 제어 등 검사", "비즈니스 로직 정확성 및 토큰노믹스 구현 검증", "가스 최적화 및 업그레이드 가능성 점검", "공식 Audit 보고서 발행 (감사기관 서명)"] },
     ],
     processTitle: "진행 프로세스",
     process: [
@@ -37,9 +37,9 @@ const content = {
     packagesTitle: "3-Report Package",
     packagesDesc: "Legal · Financial · Technical experts proceed simultaneously",
     packages: [
-      { num: "01", title: "Legal Review Opinion", en: "Legal Review Opinion", items: ["Token securities analysis", "VASP registration requirement review", "Jurisdiction compliance review", "Investor protection clause review", "Official legal opinion issuance"] },
-      { num: "02", title: "Financial Report", en: "Financial Report", items: ["Token issuance, circulation & burn accounting", "Fund usage plan verification", "Quarterly financial status reporting", "Financial modeling for fundraising", "CPA-signed official report"] },
-      { num: "03", title: "Code Audit Report", en: "Code Audit Report", items: ["Smart contract vulnerability analysis", "Reentrancy & overflow checks", "Business logic accuracy verification", "Gas optimization review", "Official audit report issuance"] },
+      { num: "01", title: "Legal Review Opinion", en: "Legal Review Opinion", items: ["Token securities classification analysis (Capital Markets Act)", "VASP registration requirement & approval condition review", "Virtual Asset User Protection Act compliance review", "Jurisdiction compliance & regulatory risk analysis", "Official legal opinion issuance (attorney-signed)"] },
+      { num: "02", title: "Financial Report", en: "Financial Report", items: ["Token issuance, circulation & burn accounting standards", "Fund usage plan verification & transparency report", "Virtual asset valuation & profit/loss treatment guidelines", "Financial modeling & revenue projection for fundraising", "CPA-signed official financial report issuance"] },
+      { num: "03", title: "Code Audit Report", en: "Code Audit Report", items: ["Comprehensive smart contract vulnerability analysis", "Reentrancy, overflow & access control checks", "Business logic accuracy & tokenomics implementation verification", "Gas optimization & upgradeability review", "Official audit report issuance (auditor-signed)"] },
     ],
     processTitle: "Our Process",
     process: [
