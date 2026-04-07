@@ -731,7 +731,7 @@ export default function Home() {
               className="bg-white rounded-lg p-8 h-32 flex items-center justify-center hover:bg-gray-100 transition-colors"
             >
               <Image
-                src="/artsotre.png"
+                src="/Artstore.png"
                 alt="ARTSTORE Logo"
                 width={180}
                 height={90}
