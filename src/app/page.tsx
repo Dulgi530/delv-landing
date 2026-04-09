@@ -29,6 +29,7 @@ export default function Home() {
     "idle" | "success" | "error"
   >("idle");
   const [newsletters, setNewsletters] = useState<any[]>([]);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     fetchNewsletters();
@@ -139,49 +140,41 @@ export default function Home() {
 
             {/* Right side navigation and buttons */}
             <div className="flex items-center space-x-4">
-              {/* Service Buttons */}
+              {/* Desktop Service Buttons */}
               <div className="hidden md:flex items-center space-x-3">
-                <Link
-                  href="/about"
-                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
-                >
-                  {t.nav.company}
-                </Link>
-                <Link
-                  href="/services"
-                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
-                >
-                  {t.nav.services}
-                </Link>
-                <Link
-                  href="/newsletter"
-                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
-                >
-                  {t.nav.newsletter}
-                </Link>
-                <Link
-                  href="#contact-form"
-                  className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium"
-                >
-                  {t.nav.contact}
-                </Link>
-                <Link
-                  href="/chat"
-                  className="text-[#c084fc] px-4 py-2 rounded-lg hover:text-[#c084fc] transition-colors text-sm font-medium"
-                >
-                  DELV CHAT
-                </Link>
+                <Link href="/about" className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium">{t.nav.company}</Link>
+                <Link href="/services" className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium">{t.nav.services}</Link>
+                <Link href="/newsletter" className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium">{t.nav.newsletter}</Link>
+                <Link href="#contact-form" className="text-white px-4 py-2 rounded-lg hover:text-[#3BB5AC] transition-colors text-sm font-medium">{t.nav.contact}</Link>
+                <Link href="/chat" className="text-[#c084fc] px-4 py-2 rounded-lg hover:text-[#c084fc] transition-colors text-sm font-medium">DELV CHAT</Link>
               </div>
 
               {/* Language Selector */}
-              <button
-                onClick={toggleLanguage}
-                className="text-white px-4 py-2 rounded-lg border border-white hover:bg-[#3BB5AC] hover:border-[#3BB5AC] transition-colors text-xs font-bold"
-              >
+              <button onClick={toggleLanguage} className="text-white px-4 py-2 rounded-lg border border-white hover:bg-[#3BB5AC] hover:border-[#3BB5AC] transition-colors text-xs font-bold">
                 {t.nav.language}
+              </button>
+
+              {/* Mobile Hamburger Button */}
+              <button className="md:hidden text-white p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="메뉴 열기">
+                {mobileMenuOpen ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+                )}
               </button>
             </div>
           </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t border-white/20 pt-4 pb-2 flex flex-col space-y-1">
+              <Link href="/about" className="text-white px-4 py-3 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>{t.nav.company}</Link>
+              <Link href="/services" className="text-white px-4 py-3 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>{t.nav.services}</Link>
+              <Link href="/newsletter" className="text-white px-4 py-3 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>{t.nav.newsletter}</Link>
+              <Link href="#contact-form" className="text-white px-4 py-3 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>{t.nav.contact}</Link>
+              <Link href="/chat" className="text-[#c084fc] px-4 py-3 rounded-lg hover:bg-white/10 transition-colors text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>DELV CHAT</Link>
+            </div>
+          )}
         </div>
       </header>
 
