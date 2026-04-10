@@ -65,9 +65,12 @@ export async function POST(request: NextRequest) {
         privacy_agreed: privacy,
       });
       console.log("Email sent successfully:", emailResult);
-    } catch (emailError) {
-      console.error("Email sending failed:", emailError);
-      // 이메일 발송 실패해도 데이터는 저장되었으므로 성공으로 처리
+    } catch (emailError: unknown) {
+      const err = emailError as { message?: string; name?: string; statusCode?: number };
+      console.error("Email sending failed - message:", err?.message);
+      console.error("Email sending failed - name:", err?.name);
+      console.error("Email sending failed - statusCode:", err?.statusCode);
+      console.error("Email sending failed - full:", JSON.stringify(emailError));
     }
 
     return NextResponse.json(
