@@ -19,7 +19,7 @@ export async function sendContactEmail(contactData: ContactData) {
     console.log("Using RESEND_API_KEY prefix:", apiKey.substring(0, 10) + "...");
     const { data, error } = await resend.emails.send({
       from: "Delv <onboarding@resend.dev>",
-      to: ["dulgi8655@gmail.com"],
+      to: ["admin@delv.team"],
       subject: `새로운 문의: ${contactData.name} (${contactData.company})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
