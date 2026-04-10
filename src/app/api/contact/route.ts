@@ -54,6 +54,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 이메일 발송
+    let emailDebug: Record<string, unknown> = {};
     try {
       console.log("Sending email notification");
       const emailResult = await sendContactEmail({
@@ -65,12 +66,17 @@ export async function POST(request: NextRequest) {
         privacy_agreed: privacy,
       });
       console.log("Email sent successfully:", emailResult);
+      emailDebug = { status: "success", result: emailResult };
     } catch (emailError: unknown) {
-      const err = emailError as { message?: string; name?: string; statusCode?: number };
-      console.error("Email sending failed - message:", err?.message);
-      console.error("Email sending failed - name:", err?.name);
-      console.error("Email sending failed - statusCode:", err?.statusCode);
-      console.error("Email sending failed - full:", JSON.stringify(emailError));
+      const err = emailError as { message?: string; name?: string; statusCode?: number; cause?: unknown };
+      console.error("Email sending failed:", JSON.stringify(err, Object.getOwnPropertyNames(err)));
+      emailDebug = {
+        status: "failed",
+        message: err?.message,
+        name: err?.name,
+        statusCode: err?.statusCode,
+        cause: String(err?.cause),
+      };
     }
 
     return NextResponse.json(
@@ -78,6 +84,7 @@ export async function POST(request: NextRequest) {
         success: true,
         message: "문의가 성공적으로 전송되었습니다.",
         data,
+        _emailDebug: emailDebug,
       },
       { status: 200 }
     );
