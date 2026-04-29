@@ -615,41 +615,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Team Member 5 - Kim Youngdae */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="w-20 h-20 bg-orange-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/youngdaekim.jpeg"
-                  alt="YOUNGDAE KIM"
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
-                YOUNGDAE KIM
-              </h3>
-              <p className="text-gray-600 text-center mb-3">
-                {t.team.members.youngdae.position}
-              </p>
-              <p
-                className="text-gray-500 text-sm text-center mb-4"
-                dangerouslySetInnerHTML={{
-                  __html: t.team.members.youngdae.description,
-                }}
-              />
-              <div className="flex flex-wrap gap-2 justify-center">
-                <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">
-                  Community Building
-                </span>
-                <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">
-                  Network Development
-                </span>
-                <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">
-                  Engagement
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
