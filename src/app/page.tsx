@@ -467,7 +467,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Team Member 1 - Park Sungyeon */}
             <div className="bg-white rounded-2xl p-6 shadow-lg">
               <div className="w-20 h-20 bg-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
@@ -540,7 +540,43 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Team Member 3 - ROSA */}
+            {/* Team Member 3 - Im Hyeongjun */}
+            <div className="bg-white rounded-2xl p-6 shadow-lg">
+              <div className="w-20 h-20 bg-green-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/imhyeongjun.jpeg"
+                  alt="HYEONGJUN IM"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
+                HYEONGJUN IM
+              </h3>
+              <p className="text-gray-600 text-center mb-3">
+                {t.team.members.hyeongjun.position}
+              </p>
+              <p
+                className="text-gray-500 text-sm text-center mb-4"
+                dangerouslySetInnerHTML={{
+                  __html: t.team.members.hyeongjun.description,
+                }}
+              />
+              <div className="flex flex-wrap gap-2 justify-center">
+                <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
+                  Tech Leadership
+                </span>
+                <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
+                  Web3 Innovation
+                </span>
+                <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
+                  Award Winner
+                </span>
+              </div>
+            </div>
+
+            {/* Team Member 4 - ROSA */}
             <div className="bg-white rounded-2xl p-6 shadow-lg">
               <div className="w-20 h-20 bg-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
                 <Image
@@ -575,42 +611,6 @@ export default function Home() {
                 </span>
                 <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs">
                   Switzerland
-                </span>
-              </div>
-            </div>
-
-            {/* Team Member 4 - Im Hyeongjun */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="w-20 h-20 bg-green-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/imhyeongjun.jpeg"
-                  alt="HYEONGJUN IM"
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
-                HYEONGJUN IM
-              </h3>
-              <p className="text-gray-600 text-center mb-3">
-                {t.team.members.hyeongjun.position}
-              </p>
-              <p
-                className="text-gray-500 text-sm text-center mb-4"
-                dangerouslySetInnerHTML={{
-                  __html: t.team.members.hyeongjun.description,
-                }}
-              />
-              <div className="flex flex-wrap gap-2 justify-center">
-                <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                  Tech Leadership
-                </span>
-                <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                  Web3 Innovation
-                </span>
-                <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                  Award Winner
                 </span>
               </div>
             </div>
