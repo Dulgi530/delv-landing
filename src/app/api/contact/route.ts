@@ -4,12 +4,9 @@ import { sendContactEmail } from "@/lib/email";
 
 export async function POST(request: NextRequest) {
   try {
-    console.log("API route called");
     const body = await request.json();
-    console.log("Request body:", body);
     const { name, company, email, phone, message, privacy } = body;
 
-    // 필수 필드 검증
     if (!name || !company || !email || !phone || !privacy) {
       return NextResponse.json(
         { error: "필수 필드를 모두 입력해주세요." },
@@ -17,7 +14,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 이메일 형식 검증
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -26,8 +22,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Supabase에 데이터 저장
-    console.log("Attempting to insert data to Supabase");
     const { data, error } = await supabase
       .from("contacts")
       .insert([
@@ -43,8 +37,6 @@ export async function POST(request: NextRequest) {
       ])
       .select();
 
-    console.log("Supabase response:", { data, error });
-
     if (error) {
       console.error("Supabase error:", error);
       return NextResponse.json(
@@ -53,11 +45,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 이메일 발송
-    let emailDebug: Record<string, unknown> = {};
     try {
-      console.log("Sending email notification");
-      const emailResult = await sendContactEmail({
+      await sendContactEmail({
         name,
         company,
         email,
@@ -65,27 +54,12 @@ export async function POST(request: NextRequest) {
         message: message || "",
         privacy_agreed: privacy,
       });
-      console.log("Email sent successfully:", emailResult);
-      emailDebug = { status: "success", result: emailResult };
-    } catch (emailError: unknown) {
-      const err = emailError as { message?: string; name?: string; statusCode?: number; cause?: unknown };
-      console.error("Email sending failed:", JSON.stringify(err, Object.getOwnPropertyNames(err)));
-      emailDebug = {
-        status: "failed",
-        message: err?.message,
-        name: err?.name,
-        statusCode: err?.statusCode,
-        cause: String(err?.cause),
-      };
+    } catch (emailError) {
+      console.error("Email sending failed:", JSON.stringify(emailError, Object.getOwnPropertyNames(emailError)));
     }
 
     return NextResponse.json(
-      {
-        success: true,
-        message: "문의가 성공적으로 전송되었습니다.",
-        data,
-        _emailDebug: emailDebug,
-      },
+      { success: true, message: "문의가 성공적으로 전송되었습니다.", data },
       { status: 200 }
     );
   } catch (error) {
