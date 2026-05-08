@@ -852,7 +852,7 @@ export default function Home() {
                 </label>
               </div>
 
-              <div className="text-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -860,6 +860,17 @@ export default function Home() {
                 >
                   {t.contactForm.submitButton}
                 </button>
+                <a
+                  href="https://calendly.com/admin-delv/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-cyan-600 border-2 border-cyan-500 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-cyan-50 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  캘린더 예약
+                </a>
               </div>
 
               <p className="text-center text-sm text-gray-500">
