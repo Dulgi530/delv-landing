@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 // 진단용 임시 엔드포인트. 원인 파악 후 삭제할 것.
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const key = process.env.RESEND_API_KEY;
 
@@ -9,6 +11,10 @@ export async function GET() {
     hasKey: Boolean(key),
     keyPrefix: key ? key.slice(0, 8) : null,
     keyLength: key ? key.length : 0,
+    // 오타/유사 이름 확인용 (값은 노출하지 않음)
+    resendLikeVarNames: Object.keys(process.env).filter((n) =>
+      n.toUpperCase().includes("RESEND")
+    ),
   };
 
   if (!key) {
