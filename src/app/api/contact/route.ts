@@ -45,6 +45,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // 알림 메일 발송. 실패해도 문의 자체는 저장되었으므로 성공으로 응답하되,
+    // 실패 사실은 응답과 로그 양쪽에 남긴다.
+    let emailSent = false;
     try {
       await sendContactEmail({
         name,
@@ -54,12 +57,21 @@ export async function POST(request: NextRequest) {
         message: message || "",
         privacy_agreed: privacy,
       });
+      emailSent = true;
     } catch (emailError) {
-      console.error("Email sending failed:", JSON.stringify(emailError, Object.getOwnPropertyNames(emailError)));
+      console.error(
+        "Email sending failed:",
+        JSON.stringify(emailError, Object.getOwnPropertyNames(emailError))
+      );
     }
 
     return NextResponse.json(
-      { success: true, message: "문의가 성공적으로 전송되었습니다.", data },
+      {
+        success: true,
+        message: "문의가 성공적으로 전송되었습니다.",
+        emailSent,
+        data,
+      },
       { status: 200 }
     );
   } catch (error) {
