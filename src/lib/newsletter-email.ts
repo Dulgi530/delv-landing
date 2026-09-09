@@ -81,16 +81,60 @@ export async function sendConfirmationEmail(email: string, confirmToken: string)
   return data;
 }
 
+// /api/news 의 extractCategory 가 돌려주는 값과 1:1로 맞춘다.
+// 메일 클라이언트는 CSS 클래스를 못 쓰므로 hex 를 인라인으로 넣는다.
+const CATEGORY_COLORS: Record<string, { bg: string; fg: string }> = {
+  규제: { bg: "#fee2e2", fg: "#b91c1c" },
+  시장: { bg: "#fef3c7", fg: "#b45309" },
+  DeFi: { bg: "#ede9fe", fg: "#6d28d9" },
+  NFT: { bg: "#fce7f3", fg: "#be185d" },
+  파트너십: { bg: "#dbeafe", fg: "#1d4ed8" },
+  업데이트: { bg: "#ccfbf1", fg: "#0f766e" },
+  ETF: { bg: "#e0e7ff", fg: "#4338ca" },
+  스테이킹: { bg: "#dcfce7", fg: "#15803d" },
+  게임: { bg: "#ffedd5", fg: "#c2410c" },
+  일반: { bg: "#e2e8f0", fg: "#475569" },
+};
+
+const DEFAULT_CATEGORY_COLOR = CATEGORY_COLORS["일반"];
+const MAX_DESCRIPTION = 180;
+
+/**
+ * RSS 본문에는 발행 도구의 치환자(%%POSTLINK%%)와 매체 홍보 문구가
+ * 그대로 남아 있는 경우가 많아 메일에 싣기 전에 걷어낸다.
+ */
+function cleanDescription(raw: string) {
+  let text = (raw ?? "")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/%+\s*%*[A-Z_]+%+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  // 치환자를 지우고 남는 매체 홍보 꼬리말 제거
+  text = text
+    .replace(/[^.。!?]*에서\s*가장\s*먼저\s*$/, "")
+    .replace(/The post .*?appeared first on .*$/i, "")
+    .replace(/[\s·,]+$/, "")
+    .trim();
+
+  if (text.length > MAX_DESCRIPTION) {
+    text = text.slice(0, MAX_DESCRIPTION).trimEnd() + "…";
+  }
+  return text;
+}
+
 function renderNewsItem(item: DigestNewsItem) {
   const date = new Date(item.publishedAt).toLocaleDateString("ko-KR", {
     month: "long",
     day: "numeric",
   });
+  const color = CATEGORY_COLORS[item.category] ?? DEFAULT_CATEGORY_COLOR;
 
   return `
     <div style="padding:18px 0;border-bottom:1px solid #e2e8f0;">
       <div style="margin-bottom:6px;">
-        <span style="display:inline-block;background-color:#ccfbf1;color:#0f766e;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600;">
+        <span style="display:inline-block;background-color:${color.bg};color:${color.fg};padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600;">
           ${escapeHtml(item.category)}
         </span>
       </div>
@@ -99,7 +143,7 @@ function renderNewsItem(item: DigestNewsItem) {
         ${escapeHtml(item.title)}
       </a>
       <p style="margin:8px 0 8px;font-size:14px;line-height:1.7;color:#64748b;">
-        ${escapeHtml(item.description)}
+        ${escapeHtml(cleanDescription(item.description))}
       </p>
       <div style="font-size:12px;color:#94a3b8;">
         ${escapeHtml(item.source)} · ${date}
