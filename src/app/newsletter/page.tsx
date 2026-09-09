@@ -285,6 +285,9 @@ export default function Newsletter() {
         </div>
       </section>
 
+      <NewsletterSignup />
+
+
       {/* Footer */}
       <footer className="bg-slate-900 py-16 mt-20">
         <div className="max-w-7xl mx-auto px-6">
@@ -372,7 +375,6 @@ export default function Newsletter() {
             </div>
           </div>
         </div>
-        <NewsletterSignup />
       </footer>
     </div>
   );

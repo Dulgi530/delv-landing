@@ -53,6 +53,9 @@ export function ServicePageLayout({ children }: ServicePageLayoutProps) {
 
       {children}
 
+      <NewsletterSignup />
+
+
       <footer className="bg-[#0D1117] border-t border-white/10 py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -89,7 +92,6 @@ export function ServicePageLayout({ children }: ServicePageLayoutProps) {
             </div>
           </div>
         </div>
-        <NewsletterSignup />
       </footer>
     </div>
   );

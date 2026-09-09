@@ -39,51 +39,56 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 mt-12 pt-10 border-t border-white/10">
-      <div className="max-w-2xl">
-        <h3 className="text-white font-semibold mb-2">
-          주간 Web3 뉴스레터
-        </h3>
-        <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-          매주 월요일, 한 주간의 주요 블록체인·Web3 소식을 정리해 보내드립니다.
-        </p>
-
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            placeholder="이메일 주소"
-            aria-label="이메일 주소"
-            className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#4FD1C7] focus:border-transparent text-sm"
-          />
-          <button
-            type="submit"
-            disabled={status === "submitting"}
-            className="bg-[#4FD1C7] text-slate-900 px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#3BB5AC] transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
-          >
-            {status === "submitting" ? "신청 중..." : "구독하기"}
-          </button>
-        </form>
-
-        {message && (
-          <p
-            role="status"
-            className={`mt-3 text-sm ${
-              status === "error" ? "text-red-400" : "text-[#4FD1C7]"
-            }`}
-          >
-            {message}
+    <section className="bg-gradient-to-r from-[#1A202C] to-[#2D3748] py-16">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+            주간 Web3 뉴스레터
+          </h2>
+          <p className="text-gray-300 mb-8 leading-relaxed">
+            매주 월요일, 한 주간의 주요 블록체인·Web3 소식을 정리해 보내드립니다.
           </p>
-        )}
 
-        <p className="mt-3 text-xs text-gray-500 leading-relaxed">
-          신청하시면 확인 메일이 발송됩니다. 메일의 링크를 눌러야 구독이 완료되며,
-          언제든 수신거부할 수 있습니다.
-        </p>
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col sm:flex-row gap-3"
+          >
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="이메일 주소"
+              aria-label="이메일 주소"
+              className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#4FD1C7] focus:border-transparent text-sm"
+            />
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className="bg-[#4FD1C7] text-slate-900 px-8 py-3 rounded-lg font-semibold text-sm hover:bg-[#3BB5AC] transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+            >
+              {status === "submitting" ? "신청 중..." : "구독하기"}
+            </button>
+          </form>
+
+          {message && (
+            <p
+              role="status"
+              className={`mt-4 text-sm ${
+                status === "error" ? "text-red-400" : "text-[#4FD1C7]"
+              }`}
+            >
+              {message}
+            </p>
+          )}
+
+          <p className="mt-4 text-xs text-gray-500 leading-relaxed">
+            신청하시면 확인 메일이 발송됩니다. 메일의 링크를 눌러야 구독이
+            완료되며, 언제든 수신거부할 수 있습니다.
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

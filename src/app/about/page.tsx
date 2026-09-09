@@ -191,6 +191,9 @@ export default function About() {
         </div>
       </section>
 
+      <NewsletterSignup />
+
+
       {/* Footer */}
       <footer className="bg-slate-900 py-16">
         <div className="max-w-7xl mx-auto px-6">
@@ -278,7 +281,6 @@ export default function About() {
             </div>
           </div>
         </div>
-        <NewsletterSignup />
       </footer>
     </div>
   );

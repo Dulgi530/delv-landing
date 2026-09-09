@@ -69,6 +69,9 @@ export default function Services() {
         </div>
       </section>
 
+      <NewsletterSignup />
+
+
       <footer className="bg-slate-900 py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -101,7 +104,6 @@ export default function Services() {
             </div>
           </div>
         </div>
-        <NewsletterSignup />
       </footer>
     </div>
   );
