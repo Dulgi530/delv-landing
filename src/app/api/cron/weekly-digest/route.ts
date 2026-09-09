@@ -2,14 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin, getSiteUrl } from "@/lib/supabase-admin";
 import {
   sendWeeklyDigest,
-  type DigestNewsItem,
   type DigestRecipient,
 } from "@/lib/newsletter-email";
+import {
+  curateDigest,
+  type CuratedDigest,
+  type DigestNewsItem,
+} from "@/lib/digest-curation";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-const MAX_ITEMS = 10;
+const MAX_PER_SECTION = 6;
 const WINDOW_DAYS = 7;
 
 /** KST 기준 ISO 주차 키 (예: 2026-W37) */
@@ -41,26 +45,47 @@ function formatPeriodLabel(now: Date) {
   return `${fmt(start)} – ${fmt(end)}`;
 }
 
-async function fetchWeeklyNews(): Promise<DigestNewsItem[]> {
-  const res = await fetch(`${getSiteUrl()}/api/news?lang=ko`, {
+async function fetchNews(lang: string): Promise<DigestNewsItem[]> {
+  const res = await fetch(`${getSiteUrl()}/api/news?lang=${lang}`, {
     cache: "no-store",
   });
-  if (!res.ok) {
-    throw new Error(`뉴스 조회 실패: HTTP ${res.status}`);
-  }
-
+  if (!res.ok) throw new Error(`뉴스 조회 실패(${lang}): HTTP ${res.status}`);
   const json = await res.json();
-  const all: DigestNewsItem[] = Array.isArray(json?.data) ? json.data : [];
+  return Array.isArray(json?.data) ? json.data : [];
+}
+
+/**
+ * 해외 규제·기업 동향이 목적이므로 영문 소스를 주로 쓰고,
+ * 한국어 소스는 보조로만 합쳐 후보 풀을 넓힌다.
+ */
+async function buildWeeklyDigest(): Promise<CuratedDigest> {
+  const [en, ko] = await Promise.allSettled([fetchNews("en"), fetchNews("ko")]);
+
+  const all: DigestNewsItem[] = [
+    ...(en.status === "fulfilled" ? en.value : []),
+    ...(ko.status === "fulfilled" ? ko.value : []),
+  ];
+
+  if (en.status === "rejected") console.error("영문 뉴스 조회 실패:", en.reason);
+  if (ko.status === "rejected") console.error("한글 뉴스 조회 실패:", ko.reason);
+
+  // URL 기준 중복 제거
+  const seen = new Set<string>();
+  const unique = all.filter((item) => {
+    if (!item?.url || seen.has(item.url)) return false;
+    seen.add(item.url);
+    return true;
+  });
 
   const cutoff = Date.now() - WINDOW_DAYS * 86400000;
-  const recent = all.filter((item) => {
+  const recent = unique.filter((item) => {
     const t = new Date(item.publishedAt).getTime();
     return Number.isFinite(t) && t >= cutoff;
   });
 
-  // 최근 7일치가 너무 적으면 기간 제한 없이 최신 항목으로 채운다.
-  const pool = recent.length >= 5 ? recent : all;
-  return pool.slice(0, MAX_ITEMS);
+  // 최근 7일치가 너무 적으면 기간 제한 없이 최신 항목까지 후보로 삼는다.
+  const pool = recent.length >= 10 ? recent : unique;
+  return curateDigest(pool, { regulation: MAX_PER_SECTION, corporate: MAX_PER_SECTION });
 }
 
 export async function GET(request: NextRequest) {
@@ -77,10 +102,10 @@ export async function GET(request: NextRequest) {
   try {
     const supabase = getSupabaseAdmin();
 
-    const items = await fetchWeeklyNews();
-    if (items.length === 0) {
+    const digest = await buildWeeklyDigest();
+    if (digest.total === 0) {
       return NextResponse.json({
-        skipped: "no_news",
+        skipped: "no_matching_news",
         periodKey,
       });
     }
@@ -108,7 +133,7 @@ export async function GET(request: NextRequest) {
       .insert({
         period_key: periodKey,
         subject,
-        item_count: items.length,
+        item_count: digest.total,
       })
       .select("id")
       .single();
@@ -129,7 +154,7 @@ export async function GET(request: NextRequest) {
 
     const { sent, failed } = await sendWeeklyDigest(
       recipients,
-      items,
+      digest,
       subject,
       formatPeriodLabel(now)
     );
@@ -139,7 +164,13 @@ export async function GET(request: NextRequest) {
       .update({ recipient_count: sent, failed_count: failed })
       .eq("id", claim.id);
 
-    return NextResponse.json({ periodKey, sent, failed, items: items.length });
+    return NextResponse.json({
+      periodKey,
+      sent,
+      failed,
+      regulation: digest.regulation.length,
+      corporate: digest.corporate.length,
+    });
   } catch (error) {
     console.error(
       "Weekly digest failed:",

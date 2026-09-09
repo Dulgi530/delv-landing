@@ -1,16 +1,10 @@
 import { Resend } from "resend";
 import { getSiteUrl } from "./supabase-admin";
+import type { CuratedDigest, CuratedItem } from "./digest-curation";
+
+export type { DigestNewsItem } from "./digest-curation";
 
 const FROM = "DELV <hello@delv.team>";
-
-export interface DigestNewsItem {
-  title: string;
-  description: string;
-  url: string;
-  source: string;
-  category: string;
-  publishedAt: string;
-}
 
 function getResend() {
   const key = process.env.RESEND_API_KEY;
@@ -81,22 +75,21 @@ export async function sendConfirmationEmail(email: string, confirmToken: string)
   return data;
 }
 
-// /api/news 의 extractCategory 가 돌려주는 값과 1:1로 맞춘다.
+// 큐레이션이 붙이는 라벨과 1:1로 맞춘다.
 // 메일 클라이언트는 CSS 클래스를 못 쓰므로 hex 를 인라인으로 넣는다.
-const CATEGORY_COLORS: Record<string, { bg: string; fg: string }> = {
-  규제: { bg: "#fee2e2", fg: "#b91c1c" },
-  시장: { bg: "#fef3c7", fg: "#b45309" },
-  DeFi: { bg: "#ede9fe", fg: "#6d28d9" },
-  NFT: { bg: "#fce7f3", fg: "#be185d" },
-  파트너십: { bg: "#dbeafe", fg: "#1d4ed8" },
-  업데이트: { bg: "#ccfbf1", fg: "#0f766e" },
-  ETF: { bg: "#e0e7ff", fg: "#4338ca" },
-  스테이킹: { bg: "#dcfce7", fg: "#15803d" },
-  게임: { bg: "#ffedd5", fg: "#c2410c" },
-  일반: { bg: "#e2e8f0", fg: "#475569" },
+const LABEL_COLORS: Record<string, { bg: string; fg: string }> = {
+  "규제 · 미국": { bg: "#fee2e2", fg: "#b91c1c" },
+  "규제 · 싱가포르": { bg: "#ccfbf1", fg: "#0f766e" },
+  "규제 · 홍콩": { bg: "#ede9fe", fg: "#6d28d9" },
+  "규제 · 일본": { bg: "#fce7f3", fg: "#be185d" },
+  "규제 · EU": { bg: "#e0e7ff", fg: "#4338ca" },
+  "규제 · UAE": { bg: "#fef3c7", fg: "#b45309" },
+  "규제 · 영국": { bg: "#dbeafe", fg: "#1d4ed8" },
+  "기업 · 상품출시": { bg: "#dcfce7", fg: "#15803d" },
+  "기업 · 협업": { bg: "#cffafe", fg: "#0e7490" },
 };
 
-const DEFAULT_CATEGORY_COLOR = CATEGORY_COLORS["일반"];
+const DEFAULT_LABEL_COLOR = { bg: "#e2e8f0", fg: "#475569" };
 const MAX_DESCRIPTION = 180;
 
 /**
@@ -124,18 +117,18 @@ function cleanDescription(raw: string) {
   return text;
 }
 
-function renderNewsItem(item: DigestNewsItem) {
+function renderNewsItem(item: CuratedItem) {
   const date = new Date(item.publishedAt).toLocaleDateString("ko-KR", {
     month: "long",
     day: "numeric",
   });
-  const color = CATEGORY_COLORS[item.category] ?? DEFAULT_CATEGORY_COLOR;
+  const color = LABEL_COLORS[item.label] ?? DEFAULT_LABEL_COLOR;
 
   return `
     <div style="padding:18px 0;border-bottom:1px solid #e2e8f0;">
       <div style="margin-bottom:6px;">
         <span style="display:inline-block;background-color:${color.bg};color:${color.fg};padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600;">
-          ${escapeHtml(item.category)}
+          ${escapeHtml(item.label)}
         </span>
       </div>
       <a href="${encodeURI(item.url)}"
@@ -151,8 +144,19 @@ function renderNewsItem(item: DigestNewsItem) {
     </div>`;
 }
 
+function renderSection(title: string, subtitle: string, items: CuratedItem[]) {
+  if (items.length === 0) return "";
+
+  return `
+    <div style="margin-top:32px;">
+      <h2 style="margin:0 0 4px;font-size:17px;color:#0f172a;">${escapeHtml(title)}</h2>
+      <p style="margin:0;font-size:13px;color:#94a3b8;">${escapeHtml(subtitle)}</p>
+      ${items.map(renderNewsItem).join("")}
+    </div>`;
+}
+
 export function buildDigestHtml(
-  items: DigestNewsItem[],
+  digest: CuratedDigest,
   unsubscribeUrl: string,
   periodLabel: string
 ) {
@@ -160,9 +164,18 @@ export function buildDigestHtml(
     <div style="font-size:13px;color:#4FD1C7;font-weight:600;margin-bottom:8px;">${escapeHtml(periodLabel)}</div>
     <h1 style="margin:0 0 12px;font-size:22px;color:#0f172a;">이번 주 Web3 소식</h1>
     <p style="margin:0 0 8px;font-size:15px;line-height:1.7;color:#475569;">
-      한 주간의 주요 블록체인·Web3 뉴스를 정리했습니다.
+      주요국 규제 변화와 해외 기업의 크립토 움직임을 추려 정리했습니다.
     </p>
-    ${items.map(renderNewsItem).join("")}
+    ${renderSection(
+      "주요국 규제 동향",
+      "싱가포르 · 홍콩 · 일본 · 미국 등",
+      digest.regulation
+    )}
+    ${renderSection(
+      "해외 기업 상품·제휴",
+      "국내에 덜 알려진 해외 기업 움직임",
+      digest.corporate
+    )}
     <div style="margin-top:28px;">
       <a href="${getSiteUrl()}/newsletter"
          style="display:inline-block;background-color:#1A202C;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600;">
@@ -194,7 +207,7 @@ export interface DigestSendResult {
  */
 export async function sendWeeklyDigest(
   recipients: DigestRecipient[],
-  items: DigestNewsItem[],
+  digest: CuratedDigest,
   subject: string,
   periodLabel: string
 ): Promise<DigestSendResult> {
@@ -214,7 +227,7 @@ export async function sendWeeklyDigest(
         from: FROM,
         to: [r.email],
         subject,
-        html: buildDigestHtml(items, unsubscribeUrl, periodLabel),
+        html: buildDigestHtml(digest, unsubscribeUrl, periodLabel),
         headers: {
           // 메일 클라이언트의 원클릭 수신거부 (RFC 8058)
           "List-Unsubscribe": `<${unsubscribeUrl}>`,
