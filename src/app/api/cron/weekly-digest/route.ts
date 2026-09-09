@@ -9,6 +9,7 @@ import {
   type CuratedDigest,
   type DigestNewsItem,
 } from "@/lib/digest-curation";
+import { translateItems } from "@/lib/digest-translate";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -85,7 +86,23 @@ async function buildWeeklyDigest(): Promise<CuratedDigest> {
 
   // 최근 7일치가 너무 적으면 기간 제한 없이 최신 항목까지 후보로 삼는다.
   const pool = recent.length >= 10 ? recent : unique;
-  return curateDigest(pool, { regulation: MAX_PER_SECTION, corporate: MAX_PER_SECTION });
+  const digest = curateDigest(pool, {
+    regulation: MAX_PER_SECTION,
+    corporate: MAX_PER_SECTION,
+  });
+
+  // 두 섹션을 한 번에 번역해 API 호출을 한 번으로 줄인다.
+  // 키가 없거나 실패하면 원문이 그대로 돌아온다.
+  const translated = await translateItems([
+    ...digest.regulation,
+    ...digest.corporate,
+  ]);
+
+  return {
+    regulation: translated.slice(0, digest.regulation.length),
+    corporate: translated.slice(digest.regulation.length),
+    total: digest.total,
+  };
 }
 
 export async function GET(request: NextRequest) {

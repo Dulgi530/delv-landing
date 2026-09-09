@@ -20,6 +20,33 @@ export interface CuratedItem extends DigestNewsItem {
   score: number;
 }
 
+const MAX_DESCRIPTION = 180;
+
+/**
+ * RSS 본문에는 발행 도구의 치환자(%%POSTLINK%%)와 매체 홍보 문구가
+ * 그대로 남아 있는 경우가 많다. 번역·렌더링 전에 걷어낸다.
+ */
+export function cleanDescription(raw: string) {
+  let text = (raw ?? "")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/%+\s*%*[A-Z_]+%+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  // 치환자를 지우고 남는 매체 홍보 꼬리말 제거
+  text = text
+    .replace(/[^.。!?]*에서\s*가장\s*먼저\s*$/, "")
+    .replace(/The post .*?appeared first on .*$/i, "")
+    .replace(/[\s·,]+$/, "")
+    .trim();
+
+  if (text.length > MAX_DESCRIPTION) {
+    text = text.slice(0, MAX_DESCRIPTION).trimEnd() + "…";
+  }
+  return text;
+}
+
 // 관할권. 앞쪽일수록 우선 표기된다.
 const JURISDICTIONS: { name: string; keywords: string[] }[] = [
   { name: "싱가포르", keywords: ["singapore", "mas", "monetary authority of singapore", "싱가포르"] },
@@ -204,9 +231,15 @@ export function curateDigest(
     corporate = [...corporate, ...extra];
   }
 
+  // 이후 단계(번역·렌더링)가 항상 정리된 본문을 받도록 여기서 한 번 처리한다.
+  const clean = (x: CuratedItem): CuratedItem => ({
+    ...x,
+    description: cleanDescription(x.description),
+  });
+
   return {
-    regulation,
-    corporate,
+    regulation: regulation.map(clean),
+    corporate: corporate.map(clean),
     total: regulation.length + corporate.length,
   };
 }

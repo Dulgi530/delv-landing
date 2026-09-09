@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { getSiteUrl } from "./supabase-admin";
+import { cleanDescription } from "./digest-curation";
 import type { CuratedDigest, CuratedItem } from "./digest-curation";
 
 export type { DigestNewsItem } from "./digest-curation";
@@ -90,32 +91,7 @@ const LABEL_COLORS: Record<string, { bg: string; fg: string }> = {
 };
 
 const DEFAULT_LABEL_COLOR = { bg: "#e2e8f0", fg: "#475569" };
-const MAX_DESCRIPTION = 180;
 
-/**
- * RSS 본문에는 발행 도구의 치환자(%%POSTLINK%%)와 매체 홍보 문구가
- * 그대로 남아 있는 경우가 많아 메일에 싣기 전에 걷어낸다.
- */
-function cleanDescription(raw: string) {
-  let text = (raw ?? "")
-    .replace(/<[^>]*>/g, " ")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/%+\s*%*[A-Z_]+%+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  // 치환자를 지우고 남는 매체 홍보 꼬리말 제거
-  text = text
-    .replace(/[^.。!?]*에서\s*가장\s*먼저\s*$/, "")
-    .replace(/The post .*?appeared first on .*$/i, "")
-    .replace(/[\s·,]+$/, "")
-    .trim();
-
-  if (text.length > MAX_DESCRIPTION) {
-    text = text.slice(0, MAX_DESCRIPTION).trimEnd() + "…";
-  }
-  return text;
-}
 
 function renderNewsItem(item: CuratedItem) {
   const date = new Date(item.publishedAt).toLocaleDateString("ko-KR", {
