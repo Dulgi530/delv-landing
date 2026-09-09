@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { translations } from "@/locales/translations";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import {
   SERVICE_CARD_KEYS,
   type ServiceCardKey,
@@ -277,6 +278,7 @@ export default function About() {
             </div>
           </div>
         </div>
+        <NewsletterSignup />
       </footer>
     </div>
   );

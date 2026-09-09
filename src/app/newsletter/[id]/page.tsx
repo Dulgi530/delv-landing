@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { translations } from "@/locales/translations";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import {
   SERVICE_CARD_KEYS,
   type ServiceCardKey,
@@ -347,6 +348,7 @@ export default function NewsletterDetail() {
             </div>
           </div>
         </div>
+        <NewsletterSignup />
       </footer>
     </div>
   );

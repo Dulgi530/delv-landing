@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import {
   SERVICE_CARD_KEYS,
   SERVICE_CARD_TAG_CLASSES,
@@ -955,6 +956,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <NewsletterSignup />
       </footer>
     </div>
   );

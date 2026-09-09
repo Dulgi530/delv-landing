@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { useTranslation } from "@/hooks/useTranslation";
 
 interface ServiceLink {
@@ -88,6 +89,7 @@ export function ServicePageLayout({ children }: ServicePageLayoutProps) {
             </div>
           </div>
         </div>
+        <NewsletterSignup />
       </footer>
     </div>
   );

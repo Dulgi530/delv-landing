@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Services() {
@@ -100,6 +101,7 @@ export default function Services() {
             </div>
           </div>
         </div>
+        <NewsletterSignup />
       </footer>
     </div>
   );
