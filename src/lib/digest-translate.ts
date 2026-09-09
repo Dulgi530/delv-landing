@@ -6,12 +6,7 @@ import type { CuratedItem } from "./digest-curation";
 // 뉴스레터 발송 자체가 번역 때문에 막히면 안 된다.
 
 const TranslationSchema = z.object({
-  items: z.array(
-    z.object({
-      title: z.string(),
-      description: z.string(),
-    })
-  ),
+  titles: z.array(z.string()),
 });
 
 /**
@@ -38,19 +33,18 @@ function isMostlyKorean(text: string) {
 }
 
 const SYSTEM_PROMPT = `너는 한국의 Web3 컨설팅 회사가 발행하는 뉴스레터의 번역가다.
-영문 암호화폐/블록체인 뉴스의 제목과 요약을 한국어로 옮긴다.
+영문 암호화폐/블록체인 뉴스의 '제목'을 한국어로 옮긴다.
 
 규칙:
-- 자연스러운 한국어 뉴스 문체로 옮긴다. 직역투를 피한다.
+- 자연스러운 한국어 뉴스 헤드라인 문체로 옮긴다. 직역투를 피한다.
 - 기관·기업·티커·법령 고유명사는 원문 표기를 유지하되, 널리 쓰이는 한글 표기가 있으면 그것을 쓴다 (예: Singapore -> 싱가포르, MAS -> MAS).
-- 제목은 40자 내외로 간결하게 한다.
-- 요약은 두 문장을 넘기지 않는다.
+- 40자 내외로 간결하게 한다.
 - 내용을 지어내지 않는다. 원문에 없는 사실을 추가하지 않는다.
-- 이미 한국어인 항목은 그대로 돌려준다.
+- 이미 한국어인 제목은 그대로 돌려준다.
 - 입력 순서와 개수를 반드시 그대로 유지한다.`;
 
 /**
- * 선별된 항목의 제목/요약을 한국어로 옮긴다.
+ * 선별된 항목의 제목을 한국어로 옮긴다. 요약과 원문 링크는 손대지 않는다.
  * 실패하면 입력을 그대로 돌려준다 (발송은 계속되어야 하므로).
  */
 export async function translateItems(
@@ -73,10 +67,10 @@ export async function translateItems(
     return items;
   }
 
-  // 이미 한국어인 항목은 API 에 보내지 않는다.
+  // 이미 한국어인 제목은 API 에 보내지 않는다.
   const targets = items
     .map((item, index) => ({ item, index }))
-    .filter(({ item }) => !isMostlyKorean(`${item.title} ${item.description}`));
+    .filter(({ item }) => !isMostlyKorean(item.title));
 
   if (targets.length === 0) return items;
 
@@ -86,28 +80,21 @@ export async function translateItems(
       schema: TranslationSchema,
       system: SYSTEM_PROMPT,
       prompt: JSON.stringify({
-        items: targets.map(({ item }) => ({
-          title: item.title,
-          description: item.description,
-        })),
+        titles: targets.map(({ item }) => item.title),
       }),
     });
 
-    if (object.items.length !== targets.length) {
+    if (object.titles.length !== targets.length) {
       console.error(
-        `번역 결과 개수 불일치: ${object.items.length} !== ${targets.length}`
+        `번역 결과 개수 불일치: ${object.titles.length} !== ${targets.length}`
       );
       return items;
     }
 
     const translated = [...items];
     targets.forEach(({ index }, i) => {
-      const t = object.items[i];
-      translated[index] = {
-        ...translated[index],
-        title: t.title.trim() || translated[index].title,
-        description: t.description.trim() || translated[index].description,
-      };
+      const title = object.titles[i]?.trim();
+      if (title) translated[index] = { ...translated[index], title };
     });
 
     return translated;
