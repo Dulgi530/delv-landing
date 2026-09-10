@@ -8,16 +8,18 @@ export const translations = {
       language: "한국어",
     },
     hero: {
-      title: "전문 컨설팅으로",
-      titleBreak: "비즈니스를 혁신하세요",
-      subtitle: "BM 개발 / 블록체인 기술 / ICO 상장 / RWA / 해외진출 / 세무",
-      description: "Web3 분야의 종합적인 컨설팅 서비스를 통해 귀하의 성장을 가속화합니다.",
-      ctaStart: "컨설팅 시작하기",
+      title: "해외결제 담보 판정에서",
+      titleBreak: "회계처리까지",
+      subtitle: "담보적정성 판정 시스템 개발 · 법률·재무·크로스보더 규제 컴플라이언스 자문",
+      description:
+        "무역대금 등 해외결제에서 담보의 적정성을 판정하고, 그 판정이 회계처리로 이어지는 시스템을 만듭니다. 법률·재무·크로스보더 규제 자문을 함께 제공합니다.",
+      ctaStart: "도입 문의하기",
       ctaLearn: "더 알아보기",
     },
     services: {
       title: "컨설팅 서비스",
-      subtitle: "비즈니스 요구에 맞춘 종합적인 Web3 컨설팅 서비스",
+      subtitle:
+        "금융기관과 디지털자산 사업자가 신규 사업을 도입할 때 마주하는 회계·법률·기술 문제를 국내 제도에 맞는 처리 방안으로 정리합니다",
       bm: {
         icon: "🚀",
         title: "BM 개발 패키지",
@@ -82,28 +84,28 @@ export const translations = {
       cta: "채팅 시작하기",
     },
     team: {
-      title: "팀 소개",
-      subtitle: "기술, 법무, 글로벌 시장에서 입증된 실적을 가진 업계 전문가들",
+      title: "Our Professionals",
+      subtitle: "웹3 개발 · 법무 · 회계 실무를 직접 수행하는 전문가 그룹",
       members: {
         sungyeon: {
-          position: "변호사",
-          description: "- 고려대학교 경영학 학사 / 고려대 법학전문대학원 석사<br />- 셀트리온, 풀무원 법무팀 근무 경력<br />- ABB 블록체인 해커톤 최우수상 수상<br />- 국제법무, 블록체인 자문, 강의 경험",
+          position: "대표변호사 · 법무",
+          description:
+            "- 모아법률사무소 대표변호사 (변호사 8년)<br />- STO · RWA · 가상자산 라이선스 자문<br />- 증권사 해외투자 외국환거래법 검토 및 한국은행 신고 대리<br />- 소액해외송금업 금융감독원 정기 대응<br />- 싱가포르 금융 라이선스 취득 자문<br />- 한국핀테크산업협회 특별위원",
         },
         ilhun: {
-          position: "회계사",
-          description: "- 고려대학교 경영 MBA 수료<br />- 前 삼정회계법인 회계사<br />- 現 한울회계법인 이사 (회계사)<br />- 국내 대기업 금융그룹, 투자회사 회계 용역 多<br />- 국제조세 자문 수행",
+          position: "공인회계사 · 회계",
+          description:
+            "- 한울회계법인 Director (KICPA · 12년)<br />- 가상자산 회계 · 세무 적용 방안 수립<br />- 은행 · 증권 · 캐피탈 · 보험 회계감사 및 상주 회계자문<br />- 前 KPMG 삼정 (Banking &amp; Finance) · 前 BDO 이현 (세무자문)<br />- 고려대학교 경영 MBA",
         },
         rosa: {
-          position: "주재원 (스위스)",
-          description: "- 성신여자대학교 컴퓨터공학 / 정보공학 석사<br />- SKB(Swiss Korean Blockchain) Advisors 파운더<br />- Women in Web3 Switzerland (WIW3.ch) 파트너십팀 핵심 기여자<br />- 스위스와 한국 간 블록체인 산업 교류 및 협력 경험 多",
+          position: "스위스 주재 · 크로스보더 규제",
+          description:
+            "- Meravi Co-founder · 스위스 10년 주재 (Zürich · Zug)<br />- Certified Crypto Finance Expert (SAQ · ISO/IEC 17024)<br />- FINMA 인가 · 감독 체계 기관 다수 직접 협업<br />- 크로스보더 분리 수탁 · 신용 시설 미들오피스 (FRM · VaR · Compliance)",
         },
         hyeongjun: {
-          position: "기술 리드",
-          description: "- aɪˈdentəti CEO & 빌더 아카데미 커뮤니티 파운더<br />- 유네스코 디지털 강의 강사<br />- ETHGlobal 해커톤 수상(2023,2024)<br />- ABB 블록체인 해커톤 최우수상 수상",
-        },
-        youngdae: {
-          position: "커뮤니티 리드",
-          description: "- aɪdentəti COO 및 커뮤니티 관리<br />- Web3 프로젝트 커뮤니티 빌더 경험<br />- MEXC 거래소 BD/운영 매니저<br />- 국내외 이벤트 참여 및 관리 풍부한 경험",
+          position: "테크 리드 · Web3 개발",
+          description:
+            "- Aidenteti Co-founder<br />- RWA 토큰화 플랫폼 구축 · 다중 체인 스마트컨트랙트 개발<br />- ISO 20022 게이트웨이 직접 구현<br />- ETHGlobal 글로벌 해커톤 수상 2회",
         },
       },
     },
@@ -128,7 +130,8 @@ export const translations = {
       messagePlaceholder: "문의하실 내용을 입력해주세요",
     },
     footer: {
-      description: "전문 컨설팅 서비스를 통해 비즈니스를 강화합니다.",
+      description:
+        "해외결제 담보적정성 판정과 회계처리 시스템을 만들고, 법률·재무·크로스보더 규제 컴플라이언스를 자문합니다.",
       servicesTitle: "서비스",
       companyTitle: "회사",
       contactTitle: "연락처",
@@ -149,16 +152,19 @@ export const translations = {
       language: "ENG",
     },
     hero: {
-      title: "Transform Your Business",
-      titleBreak: "with Expert Web3 Consulting",
-      subtitle: "BM Development / Blockchain Tech / ICO Listing / RWA / Global Expansion / Tax",
-      description: "Accelerate your growth through comprehensive consulting services in Web3.",
-      ctaStart: "Start Consulting",
+      title: "From Collateral Assessment",
+      titleBreak: "to Accounting Treatment",
+      subtitle:
+        "Collateral Eligibility Systems · Legal, Financial & Cross-Border Regulatory Compliance",
+      description:
+        "We build the systems that judge collateral adequacy in cross-border settlement — including trade payments — and carry that judgment through to accounting treatment, backed by legal, financial, and cross-border regulatory advisory.",
+      ctaStart: "Request a Consultation",
       ctaLearn: "Learn More",
     },
     services: {
       title: "Our Services",
-      subtitle: "Comprehensive Web3 consulting tailored to your business needs",
+      subtitle:
+        "We turn the accounting, legal, and technical problems financial institutions and digital asset businesses face into workable answers under Korean regulation",
       bm: {
         icon: "🚀",
         title: "BM Development Package",
@@ -223,28 +229,29 @@ export const translations = {
       cta: "Start Chatting",
     },
     team: {
-      title: "Meet Our Team",
-      subtitle: "Industry experts with proven track records in technology, legal, and global markets",
+      title: "Our Professionals",
+      subtitle:
+        "Practitioners who do the Web3 engineering, legal, and accounting work themselves",
       members: {
         sungyeon: {
-          position: "Lawyer",
-          description: "- B.A. in Business Administration, Korea University / J.D., Korea University School of Law<br />- Former in-house counsel at Celltrion and Pulmuone<br />- Grand Prize, ABB Blockchain Hackathon<br />- International legal affairs, blockchain advisory experience",
+          position: "Managing Attorney · Legal",
+          description:
+            "- Managing Attorney, MOALAW (8 years at the bar)<br />- STO · RWA · virtual asset licensing advisory<br />- Foreign Exchange Transactions Act review and Bank of Korea filings for securities firms' overseas investments<br />- Ongoing FSS liaison for small-sum overseas remittance business<br />- Singapore financial licensing advisory<br />- Special Committee Member, Korea Fintech Industry Association",
         },
         ilhun: {
-          position: "Accountant",
-          description: "- MBA, Korea University<br />- Former Accountant at Samjong Accounting Corporation<br />- Current Director at Hanwool Accounting Corporation<br />- International tax advisory experience",
+          position: "Certified Public Accountant · Accounting",
+          description:
+            "- Director, Hanwool Accounting Corporation (KICPA · 12 years)<br />- Authored virtual asset accounting and tax treatment frameworks<br />- Audit and resident advisory for banks, securities firms, capital companies, and insurers<br />- Formerly KPMG Samjong (Banking &amp; Finance) and BDO Leehyun (Tax Advisory)<br />- MBA, Korea University",
         },
         rosa: {
-          position: "Representative (Switzerland)",
-          description: "- Master's in Computer Engineering, Sungshin Women's University<br />- Founder of SKB (Swiss Korean Blockchain) Advisors<br />- Key contributor, Women in Web3 Switzerland (WIW3.ch)<br />- Extensive Korea-Switzerland blockchain industry exchange experience",
+          position: "Switzerland · Cross-Border Regulation",
+          description:
+            "- Co-founder, Meravi · 10 years based in Switzerland (Zürich · Zug)<br />- Certified Crypto Finance Expert (SAQ · ISO/IEC 17024)<br />- Direct collaboration with multiple FINMA-licensed and supervised institutions<br />- Cross-border segregated custody and credit facility middle office (FRM · VaR · Compliance)",
         },
         hyeongjun: {
-          position: "Tech Lead",
-          description: "- aɪˈdentəti CEO & Builder Academy Community Founder<br />- UNESCO Digital lecture professor<br />- ETH Global Hackathon Award (2023, 2024)<br />- ABB Blockchain Hackathon Grand Prize",
-        },
-        youngdae: {
-          position: "Community Lead",
-          description: "- aɪdentəti COO and Community Management<br />- Web3 Project Community Builder<br />- BD/Operations Manager at MEXC Exchange<br />- Extensive hackathon & meetup event experience",
+          position: "Tech Lead · Web3 Engineering",
+          description:
+            "- Co-founder, Aidenteti<br />- Built RWA tokenization platforms and multi-chain smart contracts<br />- Implemented an ISO 20022 gateway<br />- Two ETHGlobal hackathon awards",
         },
       },
     },
@@ -269,7 +276,8 @@ export const translations = {
       messagePlaceholder: "Enter your message",
     },
     footer: {
-      description: "Empowering businesses through expert consulting services.",
+      description:
+        "We build collateral assessment and accounting systems for cross-border settlement, and advise on legal, financial, and cross-border regulatory compliance.",
       servicesTitle: "Services",
       companyTitle: "Company",
       contactTitle: "Contact",

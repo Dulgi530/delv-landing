@@ -474,14 +474,14 @@ export default function Home() {
               <div className="w-20 h-20 bg-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
                 <Image
                   src="/parksungyeon.jpeg"
-                  alt="SUNGYEON PARK"
+                  alt="S.Y. Park"
                   width={80}
                   height={80}
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
-                SUNGYEON PARK
+                S.Y. Park
               </h3>
               <p className="text-gray-600 text-center mb-3">
                 {t.team.members.sungyeon.position}
@@ -494,30 +494,30 @@ export default function Home() {
               />
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">
-                  Corporate Law
+                  Digital Asset Legal
                 </span>
                 <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">
-                  Blockchain Legal
+                  Cross-Border
                 </span>
                 <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">
-                  International Affairs
+                  Licensing
                 </span>
               </div>
             </div>
 
-            {/* Team Member 2 - ILHUN KIM */}
+            {/* Team Member 2 - I.H. Kim */}
             <div className="bg-white rounded-2xl p-6 shadow-lg">
               <div className="w-20 h-20 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
                 <Image
                   src="/kimilhoon.jpeg"
-                  alt="ILHUN KIM"
+                  alt="I.H. Kim"
                   width={80}
                   height={80}
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
-                ILHUN KIM
+                I.H. Kim
               </h3>
               <p className="text-gray-600 text-center mb-3">
                 {t.team.members.ilhun.position}
@@ -530,13 +530,13 @@ export default function Home() {
               />
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
-                  Accounting
+                  Virtual Asset Accounting
                 </span>
                 <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
-                  Tax Advisory
+                  Financial Institutions
                 </span>
                 <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
-                  Finance
+                  Tax
                 </span>
               </div>
             </div>
@@ -546,14 +546,14 @@ export default function Home() {
               <div className="w-20 h-20 bg-green-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
                 <Image
                   src="/imhyeongjun.jpeg"
-                  alt="HYEONGJUN IM"
+                  alt="H.J. Im"
                   width={80}
                   height={80}
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
-                HYEONGJUN IM
+                H.J. Im
               </h3>
               <p className="text-gray-600 text-center mb-3">
                 {t.team.members.hyeongjun.position}
@@ -566,13 +566,13 @@ export default function Home() {
               />
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                  Tech Leadership
+                  RWA Tokenization
                 </span>
                 <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                  Web3 Innovation
+                  Smart Contract
                 </span>
                 <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                  Award Winner
+                  ISO 20022
                 </span>
               </div>
             </div>
@@ -582,14 +582,14 @@ export default function Home() {
               <div className="w-20 h-20 bg-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
                 <Image
                   src="/rosa.jpeg"
-                  alt="JIYOUNG SUK (ROSA)"
+                  alt="J.Y. Suk"
                   width={80}
                   height={80}
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
-                JIYOUNG SUK (ROSA)
+                J.Y. Suk
               </h3>
               <p className="text-gray-600 text-center mb-3">
                 {t.team.members.rosa.position}
@@ -602,13 +602,13 @@ export default function Home() {
               />
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs">
-                  Blockchain
+                  FINMA
                 </span>
                 <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs">
-                  Web3
+                  Cross-Border Custody
                 </span>
                 <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs">
-                  Investment
+                  Risk Modeling
                 </span>
                 <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs">
                   Switzerland
