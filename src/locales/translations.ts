@@ -20,53 +20,50 @@ export const translations = {
       title: "컨설팅 서비스",
       subtitle:
         "금융기관과 디지털자산 사업자가 신규 사업을 도입할 때 마주하는 회계·법률·기술 문제를 국내 제도에 맞는 처리 방안으로 정리합니다",
-      bm: {
-        icon: "🚀",
-        title: "BM 개발 패키지",
-        titleEn: "BM Development Package",
-        description: "이미 운영 중인 귀사의 서비스에 Web3를 도입하는 전략을 설계합니다. 도입 타당성 진단부터 전환 로드맵, 토큰 이코노미, IR 피치덱까지 — 기존 비즈니스의 Web3 전환을 원스톱으로 지원합니다.",
+      sto: {
+        icon: "📜",
+        title: "토큰증권 (STO)",
+        titleEn: "Security Token Offering",
+        description:
+          "증권형 토큰의 법적 성격 판단부터 발행 구조 설계, 인가·신고 대응까지 자문합니다. 자본시장법상 증권 해당 여부와 발행·유통 구조의 규제 정합성을 함께 검토합니다.",
         learnMore: "더 알아보기",
-        tags: ["Web3 도입", "Tokenomics", "로드맵"],
+        tags: ["증권성 판단", "발행 구조", "인가·신고"],
       },
-      token: {
-        icon: "⛓️",
-        title: "스마트 컨트랙트 · X402 · DApp · 토큰노믹스",
-        titleEn: "Smart Contract · X402 · DApp · Tokenomics",
-        description: "스마트 컨트랙트 설계·개발부터 X402 마이크로결제 도입, DApp 구축, 토큰노믹스 설계까지 — 귀사 서비스에 필요한 블록체인 기술을 통합 개발합니다. Paymaster, SBT, DID, NFT 구조 자문 및 코드 보안 감사(Audit) 포함.",
+      collateral: {
+        icon: "🏦",
+        title: "담보 유동화",
+        titleEn: "Collateral Liquidity",
+        description:
+          "무역대금 등 해외결제에서 담보의 적정성을 판정하는 엔진을 설계·구축합니다. 규정 팩 기반 적격 판정과 haircut 산정, LTV·청산 임계값 설계, 그리고 회계처리 연계까지 이어집니다.",
         learnMore: "더 알아보기",
-        tags: ["스마트 컨트랙트", "X402", "DApp", "Tokenomics"],
+        tags: ["담보적정성 판정", "Haircut · LTV", "회계 연계"],
       },
-      ico: {
-        icon: "📋",
-        title: "ICO 상장 패키지",
-        titleEn: "ICO Listing Package",
-        description: "거래소 상장에 필요한 3종 보고서를 원스톱으로 제공합니다. 법률검토의견서, 재무보고서, 코드 감사보고서를 통해 투자자와 거래소의 신뢰를 확보하세요.",
+      accounting: {
+        icon: "🧾",
+        title: "회계·재무",
+        titleEn: "Accounting & Finance",
+        description:
+          "가상자산과 토큰화 자산의 회계처리 기준을 국내 제도에 맞게 정리합니다. 부외 수탁 자산 처리, 정산 손익 인식, 다통화 환산, 결산 공시와 내부통제 구축을 지원합니다.",
         learnMore: "더 알아보기",
-        tags: ["법률검토의견서", "재무보고서", "코드감사보고서"],
+        tags: ["가상자산 회계", "정산·결산", "내부통제"],
       },
       rwa: {
         icon: "🏛️",
         title: "RWA 도입 자문",
         titleEn: "RWA (Real World Asset) Advisory",
-        description: "갤러리·부동산·현물 등 실물 자산을 블록체인 토큰으로 표현하여 새로운 자금조달 채널을 엽니다. 소유권 분할, 글로벌 투자자 유치, 유동성 확보까지 — RWA 도입 전 과정을 자문합니다.",
+        description:
+          "부동산·채권·현물 등 실물 자산을 토큰으로 표현해 새로운 자금조달 채널을 엽니다. 기초자산 실사와 권리 구조 설계, 소유권 분할, 유동성 확보까지 도입 전 과정을 자문합니다.",
         learnMore: "더 알아보기",
-        tags: ["갤러리·부동산·현물", "토큰화", "자금조달"],
+        tags: ["기초자산 실사", "권리 구조 설계", "자금조달"],
       },
       global: {
         icon: "🌏",
-        title: "자회사 설립·해외진출 자문",
-        titleEn: "Subsidiary Setup · Global Expansion Advisory",
-        description: "자회사 설립, 해외진출 자문, 국내외 재단·법인 설립을 지원합니다. 스위스·싱가포르 글로벌 거점 진출과 Korean Market Entry 서비스로 해외 기업의 한국 시장 진출도 원스톱으로 지원합니다.",
+        title: "해외 진출",
+        titleEn: "Global Expansion",
+        description:
+          "해외 법인 설립과 사업 이관 구조를 설계합니다. 국가별 세제·규제 비교, Exit Tax와 이전가격 대응, 외국환거래법 신고까지 크로스보더 진출 전 과정을 자문합니다.",
         learnMore: "더 알아보기",
-        tags: ["국내외 법인 설립", "해외진출 자문", "Korean Market Entry"],
-      },
-      tax: {
-        icon: "🧾",
-        title: "법률·세무 진단",
-        titleEn: "Legal & Tax Diagnosis (2027)",
-        description: "법률 컴플라이언스(VASP·이용자보호법·내부통제)와 세무 진단(스테이킹 회계·온체인 실사·세무 리스크)을 통합 제공합니다. 2027년 과세 전에 미리 대비하세요.",
-        learnMore: "더 알아보기",
-        tags: ["법률 컴플라이언스", "2027 과세", "세무·회계"],
+        tags: ["법인 설립", "사업 이관 구조", "크로스보더 규제"],
       },
     },
     newsletter: {
@@ -165,53 +162,50 @@ export const translations = {
       title: "Our Services",
       subtitle:
         "We turn the accounting, legal, and technical problems financial institutions and digital asset businesses face into workable answers under Korean regulation",
-      bm: {
-        icon: "🚀",
-        title: "BM Development Package",
-        titleEn: "BM Development Package",
-        description: "We design strategies to introduce Web3 into your existing service. From feasibility diagnosis to transformation roadmap, tokenomics, and IR pitch deck — we support your business's Web3 transition end-to-end.",
+      sto: {
+        icon: "📜",
+        title: "Security Token Offering (STO)",
+        titleEn: "Security Token Offering",
+        description:
+          "We advise from the legal characterisation of a security token through issuance structuring to licensing and filing. That includes whether the instrument is a security under the Financial Investment Services and Capital Markets Act, and whether the issuance and distribution structure holds up against it.",
         learnMore: "Learn More",
-        tags: ["Web3 Adoption", "Tokenomics", "Roadmap"],
+        tags: ["Security Analysis", "Issuance Structure", "Licensing"],
       },
-      token: {
-        icon: "⛓️",
-        title: "Smart Contract · X402 · DApp · Tokenomics",
-        titleEn: "Smart Contract · X402 · DApp · Tokenomics",
-        description: "From smart contract design & development to X402 micropayment integration, DApp building, and tokenomics design — we build the blockchain technology your service needs. Includes Paymaster, SBT, DID, NFT advisory and security audit.",
+      collateral: {
+        icon: "🏦",
+        title: "Collateral Liquidity",
+        titleEn: "Collateral Liquidity",
+        description:
+          "We design and build the engine that judges collateral adequacy in cross-border settlement, including trade payments: rule-pack eligibility determination, haircut calculation, LTV and liquidation thresholds, and the handoff into accounting treatment.",
         learnMore: "Learn More",
-        tags: ["Smart Contract", "X402", "DApp", "Tokenomics"],
+        tags: ["Eligibility Engine", "Haircut · LTV", "Accounting Handoff"],
       },
-      ico: {
-        icon: "📋",
-        title: "ICO Listing Package",
-        titleEn: "ICO Listing Package",
-        description: "One-stop solution for the 3 key reports required for exchange listing: Legal Review Opinion, Financial Report, and Code Audit Report. Build trust with investors and exchanges.",
+      accounting: {
+        icon: "🧾",
+        title: "Accounting & Finance",
+        titleEn: "Accounting & Finance",
+        description:
+          "We settle how virtual and tokenized assets are accounted for under Korean standards: off-balance-sheet custody assets, settlement gain and loss recognition, multi-currency translation, closing disclosure, and internal control.",
         learnMore: "Learn More",
-        tags: ["Legal Opinion", "Financial Report", "Code Audit"],
+        tags: ["Virtual Asset Accounting", "Settlement & Closing", "Internal Control"],
       },
       rwa: {
         icon: "🏛️",
         title: "RWA Advisory",
-        titleEn: "Real World Asset Advisory",
-        description: "Tokenize real-world assets (galleries, real estate, commodities, etc.) on the blockchain to open new fundraising channels. We support the full process: structure design, legal review, and investor matching.",
+        titleEn: "RWA (Real World Asset) Advisory",
+        description:
+          "Represent real-world assets — real estate, receivables, commodities — as tokens to open new funding channels. We advise across the whole path: underlying asset diligence, rights structuring, fractional ownership, and liquidity.",
         learnMore: "Learn More",
-        tags: ["Real Estate", "Tokenization", "Fundraising"],
+        tags: ["Asset Diligence", "Rights Structuring", "Fundraising"],
       },
       global: {
         icon: "🌏",
-        title: "Subsidiary Setup · Global Expansion Advisory",
-        titleEn: "Subsidiary Setup · Global Expansion Advisory",
-        description: "We support subsidiary establishment, global expansion advisory, and domestic/overseas foundation & entity setup. From Swiss/Singapore entry to Korean Market Entry — guiding overseas companies into Korea end-to-end.",
+        title: "Korean Market Entry",
+        titleEn: "Korean Market Entry",
+        description:
+          "We take overseas companies into the Korean market end to end: entity setup, VASP and financial licensing requirements, foreign exchange reporting, and a tax structure that stands up under Korean regulation.",
         learnMore: "Learn More",
-        tags: ["Entity Setup", "Global Expansion", "Korean Market Entry"],
-      },
-      tax: {
-        icon: "🧾",
-        title: "Legal & Tax Diagnosis",
-        titleEn: "Legal & Tax Diagnosis (2027)",
-        description: "We provide integrated Legal Compliance (VASP, User Protection Act, internal control) and Tax Diagnosis (staking accounting, on-chain due diligence, tax risk). Prepare before the 2027 enforcement.",
-        learnMore: "Learn More",
-        tags: ["Legal Compliance", "2027 Tax", "Tax & Accounting"],
+        tags: ["Entity Setup", "Licensing & Reporting", "Tax Structure"],
       },
     },
     newsletter: {

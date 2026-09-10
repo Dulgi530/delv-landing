@@ -10,13 +10,13 @@ export default function Services() {
   const { toggleLanguage } = useLanguage();
   const t = useTranslation();
 
+  // STO·담보 유동화는 아직 전용 하위 페이지가 없어 문의 폼으로 보낸다.
   const servicesList = [
-    { key: "bm" as const, href: "/services/bm", tagColor: "bg-cyan-100 text-cyan-800" },
-    { key: "token" as const, href: "/services/token", tagColor: "bg-violet-100 text-violet-800" },
-    { key: "ico" as const, href: "/services/ico", tagColor: "bg-amber-100 text-amber-800" },
+    { key: "sto" as const, href: "/#contact-form", tagColor: "bg-violet-100 text-violet-800" },
+    { key: "collateral" as const, href: "/#contact-form", tagColor: "bg-amber-100 text-amber-800" },
+    { key: "accounting" as const, href: "/services/tax", tagColor: "bg-rose-100 text-rose-800" },
     { key: "rwa" as const, href: "/services/rwa", tagColor: "bg-emerald-100 text-emerald-800" },
     { key: "global" as const, href: "/services/global", tagColor: "bg-blue-100 text-blue-800" },
-    { key: "tax" as const, href: "/services/tax", tagColor: "bg-rose-100 text-rose-800" },
   ] as const;
 
   return (
