@@ -69,55 +69,55 @@ export default function RWAPage() {
         <div className="absolute right-0 top-0 w-[500px] h-[500px] rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
-            <span className="inline-block text-emerald-400 text-sm font-mono font-bold tracking-widest mb-6 border border-emerald-400/30 px-3 py-1 rounded-full">{t.badge}</span>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-none tracking-tight"><span className="text-emerald-400">RWA</span><br />{language === "ko" ? "도입 자문" : "Advisory"}</h1>
+            <span className="inline-block text-emerald-400 text-xs font-mono font-semibold tracking-[0.2em] mb-6 border border-emerald-400/30 px-3 py-1 rounded-full">{t.badge}</span>
+            <h1 className="text-3xl md:text-5xl font-semibold text-white mb-6 leading-tight tracking-tight"><span className="text-emerald-400">RWA</span><br />{language === "ko" ? "도입 자문" : "Advisory"}</h1>
             <p className="text-xl text-emerald-300/60 mb-8 leading-relaxed whitespace-pre-line">{t.accentLine}</p>
             <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6 mb-10">
               <div className="flex items-center gap-2 mb-3"><span className="w-2 h-2 bg-emerald-400 rounded-full"></span><span className="text-emerald-400 font-bold text-sm">{t.rwaBadge}</span></div>
               <p className="text-gray-400 text-sm leading-relaxed">{t.rwaDesc}</p>
             </div>
-            <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-4 rounded-xl transition-all text-base">{t.cta} →</Link>
+            <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-all text-sm">{t.cta} →</Link>
           </div>
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[200px] font-black text-white/[0.025] leading-none select-none pointer-events-none pr-8">04</div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[120px] font-semibold text-white/[0.025] leading-none select-none pointer-events-none pr-8">04</div>
       </section>
-      <section className="bg-white py-24">
+      <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end gap-4 mb-16">
-            <h2 className="text-4xl font-black text-gray-900">{t.assetsTitle}</h2>
+          <div className="flex items-end gap-4 mb-12">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{t.assetsTitle}</h2>
             <div className="h-1 flex-1 bg-gradient-to-r from-emerald-400 to-transparent mb-2 rounded-full" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {t.assets.map((asset, i) => (
               <div key={i} className="group bg-gray-50 hover:bg-emerald-50 rounded-2xl p-7 border border-gray-100 hover:border-emerald-200 transition-all cursor-default">
-                <div className="text-4xl mb-4">{asset.icon}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-emerald-700">{asset.title}</h3>
+                <div className="text-2xl mb-4">{asset.icon}</div>
+                <h3 className="text-base font-semibold text-gray-900 mb-2 group-hover:text-emerald-700">{asset.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{asset.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-      <section className="bg-[#0D1117] py-24">
+      <section className="bg-[#0D1117] py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-white mb-16">{t.processTitle}</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-12">{t.processTitle}</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {t.steps.map((s, i) => (
               <div key={i} className="relative">
                 {i < t.steps.length - 1 && (<div className="absolute top-8 left-full w-full h-px bg-emerald-800 hidden md:block -translate-x-1/2" />)}
-                <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/40 rounded-2xl flex items-center justify-center mb-5"><span className="text-emerald-400 font-black font-mono">{s.num}</span></div>
-                <h3 className="text-lg font-bold text-white mb-2">{s.title}</h3>
+                <div className="w-14 h-14 bg-emerald-500/20 border border-emerald-500/40 rounded-2xl flex items-center justify-center mb-5"><span className="text-emerald-400 font-semibold font-mono">{s.num}</span></div>
+                <h3 className="text-base font-semibold text-white mb-2">{s.title}</h3>
                 <p className="text-gray-400 text-sm">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-      <section className="bg-white py-24 border-t border-gray-100">
+      <section className="bg-white py-20 border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">{t.ctaTitle}</h2>
-          <p className="text-xl text-gray-500 mb-10">{t.ctaDesc}</p>
-          <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-10 py-5 rounded-xl transition-all text-lg">{t.cta} →</Link>
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6">{t.ctaTitle}</h2>
+          <p className="text-base text-gray-500 mb-9">{t.ctaDesc}</p>
+          <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-8 py-4 rounded-xl transition-all text-sm">{t.cta} →</Link>
         </div>
       </section>
     </ServicePageLayout>

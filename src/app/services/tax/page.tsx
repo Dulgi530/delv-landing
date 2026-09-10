@@ -6,7 +6,7 @@ import { ServicePageLayout } from "@/components/ServicePageLayout";
 
 const content = {
   ko: {
-    badge: "서비스 06",
+    badge: "서비스 03",
     title: "법률·세무 진단",
     accentLine: "2027년 가상자산 과세\n지금 준비해야 합니다",
     urgentTitle: "⚠️ 2027년부터 가상자산 과세 시행",
@@ -41,7 +41,7 @@ const content = {
     ctaDesc: "2027년 과세 전에 미리 준비하면 법률 리스크와 세금 부담을 최소화할 수 있습니다.",
   },
   en: {
-    badge: "Service 06",
+    badge: "Service 03",
     title: "Legal & Tax Diagnosis",
     accentLine: "2027 Virtual Asset Taxation\nPrepare now",
     urgentTitle: "⚠️ Virtual Asset Taxation Starts in 2027",
@@ -88,27 +88,27 @@ export default function TaxPage() {
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-600 via-rose-400 to-transparent" />
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
-            <span className="inline-block text-rose-400 text-sm font-mono font-bold tracking-widest mb-6 border border-rose-400/30 px-3 py-1 rounded-full">{t.badge}</span>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-none tracking-tight">
-              {language === "ko" ? (<><span className="text-rose-400">법률·세무</span> 진단<br /><span className="text-4xl md:text-5xl text-rose-300/60 font-black">2027 과세 대비</span></>) : (<><span className="text-rose-400">Legal & Tax</span><br />Diagnosis</>)}
+            <span className="inline-block text-rose-400 text-xs font-mono font-semibold tracking-[0.2em] mb-6 border border-rose-400/30 px-3 py-1 rounded-full">{t.badge}</span>
+            <h1 className="text-3xl md:text-5xl font-semibold text-white mb-6 leading-tight tracking-tight">
+              {language === "ko" ? (<><span className="text-rose-400">법률·세무</span> 진단<br /><span className="text-4xl md:text-5xl text-rose-300/60 font-semibold">2027 과세 대비</span></>) : (<><span className="text-rose-400">Legal & Tax</span><br />Diagnosis</>)}
             </h1>
             <p className="text-xl text-rose-300/60 mb-8 leading-relaxed whitespace-pre-line">{t.accentLine}</p>
             <div className="bg-rose-500/15 border border-rose-500/40 rounded-2xl p-6 mb-10">
               <p className="text-rose-400 font-bold mb-2">{t.urgentTitle}</p>
               <p className="text-gray-400 text-sm leading-relaxed">{t.urgentDesc}</p>
             </div>
-            <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-rose-600 hover:bg-rose-500 text-white font-bold px-8 py-4 rounded-xl transition-all text-base">{t.cta} →</Link>
+            <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-rose-600 hover:bg-rose-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-all text-sm">{t.cta} →</Link>
           </div>
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[200px] font-black text-white/[0.025] leading-none select-none pointer-events-none pr-8">06</div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[120px] font-semibold text-white/[0.025] leading-none select-none pointer-events-none pr-8">03</div>
       </section>
       <section className="bg-white py-20 border-b border-gray-100">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-gray-900 mb-12 text-center">{t.timelineTitle}</h2>
+          <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-12 text-center">{t.timelineTitle}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.timeline.map((item, i) => (
               <div key={i} className={`rounded-2xl p-8 text-center relative overflow-hidden border ${item.danger ? "bg-rose-600 border-rose-700" : item.warn ? "bg-rose-50 border-rose-200" : "bg-gray-50 border-gray-200"}`}>
-                <div className={`text-5xl font-black mb-3 ${item.danger ? "text-white" : item.warn ? "text-rose-600" : "text-gray-300"}`}>{item.year}</div>
+                <div className={`text-5xl font-semibold mb-3 ${item.danger ? "text-white" : item.warn ? "text-rose-600" : "text-gray-300"}`}>{item.year}</div>
                 <h3 className={`text-lg font-bold mb-2 ${item.danger ? "text-white" : "text-gray-900"}`}>{item.label}</h3>
                 <p className={`text-sm ${item.danger ? "text-rose-200" : "text-gray-500"}`}>{item.desc}</p>
                 {item.current && (<div className="absolute top-4 right-4 w-2 h-2 bg-green-400 rounded-full animate-pulse" />)}
@@ -117,10 +117,10 @@ export default function TaxPage() {
           </div>
         </div>
       </section>
-      <section className="bg-white py-24">
+      <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-end gap-4 mb-4">
-            <h2 className="text-4xl font-black text-gray-900">{t.legalTitle}</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{t.legalTitle}</h2>
             <div className="h-1 flex-1 bg-gradient-to-r from-rose-400 to-transparent mb-2 rounded-full" />
           </div>
           <p className="text-gray-500 mb-12">{t.legalSubtitle}</p>
@@ -131,17 +131,17 @@ export default function TaxPage() {
                   <div className="text-3xl">{s.icon}</div>
                   <span className="text-xs font-mono text-rose-500 group-hover:text-rose-400 border border-rose-200 group-hover:border-rose-500/30 px-2 py-1 rounded-full transition-all">{s.tag}</span>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 group-hover:text-white mb-3 transition-colors">{s.title}</h3>
+                <h3 className="text-base font-semibold text-gray-900 group-hover:text-white mb-3 transition-colors">{s.title}</h3>
                 <p className="text-gray-500 group-hover:text-gray-400 text-sm leading-relaxed transition-colors">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-      <section className="bg-gray-50 py-24">
+      <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-end gap-4 mb-4">
-            <h2 className="text-4xl font-black text-gray-900">{t.taxTitle}</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{t.taxTitle}</h2>
             <div className="h-1 flex-1 bg-gradient-to-r from-rose-400 to-transparent mb-2 rounded-full" />
           </div>
           <p className="text-gray-500 mb-12">{t.taxSubtitle}</p>
@@ -152,19 +152,19 @@ export default function TaxPage() {
                   <div className="text-3xl">{s.icon}</div>
                   <span className="text-xs font-mono text-rose-500 border border-rose-100 px-2 py-1 rounded-full">{s.tag}</span>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{s.title}</h3>
+                <h3 className="text-base font-semibold text-gray-900 mb-3">{s.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-      <section className="bg-[#0D1117] py-24 relative overflow-hidden">
+      <section className="bg-[#0D1117] py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-rose-500/10 to-transparent" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">{t.ctaTitle}</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6">{t.ctaTitle}</h2>
           <p className="text-xl text-gray-400 mb-10">{t.ctaDesc}</p>
-          <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-rose-600 hover:bg-rose-500 text-white font-bold px-10 py-5 rounded-xl transition-all text-lg">{t.cta} →</Link>
+          <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-rose-600 hover:bg-rose-500 text-white font-semibold px-8 py-4 rounded-xl transition-all text-sm">{t.cta} →</Link>
         </div>
       </section>
     </ServicePageLayout>

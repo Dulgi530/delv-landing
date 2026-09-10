@@ -68,22 +68,22 @@ export default function GlobalPage() {
         <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
-            <span className="inline-block text-blue-400 text-sm font-mono font-bold tracking-widest mb-6 border border-blue-400/30 px-3 py-1 rounded-full">{t.badge}</span>
+            <span className="inline-block text-blue-400 text-xs font-mono font-semibold tracking-[0.2em] mb-6 border border-blue-400/30 px-3 py-1 rounded-full">{t.badge}</span>
             <div className="flex gap-3 text-3xl mb-4">🇨🇭 🇸🇬 🇰🇷</div>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-none tracking-tight">
+            <h1 className="text-3xl md:text-5xl font-semibold text-white mb-6 leading-tight tracking-tight">
               {language === "ko" ? (<><span className="text-blue-400">자회사 설립</span>·<br />해외진출</>) : (<><span className="text-blue-400">Global</span><br />Expansion</>)}
             </h1>
             <p className="text-xl text-blue-300/60 mb-8 leading-relaxed whitespace-pre-line">{t.accentLine}</p>
             <p className="text-gray-500 mb-10 max-w-xl leading-relaxed">{t.desc}</p>
-            <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-4 rounded-xl transition-all text-base">{t.cta} →</Link>
+            <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-all text-sm">{t.cta} →</Link>
           </div>
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[200px] font-black text-white/[0.025] leading-none select-none pointer-events-none pr-8">05</div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[120px] font-semibold text-white/[0.025] leading-none select-none pointer-events-none pr-8">05</div>
       </section>
-      <section className="bg-white py-24">
+      <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end gap-4 mb-16">
-            <h2 className="text-4xl font-black text-gray-900">{t.locTitle}</h2>
+          <div className="flex items-end gap-4 mb-12">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{t.locTitle}</h2>
             <div className="h-1 flex-1 bg-gradient-to-r from-blue-400 to-transparent mb-2 rounded-full" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -93,7 +93,7 @@ export default function GlobalPage() {
                   <div className="flex items-center gap-4">
                     <span className="text-5xl">{loc.flag}</span>
                     <div>
-                      <h3 className="text-xl font-black text-gray-900 group-hover:text-white transition-colors">{loc.country}</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 group-hover:text-white transition-colors">{loc.country}</h3>
                       <p className="text-blue-500 group-hover:text-blue-400 text-sm font-mono">{loc.city}</p>
                     </div>
                   </div>
@@ -105,26 +105,26 @@ export default function GlobalPage() {
           </div>
         </div>
       </section>
-      <section className="bg-gray-50 py-24">
+      <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-gray-900 mb-16">{t.servicesTitle}</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-12">{t.servicesTitle}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {t.services.map((s, i) => (
               <div key={i} className="bg-white rounded-2xl p-7 border border-gray-100 hover:border-blue-200 hover:shadow-md transition-all">
                 <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mb-4"><span className="text-blue-600 font-bold text-sm">{String(i + 1).padStart(2, "0")}</span></div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{s.title}</h3>
+                <h3 className="text-base font-semibold text-gray-900 mb-3">{s.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-      <section className="bg-[#0D1117] py-24 relative overflow-hidden">
+      <section className="bg-[#0D1117] py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">{t.ctaTitle}</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6">{t.ctaTitle}</h2>
           <p className="text-xl text-gray-400 mb-10">{t.ctaDesc}</p>
-          <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 py-5 rounded-xl transition-all text-lg">{t.cta} →</Link>
+          <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-4 rounded-xl transition-all text-sm">{t.cta} →</Link>
         </div>
       </section>
     </ServicePageLayout>

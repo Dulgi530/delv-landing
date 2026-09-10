@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import HeroBackground from "@/components/HeroBackground";
 import {
   SERVICE_CARD_KEYS,
   SERVICE_CARD_TAG_CLASSES,
@@ -180,19 +181,20 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#1A202C] to-[#2D3748] py-20 pt-32">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+      <section className="relative py-28 pt-36 overflow-hidden">
+        <HeroBackground />
+        <div className="relative max-w-7xl mx-auto px-6 text-center">
+          <h1 className="text-3xl md:text-5xl font-semibold text-white mb-6 leading-tight tracking-tight">
             <span>
               {t.hero.title}
               <br />
             </span>
             <span>{t.hero.titleBreak}</span>
           </h1>
-          <p className="text-xl text-gray-300 mb-4 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-[#4FD1C7] mb-4 max-w-3xl mx-auto">
             {t.hero.subtitle}
           </p>
-          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
             {t.hero.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -216,10 +218,10 @@ export default function Home() {
       <section id="services" className="bg-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-5 tracking-tight">
               {t.services.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
               {t.services.subtitle}
             </p>
           </div>
@@ -267,10 +269,10 @@ export default function Home() {
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-5 tracking-tight">
               {t.newsletter.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
               {t.newsletter.subtitle}
             </p>
           </div>
@@ -355,7 +357,7 @@ export default function Home() {
                 {t.delvChat.subtitle}
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-semibold text-white mb-5 tracking-tight">
               {t.delvChat.title}
             </h2>
             <p className="text-xl text-white/90 mb-8">
@@ -383,7 +385,7 @@ export default function Home() {
       <section className="bg-slate-900 py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-semibold text-white mb-5 tracking-tight">
               고객 리뷰
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -460,10 +462,10 @@ export default function Home() {
       <section id="team" className="bg-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-5 tracking-tight">
               {t.team.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
               {t.team.subtitle}
             </p>
           </div>
@@ -722,7 +724,7 @@ export default function Home() {
       >
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-semibold text-white mb-5 tracking-tight">
               {t.contactForm.title}
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">

@@ -10,10 +10,9 @@ export default function Services() {
   const { toggleLanguage } = useLanguage();
   const t = useTranslation();
 
-  // STO·담보 유동화는 아직 전용 하위 페이지가 없어 문의 폼으로 보낸다.
   const servicesList = [
-    { key: "sto" as const, href: "/#contact-form", tagColor: "bg-violet-100 text-violet-800" },
-    { key: "collateral" as const, href: "/#contact-form", tagColor: "bg-amber-100 text-amber-800" },
+    { key: "sto" as const, href: "/services/sto", tagColor: "bg-violet-100 text-violet-800" },
+    { key: "collateral" as const, href: "/services/collateral", tagColor: "bg-amber-100 text-amber-800" },
     { key: "accounting" as const, href: "/services/tax", tagColor: "bg-rose-100 text-rose-800" },
     { key: "rwa" as const, href: "/services/rwa", tagColor: "bg-emerald-100 text-emerald-800" },
     { key: "global" as const, href: "/services/global", tagColor: "bg-blue-100 text-blue-800" },
@@ -45,15 +44,15 @@ export default function Services() {
 
       <section className="bg-gray-100 py-20 pt-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">{t.services.title}</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">{t.services.subtitle}</p>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-5 tracking-tight">{t.services.title}</h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">{t.services.subtitle}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {servicesList.map(({ key, href, tagColor }) => (
               <div key={key} className="bg-white rounded-2xl p-6 shadow-lg flex flex-col hover:shadow-xl transition-shadow">
-                <div className="text-4xl mb-4">{t.services[key].icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{t.services[key].title}</h3>
+                <div className="text-2xl mb-4">{t.services[key].icon}</div>
+                <h3 className="text-base font-semibold text-gray-900 mb-3">{t.services[key].title}</h3>
                 <p className="text-gray-600 mb-4 leading-relaxed flex-grow text-sm">{t.services[key].description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {t.services[key].tags.map((tag: string, index: number) => (

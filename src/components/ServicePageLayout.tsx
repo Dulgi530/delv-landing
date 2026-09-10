@@ -13,8 +13,8 @@ interface ServiceLink {
 }
 
 const serviceLinks: ServiceLink[] = [
-  { href: "/#contact-form", labelKo: "토큰증권 (STO)", labelEn: "Security Token Offering" },
-  { href: "/#contact-form", labelKo: "담보 유동화", labelEn: "Collateral Liquidity" },
+  { href: "/services/sto", labelKo: "토큰증권 (STO)", labelEn: "Security Token Offering" },
+  { href: "/services/collateral", labelKo: "담보 유동화", labelEn: "Collateral Liquidity" },
   { href: "/services/tax", labelKo: "회계·재무", labelEn: "Accounting & Finance" },
   { href: "/services/rwa", labelKo: "RWA 도입 자문", labelEn: "RWA Advisory" },
   { href: "/services/global", labelKo: "해외 진출", labelEn: "Korean Market Entry" },
@@ -68,7 +68,7 @@ export function ServicePageLayout({ children }: ServicePageLayoutProps) {
               <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{t.footer.servicesTitle}</h3>
               <ul className="space-y-2">
                 {serviceLinks.map((s) => (
-                  <li key={s.labelEn}>
+                  <li key={s.href}>
                     <Link href={s.href} className="text-gray-400 hover:text-white transition-colors text-sm">
                       {language === "ko" ? s.labelKo : s.labelEn}
                     </Link>
