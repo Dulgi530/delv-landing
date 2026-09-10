@@ -67,8 +67,9 @@ export const translations = {
       },
     },
     newsletter: {
-      title: "뉴스레터",
-      subtitle: "최신 인사이트와 업데이트를 확인하세요",
+      // 홈 중간 섹션 제목. 하단의 주간 Web3 뉴스레터 구독과 구분한다.
+      title: "Delv 소식·칼럼",
+      subtitle: "델브가 직접 쓴 인사이트와 업계 소식을 확인하세요",
       viewAll: "전체 보기",
       noContent: "최신 뉴스레터가 곧 업데이트됩니다.",
       author: "작성자",
@@ -209,8 +210,9 @@ export const translations = {
       },
     },
     newsletter: {
-      title: "Newsletter",
-      subtitle: "Stay updated with our latest insights",
+      // Home section heading; kept distinct from the weekly Web3 signup below.
+      title: "DELV News & Columns",
+      subtitle: "Insights and industry notes written by our own team",
       viewAll: "View All",
       noContent: "Latest newsletters coming soon.",
       author: "Author",
