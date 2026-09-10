@@ -50,6 +50,11 @@
 @layer base {
   body {
     font-family: Arial, Helvetica, sans-serif;
+    /* 한글은 음절 단위로 끊기면 가독성이 크게 떨어진다.
+       keep-all 로 어절(띄어쓰기) 단위로만 줄바꿈되게 한다. */
+    word-break: keep-all;
+    /* 한 줄에 담기지 않는 URL 같은 긴 문자열만 예외적으로 끊는다. */
+    overflow-wrap: break-word;
   }
 }
 
