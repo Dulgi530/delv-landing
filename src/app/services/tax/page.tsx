@@ -6,7 +6,7 @@ import { ServicePageLayout } from "@/components/ServicePageLayout";
 
 const content = {
   ko: {
-    badge: "서비스 03",
+    badge: "서비스 04",
     title: "법률·세무 진단",
     accentLine: "2027년 가상자산 과세\n지금 준비해야 합니다",
     urgentTitle: "⚠️ 2027년부터 가상자산 과세 시행",
@@ -41,7 +41,7 @@ const content = {
     ctaDesc: "2027년 과세 전에 미리 준비하면 법률 리스크와 세금 부담을 최소화할 수 있습니다.",
   },
   en: {
-    badge: "Service 03",
+    badge: "Service 04",
     title: "Legal & Tax Diagnosis",
     accentLine: "2027 Virtual Asset Taxation\nPrepare now",
     urgentTitle: "⚠️ Virtual Asset Taxation Starts in 2027",
@@ -100,7 +100,7 @@ export default function TaxPage() {
             <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-rose-600 hover:bg-rose-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-all text-sm">{t.cta} →</Link>
           </div>
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[120px] font-semibold text-white/[0.025] leading-none select-none pointer-events-none pr-8">03</div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[120px] font-semibold text-white/[0.025] leading-none select-none pointer-events-none pr-8">04</div>
       </section>
       <section className="bg-white py-20 border-b border-gray-100">
         <div className="max-w-4xl mx-auto px-6">

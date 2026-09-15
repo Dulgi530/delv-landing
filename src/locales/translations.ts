@@ -38,6 +38,15 @@ export const translations = {
         learnMore: "더 알아보기",
         tags: ["담보적정성 판정", "Haircut · LTV", "회계 연계"],
       },
+      infra: {
+        icon: "💳",
+        title: "스테이블코인 정산 인프라",
+        titleEn: "Stablecoin Settlement / Tokenization Infrastructure",
+        description:
+          "USDC 기반 결제·정산 인프라를 직접 구축합니다. 거래별 결제 주소와 Invoice 발급, 입금 확인과 상태 추적, Webhook·API 연동부터 기업 지갑과 트레저리 운영까지 포함합니다.",
+        learnMore: "더 알아보기",
+        tags: ["Payment Gateway", "Treasury API", "EVM · CCTP"],
+      },
       accounting: {
         icon: "🧾",
         title: "회계·재무",
@@ -180,6 +189,15 @@ export const translations = {
           "We design and build the engine that judges collateral adequacy in cross-border settlement, including trade payments: rule-pack eligibility determination, haircut calculation, LTV and liquidation thresholds, and the handoff into accounting treatment.",
         learnMore: "Learn More",
         tags: ["Eligibility Engine", "Haircut · LTV", "Accounting Handoff"],
+      },
+      infra: {
+        icon: "💳",
+        title: "Stablecoin Settlement Infrastructure",
+        titleEn: "Stablecoin Settlement / Tokenization Infrastructure",
+        description:
+          "We build USDC-based payment and settlement infrastructure: per-transaction deposit addresses and invoices, confirmation and status tracking, webhook and API delivery, and corporate wallet and treasury operations.",
+        learnMore: "Learn More",
+        tags: ["Payment Gateway", "Treasury API", "EVM · CCTP"],
       },
       accounting: {
         icon: "🧾",

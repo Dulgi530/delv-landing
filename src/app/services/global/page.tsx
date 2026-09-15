@@ -6,7 +6,7 @@ import { ServicePageLayout } from "@/components/ServicePageLayout";
 
 const content = {
   ko: {
-    badge: "서비스 05",
+    badge: "서비스 06",
     title: "자회사 설립·해외진출 자문",
     accentLine: "국내외 재단·법인 설립부터\n해외진출 전략까지",
     desc: "자회사 설립, 해외진출 자문, 국내외 재단·법인 설립을 지원합니다. 스위스·싱가포르 등 글로벌 거점 진출과 Korean Market Entry 서비스로 해외 기업의 한국 시장 진출도 원스톱으로 지원합니다.",
@@ -31,7 +31,7 @@ const content = {
     ctaDesc: "델브의 글로벌 네트워크로 국내외 법인 설립과 해외진출을 빠르고 안전하게 지원합니다.",
   },
   en: {
-    badge: "Service 05",
+    badge: "Service 06",
     title: "Subsidiary Setup · Global Expansion Advisory",
     accentLine: "From domestic & overseas\nfoundation setup to global strategy",
     desc: "We support subsidiary establishment, global expansion advisory, and domestic/overseas foundation & entity setup. From Swiss/Singapore entry to Korean Market Entry — we guide overseas companies into Korea end-to-end.",
@@ -78,7 +78,7 @@ export default function GlobalPage() {
             <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-all text-sm">{t.cta} →</Link>
           </div>
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[120px] font-semibold text-white/[0.025] leading-none select-none pointer-events-none pr-8">05</div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[120px] font-semibold text-white/[0.025] leading-none select-none pointer-events-none pr-8">06</div>
       </section>
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6">

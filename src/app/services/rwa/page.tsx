@@ -6,7 +6,7 @@ import { ServicePageLayout } from "@/components/ServicePageLayout";
 
 const content = {
   ko: {
-    badge: "서비스 04",
+    badge: "서비스 05",
     title: "RWA 도입 자문",
     accentLine: "갤러리·부동산·현물을 토큰화하여\n새로운 자금조달 채널을 엽니다",
     rwaBadge: "RWA란?",
@@ -32,7 +32,7 @@ const content = {
     ctaDesc: "자산 실사부터 투자자 매칭까지 전 과정을 지원합니다.",
   },
   en: {
-    badge: "Service 04",
+    badge: "Service 05",
     title: "RWA Advisory",
     accentLine: "Tokenize galleries, real estate & commodities\nto open new fundraising channels",
     rwaBadge: "What is RWA?",
@@ -79,7 +79,7 @@ export default function RWAPage() {
             <Link href="/#contact-form" className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-all text-sm">{t.cta} →</Link>
           </div>
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[120px] font-semibold text-white/[0.025] leading-none select-none pointer-events-none pr-8">04</div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[120px] font-semibold text-white/[0.025] leading-none select-none pointer-events-none pr-8">05</div>
       </section>
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6">
