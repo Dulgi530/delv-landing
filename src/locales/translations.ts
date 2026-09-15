@@ -43,9 +43,9 @@ export const translations = {
         title: "스테이블코인 정산 인프라",
         titleEn: "Stablecoin Settlement / Tokenization Infrastructure",
         description:
-          "USDC 기반 결제·정산 인프라를 직접 구축합니다. 거래별 결제 주소와 Invoice 발급, 입금 확인과 상태 추적, Webhook·API 연동부터 기업 지갑과 트레저리 운영까지 포함합니다.",
+          "USDC 기반 결제·정산 인프라를 직접 구축합니다. 거래별 결제 주소와 Invoice 발급, 입금 확인과 상태 추적, 결제 완료 Webhook·API 연동까지 이어집니다.",
         learnMore: "더 알아보기",
-        tags: ["Payment Gateway", "Treasury API", "EVM · CCTP"],
+        tags: ["Payment Gateway", "Invoice · Webhook", "EVM · CCTP"],
       },
       accounting: {
         icon: "🧾",
@@ -195,9 +195,9 @@ export const translations = {
         title: "Stablecoin Settlement Infrastructure",
         titleEn: "Stablecoin Settlement / Tokenization Infrastructure",
         description:
-          "We build USDC-based payment and settlement infrastructure: per-transaction deposit addresses and invoices, confirmation and status tracking, webhook and API delivery, and corporate wallet and treasury operations.",
+          "We build USDC-based payment and settlement infrastructure: per-transaction deposit addresses and invoices, deposit confirmation and status tracking, and payment-complete webhook and API delivery.",
         learnMore: "Learn More",
-        tags: ["Payment Gateway", "Treasury API", "EVM · CCTP"],
+        tags: ["Payment Gateway", "Invoice · Webhook", "EVM · CCTP"],
       },
       accounting: {
         icon: "🧾",
