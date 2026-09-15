@@ -5,18 +5,21 @@ import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import { useTranslation } from "@/hooks/useTranslation";
+import {
+  SERVICE_CARD_KEYS,
+  SERVICE_CARD_TAG_CLASSES,
+  SERVICE_CARD_HREFS,
+} from "@/lib/serviceCards";
 
 export default function Services() {
   const { toggleLanguage } = useLanguage();
   const t = useTranslation();
 
-  const servicesList = [
-    { key: "sto" as const, href: "/services/sto", tagColor: "bg-violet-100 text-violet-800" },
-    { key: "collateral" as const, href: "/services/collateral", tagColor: "bg-amber-100 text-amber-800" },
-    { key: "accounting" as const, href: "/services/tax", tagColor: "bg-rose-100 text-rose-800" },
-    { key: "rwa" as const, href: "/services/rwa", tagColor: "bg-emerald-100 text-emerald-800" },
-    { key: "global" as const, href: "/services/global", tagColor: "bg-blue-100 text-blue-800" },
-  ] as const;
+  const servicesList = SERVICE_CARD_KEYS.map((key) => ({
+    key,
+    href: SERVICE_CARD_HREFS[key],
+    tagColor: SERVICE_CARD_TAG_CLASSES[key],
+  }));
 
   return (
     <div className="min-h-screen">

@@ -11,6 +11,7 @@ import HeroBackground from "@/components/HeroBackground";
 import {
   SERVICE_CARD_KEYS,
   SERVICE_CARD_TAG_CLASSES,
+  SERVICE_CARD_HREFS,
   type ServiceCardKey,
 } from "@/lib/serviceCards";
 
@@ -253,7 +254,7 @@ export default function Home() {
                     ))}
                   </div>
                   <Link
-                    href="/#contact-form"
+                    href={SERVICE_CARD_HREFS[key]}
                     className="border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:border-gray-400 transition-colors inline-block text-center mt-auto text-sm"
                   >
                     {s.learnMore}

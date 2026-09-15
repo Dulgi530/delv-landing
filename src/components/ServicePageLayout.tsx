@@ -5,27 +5,17 @@ import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import { useTranslation } from "@/hooks/useTranslation";
-
-interface ServiceLink {
-  href: string;
-  labelKo: string;
-  labelEn: string;
-}
-
-const serviceLinks: ServiceLink[] = [
-  { href: "/services/sto", labelKo: "토큰증권 (STO)", labelEn: "Security Token Offering" },
-  { href: "/services/collateral", labelKo: "담보 유동화", labelEn: "Collateral Liquidity" },
-  { href: "/services/tax", labelKo: "회계·재무", labelEn: "Accounting & Finance" },
-  { href: "/services/rwa", labelKo: "RWA 도입 자문", labelEn: "RWA Advisory" },
-  { href: "/services/global", labelKo: "해외 진출", labelEn: "Korean Market Entry" },
-];
+import {
+  SERVICE_CARD_KEYS,
+  SERVICE_CARD_HREFS,
+} from "@/lib/serviceCards";
 
 interface ServicePageLayoutProps {
   children: React.ReactNode;
 }
 
 export function ServicePageLayout({ children }: ServicePageLayoutProps) {
-  const { language, toggleLanguage } = useLanguage();
+  const { toggleLanguage } = useLanguage();
   const t = useTranslation();
 
   return (
@@ -67,10 +57,10 @@ export function ServicePageLayout({ children }: ServicePageLayoutProps) {
             <div>
               <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{t.footer.servicesTitle}</h3>
               <ul className="space-y-2">
-                {serviceLinks.map((s) => (
-                  <li key={s.href}>
-                    <Link href={s.href} className="text-gray-400 hover:text-white transition-colors text-sm">
-                      {language === "ko" ? s.labelKo : s.labelEn}
+                {SERVICE_CARD_KEYS.map((key) => (
+                  <li key={key}>
+                    <Link href={SERVICE_CARD_HREFS[key]} className="text-gray-400 hover:text-white transition-colors text-sm">
+                      {t.services[key].title}
                     </Link>
                   </li>
                 ))}
