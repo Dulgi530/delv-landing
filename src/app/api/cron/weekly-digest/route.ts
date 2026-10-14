@@ -1,20 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin, getSiteUrl } from "@/lib/supabase-admin";
-import {
-  sendWeeklyDigest,
-  type DigestRecipient,
-} from "@/lib/newsletter-email";
-import {
-  curateDigest,
-  type CuratedDigest,
-  type DigestNewsItem,
-} from "@/lib/digest-curation";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
+import { sendWeeklyDigest, type DigestRecipient } from "@/lib/newsletter-email";
+import { buildRegionDigest, type Digest } from "@/lib/digest-curation";
 import { translateItems } from "@/lib/digest-translate";
+import { fetchAllSources, REGION_ORDER } from "@/lib/news-sources";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-const MAX_PER_SECTION = 6;
+const PER_REGION = 6;
 const WINDOW_DAYS = 7;
 
 /** KST 기준 ISO 주차 키 (예: 2026-W37) */
@@ -40,68 +34,35 @@ function getPeriodKey(now: Date) {
 
 function formatPeriodLabel(now: Date) {
   const kst = new Date(now.getTime() + 9 * 60 * 60 * 1000);
-  const end = new Date(kst);
   const start = new Date(kst.getTime() - (WINDOW_DAYS - 1) * 86400000);
   const fmt = (d: Date) => `${d.getUTCMonth() + 1}월 ${d.getUTCDate()}일`;
-  return `${fmt(start)} – ${fmt(end)}`;
+  return `${fmt(start)} – ${fmt(kst)}`;
 }
 
-async function fetchNews(lang: string): Promise<DigestNewsItem[]> {
-  const res = await fetch(`${getSiteUrl()}/api/news?lang=${lang}`, {
-    cache: "no-store",
-  });
-  if (!res.ok) throw new Error(`뉴스 조회 실패(${lang}): HTTP ${res.status}`);
-  const json = await res.json();
-  return Array.isArray(json?.data) ? json.data : [];
-}
-
-/**
- * 해외 규제·기업 동향이 목적이므로 영문 소스를 주로 쓰고,
- * 한국어 소스는 보조로만 합쳐 후보 풀을 넓힌다.
- */
-async function buildWeeklyDigest(): Promise<CuratedDigest> {
-  const [en, ko] = await Promise.allSettled([fetchNews("en"), fetchNews("ko")]);
-
-  const all: DigestNewsItem[] = [
-    ...(en.status === "fulfilled" ? en.value : []),
-    ...(ko.status === "fulfilled" ? ko.value : []),
-  ];
-
-  if (en.status === "rejected") console.error("영문 뉴스 조회 실패:", en.reason);
-  if (ko.status === "rejected") console.error("한글 뉴스 조회 실패:", ko.reason);
-
-  // URL 기준 중복 제거
-  const seen = new Set<string>();
-  const unique = all.filter((item) => {
-    if (!item?.url || seen.has(item.url)) return false;
-    seen.add(item.url);
-    return true;
+async function buildWeeklyDigest() {
+  const { items, diagnostics } = await fetchAllSources();
+  const digest = buildRegionDigest(items, {
+    perRegion: PER_REGION,
+    windowDays: WINDOW_DAYS,
   });
 
-  const cutoff = Date.now() - WINDOW_DAYS * 86400000;
-  const recent = unique.filter((item) => {
-    const t = new Date(item.publishedAt).getTime();
-    return Number.isFinite(t) && t >= cutoff;
-  });
-
-  // 최근 7일치가 너무 적으면 기간 제한 없이 최신 항목까지 후보로 삼는다.
-  const pool = recent.length >= 10 ? recent : unique;
-  const digest = curateDigest(pool, {
-    regulation: MAX_PER_SECTION,
-    corporate: MAX_PER_SECTION,
-  });
-
-  // 두 섹션을 한 번에 번역해 API 호출을 한 번으로 줄인다.
+  // 세 권역을 한 번에 번역해 API 호출을 한 번으로 줄인다.
   // 키가 없거나 실패하면 원문이 그대로 돌아온다.
-  const translated = await translateItems([
-    ...digest.regulation,
-    ...digest.corporate,
-  ]);
+  const flat = REGION_ORDER.flatMap((region) => digest.regions[region]);
+  const translated = await translateItems(flat);
+
+  let cursor = 0;
+  const regions = { ...digest.regions };
+  for (const region of REGION_ORDER) {
+    const size = digest.regions[region].length;
+    regions[region] = translated.slice(cursor, cursor + size);
+    cursor += size;
+  }
 
   return {
-    regulation: translated.slice(0, digest.regulation.length),
-    corporate: translated.slice(digest.regulation.length),
-    total: digest.total,
+    digest: { regions, total: digest.total } as Digest,
+    diagnostics,
+    collected: items.length,
   };
 }
 
@@ -115,17 +76,36 @@ export async function GET(request: NextRequest) {
 
   const now = new Date();
   const periodKey = getPeriodKey(now);
+  // ?dry=1 이면 발송하지 않고 어떤 내용이 나갈지만 돌려준다.
+  const dryRun = request.nextUrl.searchParams.get("dry") === "1";
 
   try {
-    const supabase = getSupabaseAdmin();
+    const { digest, diagnostics, collected } = await buildWeeklyDigest();
 
-    const digest = await buildWeeklyDigest();
-    if (digest.total === 0) {
+    if (dryRun) {
       return NextResponse.json({
-        skipped: "no_matching_news",
+        dryRun: true,
         periodKey,
+        collected,
+        sources: diagnostics,
+        preview: Object.fromEntries(
+          REGION_ORDER.map((region) => [
+            region,
+            digest.regions[region].map((i) => `${i.title} (${i.source})`),
+          ])
+        ),
       });
     }
+
+    if (digest.total === 0) {
+      return NextResponse.json({
+        skipped: "no_news",
+        periodKey,
+        sources: diagnostics,
+      });
+    }
+
+    const supabase = getSupabaseAdmin();
 
     const { data: subscribers, error: subError } = await supabase
       .from("newsletter_subscribers")
@@ -147,16 +127,11 @@ export async function GET(request: NextRequest) {
     // 실행돼도 같은 주에 두 번 나가지 않는다.
     const { data: claim, error: claimError } = await supabase
       .from("newsletter_sends")
-      .insert({
-        period_key: periodKey,
-        subject,
-        item_count: digest.total,
-      })
+      .insert({ period_key: periodKey, subject, item_count: digest.total })
       .select("id")
       .single();
 
     if (claimError) {
-      // UNIQUE 위반이면 이미 이번 주 발송이 끝난 것이다.
       if (claimError.code === "23505") {
         return NextResponse.json({ skipped: "already_sent", periodKey });
       }
@@ -185,8 +160,9 @@ export async function GET(request: NextRequest) {
       periodKey,
       sent,
       failed,
-      regulation: digest.regulation.length,
-      corporate: digest.corporate.length,
+      apac: digest.regions.apac.length,
+      us: digest.regions.us.length,
+      europe: digest.regions.europe.length,
     });
   } catch (error) {
     console.error(

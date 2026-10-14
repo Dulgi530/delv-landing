@@ -1,6 +1,6 @@
 import { generateObject, type LanguageModel } from "ai";
 import { z } from "zod";
-import type { CuratedItem } from "./digest-curation";
+import type { ClassifiedItem } from "./digest-curation";
 
 // 번역은 부가 기능이다. 키가 없거나 호출이 실패하면 원문을 그대로 쓴다.
 // 뉴스레터 발송 자체가 번역 때문에 막히면 안 된다.
@@ -33,23 +33,23 @@ function isMostlyKorean(text: string) {
 }
 
 const SYSTEM_PROMPT = `너는 한국의 Web3 컨설팅 회사가 발행하는 뉴스레터의 번역가다.
-영문 암호화폐/블록체인 뉴스의 '제목'을 한국어로 옮긴다.
+해외 암호화폐/블록체인 뉴스의 '제목'을 한국어로 옮긴다. 영어 외에 일본어·독일어 제목도 들어올 수 있다.
 
 규칙:
 - 자연스러운 한국어 뉴스 헤드라인 문체로 옮긴다. 직역투를 피한다.
-- 기관·기업·티커·법령 고유명사는 원문 표기를 유지하되, 널리 쓰이는 한글 표기가 있으면 그것을 쓴다 (예: Singapore -> 싱가포르, MAS -> MAS).
+- 기관·기업·티커·법령 고유명사는 원문 표기를 유지하되, 널리 쓰이는 한글 표기가 있으면 그것을 쓴다 (예: Singapore -> 싱가포르, SEC -> SEC).
 - 40자 내외로 간결하게 한다.
 - 내용을 지어내지 않는다. 원문에 없는 사실을 추가하지 않는다.
 - 이미 한국어인 제목은 그대로 돌려준다.
 - 입력 순서와 개수를 반드시 그대로 유지한다.`;
 
 /**
- * 선별된 항목의 제목을 한국어로 옮긴다. 요약과 원문 링크는 손대지 않는다.
+ * 선별된 항목의 제목을 한국어로 옮긴다. 원문 링크는 손대지 않는다.
  * 실패하면 입력을 그대로 돌려준다 (발송은 계속되어야 하므로).
  */
 export async function translateItems(
-  items: CuratedItem[]
-): Promise<CuratedItem[]> {
+  items: ClassifiedItem[]
+): Promise<ClassifiedItem[]> {
   if (items.length === 0) return items;
 
   let model: LanguageModel | null;

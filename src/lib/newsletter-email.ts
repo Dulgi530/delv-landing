@@ -1,9 +1,7 @@
 import { Resend } from "resend";
 import { getSiteUrl } from "./supabase-admin";
-import { cleanDescription } from "./digest-curation";
-import type { CuratedDigest, CuratedItem } from "./digest-curation";
-
-export type { DigestNewsItem } from "./digest-curation";
+import type { ClassifiedItem, Digest, Region } from "./digest-curation";
+import { REGION_ORDER, REGION_LABELS } from "./news-sources";
 
 const FROM = "DELV <hello@delv.team>";
 
@@ -76,83 +74,51 @@ export async function sendConfirmationEmail(email: string, confirmToken: string)
   return data;
 }
 
-// 큐레이션이 붙이는 라벨과 1:1로 맞춘다.
-// 메일 클라이언트는 CSS 클래스를 못 쓰므로 hex 를 인라인으로 넣는다.
-const LABEL_COLORS: Record<string, { bg: string; fg: string }> = {
-  "규제 · 미국": { bg: "#fee2e2", fg: "#b91c1c" },
-  "규제 · 싱가포르": { bg: "#ccfbf1", fg: "#0f766e" },
-  "규제 · 홍콩": { bg: "#ede9fe", fg: "#6d28d9" },
-  "규제 · 일본": { bg: "#fce7f3", fg: "#be185d" },
-  "규제 · EU": { bg: "#e0e7ff", fg: "#4338ca" },
-  "규제 · UAE": { bg: "#fef3c7", fg: "#b45309" },
-  "규제 · 영국": { bg: "#dbeafe", fg: "#1d4ed8" },
-  "기업 · 상품출시": { bg: "#dcfce7", fg: "#15803d" },
-  "기업 · 협업": { bg: "#cffafe", fg: "#0e7490" },
+const REGION_COLORS: Record<Region, { accent: string; chip: string }> = {
+  apac: { accent: "#0f766e", chip: "#ccfbf1" },
+  us: { accent: "#1d4ed8", chip: "#dbeafe" },
+  europe: { accent: "#6d28d9", chip: "#ede9fe" },
 };
 
-const DEFAULT_LABEL_COLOR = { bg: "#e2e8f0", fg: "#475569" };
-
-
-function renderNewsItem(item: CuratedItem) {
-  const date = new Date(item.publishedAt).toLocaleDateString("ko-KR", {
-    month: "long",
-    day: "numeric",
-  });
-  const color = LABEL_COLORS[item.label] ?? DEFAULT_LABEL_COLOR;
-
+function renderItem(item: ClassifiedItem, accent: string) {
   return `
-    <div style="padding:18px 0;border-bottom:1px solid #e2e8f0;">
-      <div style="margin-bottom:6px;">
-        <span style="display:inline-block;background-color:${color.bg};color:${color.fg};padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600;">
-          ${escapeHtml(item.label)}
-        </span>
-      </div>
-      <a href="${encodeURI(item.url)}"
-         style="color:#0f172a;text-decoration:none;font-size:16px;font-weight:600;line-height:1.5;">
-        ${escapeHtml(item.title)}
-      </a>
-      <p style="margin:8px 0 8px;font-size:14px;line-height:1.7;color:#64748b;">
-        ${escapeHtml(cleanDescription(item.description))}
-      </p>
-      <div style="font-size:12px;color:#94a3b8;">
-        ${escapeHtml(item.source)} · ${date}
-      </div>
-    </div>`;
+    <tr>
+      <td style="padding:7px 0;vertical-align:top;width:18px;color:${accent};font-size:11px;line-height:1.7;">▲</td>
+      <td style="padding:7px 0;vertical-align:top;font-size:14px;line-height:1.7;">
+        <a href="${encodeURI(item.url)}" style="color:#0f172a;text-decoration:none;">${escapeHtml(item.title)}</a>
+        <span style="color:#94a3b8;"> (${escapeHtml(item.source)})</span>
+      </td>
+    </tr>`;
 }
 
-function renderSection(title: string, subtitle: string, items: CuratedItem[]) {
+function renderRegion(region: Region, items: ClassifiedItem[]) {
   if (items.length === 0) return "";
+  const { accent, chip } = REGION_COLORS[region];
 
   return `
-    <div style="margin-top:32px;">
-      <h2 style="margin:0 0 4px;font-size:17px;color:#0f172a;">${escapeHtml(title)}</h2>
-      <p style="margin:0;font-size:13px;color:#94a3b8;">${escapeHtml(subtitle)}</p>
-      ${items.map(renderNewsItem).join("")}
+    <div style="margin-top:26px;">
+      <div style="display:inline-block;background-color:${chip};color:${accent};padding:4px 12px;border-radius:6px;font-size:13px;font-weight:700;margin-bottom:4px;">
+        ${escapeHtml(REGION_LABELS[region].ko)}
+      </div>
+      <table cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+        ${items.map((item) => renderItem(item, accent)).join("")}
+      </table>
     </div>`;
 }
 
 export function buildDigestHtml(
-  digest: CuratedDigest,
+  digest: Digest,
   unsubscribeUrl: string,
   periodLabel: string
 ) {
   const body = `
     <div style="font-size:13px;color:#4FD1C7;font-weight:600;margin-bottom:8px;">${escapeHtml(periodLabel)}</div>
-    <h1 style="margin:0 0 12px;font-size:22px;color:#0f172a;">이번 주 Web3 소식</h1>
-    <p style="margin:0 0 8px;font-size:15px;line-height:1.7;color:#475569;">
-      주요국 규제 변화와 해외 기업의 크립토 움직임을 추려 정리했습니다.
+    <h1 style="margin:0 0 10px;font-size:21px;color:#0f172a;">이번 주 Web3 소식</h1>
+    <p style="margin:0;font-size:14px;line-height:1.7;color:#64748b;">
+      APAC · 미국 · 유럽 크립토 매체의 한 주간 주요 기사를 권역별로 정리했습니다.
     </p>
-    ${renderSection(
-      "주요국 규제 동향",
-      "싱가포르 · 홍콩 · 일본 · 미국 등",
-      digest.regulation
-    )}
-    ${renderSection(
-      "해외 기업 상품·제휴",
-      "국내에 덜 알려진 해외 기업 움직임",
-      digest.corporate
-    )}
-    <div style="margin-top:28px;">
+    ${REGION_ORDER.map((region) => renderRegion(region, digest.regions[region])).join("")}
+    <div style="margin-top:30px;">
       <a href="${getSiteUrl()}/newsletter"
          style="display:inline-block;background-color:#1A202C;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600;">
         DELV 뉴스레터 더 보기
@@ -160,6 +126,7 @@ export function buildDigestHtml(
     </div>`;
 
   const footer = `
+    제목은 한국어로 옮긴 것이며, 링크를 누르면 원문으로 이동합니다.<br />
     이 메일은 DELV 뉴스레터를 구독하신 분께 발송되었습니다.<br />
     <a href="${unsubscribeUrl}" style="color:#64748b;text-decoration:underline;">수신거부</a> · admin@delv.team`;
 
@@ -183,7 +150,7 @@ export interface DigestSendResult {
  */
 export async function sendWeeklyDigest(
   recipients: DigestRecipient[],
-  digest: CuratedDigest,
+  digest: Digest,
   subject: string,
   periodLabel: string
 ): Promise<DigestSendResult> {
