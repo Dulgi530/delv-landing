@@ -218,6 +218,75 @@ export function classify(item: FeedItem): ClassifiedItem | null {
   return null;
 }
 
+/**
+ * 같은 사건을 매체마다 다르게 쓴 제목을 잡아낸다.
+ * 의미 있는 단어가 4개 이상, 짧은 쪽 기준 절반 이상 겹치고 그중 고유한 단어
+ * (회사·인물 이름 등)가 하나라도 있으면 같은 기사로 본다.
+ * 예) "BNY, Citadel Securities complete Treasury repo in first use of tokenized
+ *      assets on major triparty platform"
+ *     "BNY, Citadel put tokenized Treasury through triparty repo on major platform"
+ */
+const STOPWORDS = new Set([
+  "the", "and", "for", "with", "from", "into", "that", "this", "after",
+  "over", "amid", "its", "has", "have", "are", "was", "will", "new", "first",
+  "says", "say", "said", "via", "about", "than", "more", "out", "how", "why",
+  "what", "der", "die", "das", "und", "für", "mit", "von", "auf", "ein", "eine",
+]);
+
+function titleWords(title: string) {
+  return new Set(
+    title
+      .toLowerCase()
+      .split(/[^a-z0-9가-힣\u3040-\u30ff\u4e00-\u9fffäöüß]+/)
+      .filter((w) => w.length >= 3 && !STOPWORDS.has(w))
+  );
+}
+
+// 크립토·금융 기사에 흔히 나오는 단어. 이것만 겹쳐서는 같은 기사로 보지 않는다.
+// ("SEC approves staking for spot Ether ETFs" 와 "SEC approves options trading
+//  on spot Ether ETFs" 는 다른 기사다.)
+const GENERIC_VERBS = [
+  "approves", "approved", "approval", "launches", "launch", "launched",
+  "files", "filed", "plans", "plan", "seeks", "gets", "gains", "wins",
+  "adds", "opens", "unveils", "expands", "completes", "complete", "backs",
+  "announces", "partners", "partnership", "deal", "report", "reports",
+  // 시장·상품 일반어
+  "spot", "trading", "trade", "options", "futures", "market", "markets",
+  "platform", "service", "services", "network", "users", "user", "firm",
+  "firms", "company", "companies", "million", "billion", "year", "week",
+  "month", "rules", "rule", "plans", "investors", "investor", "retail",
+  "global", "digital", "assets", "asset", "issuer", "issuance", "product",
+];
+let commonTokens: Set<string> | null = null;
+function getCommonTokens() {
+  if (!commonTokens) {
+    const all = [
+      ...CRYPTO_TERMS,
+      ...INSTITUTIONAL_TERMS,
+      ...Object.values(COUNTRY_KEYWORDS).flat(),
+      ...GENERIC_VERBS,
+    ];
+    commonTokens = new Set(all.flatMap((t) => [...titleWords(t)]));
+  }
+  return commonTokens;
+}
+
+function isSameStory(a: Set<string>, b: Set<string>) {
+  const small = a.size <= b.size ? a : b;
+  const large = a.size <= b.size ? b : a;
+  if (small.size < 4) return false;
+
+  const common = getCommonTokens();
+  let shared = 0;
+  let distinctive = 0;
+  for (const w of small) {
+    if (!large.has(w)) continue;
+    shared++;
+    if (!common.has(w)) distinctive++;
+  }
+  return shared >= 4 && shared / small.size >= 0.5 && distinctive >= 1;
+}
+
 /** 제목이 비슷하면 같은 사건으로 보고 하나만 남긴다. */
 function normalizeTitle(title: string) {
   return title
@@ -299,7 +368,14 @@ export function buildRegionDigest(
     return true;
   });
 
-  const crypto = unique.filter(isCryptoRelevant);
+  // 같은 사건을 다른 제목으로 쓴 기사는 먼저 수집된 쪽 하나만 남긴다.
+  const kept: { item: FeedItem; words: Set<string> }[] = [];
+  for (const item of unique) {
+    const words = titleWords(item.title);
+    if (!kept.some((k) => isSameStory(k.words, words))) kept.push({ item, words });
+  }
+
+  const crypto = kept.map((k) => k.item).filter(isCryptoRelevant);
 
   const recent = crypto.filter((item) => {
     const t = new Date(item.publishedAt).getTime();
