@@ -25,6 +25,10 @@ export interface NewsSource {
 
 export const NEWS_SOURCES: NewsSource[] = [
   // ── APAC ────────────────────────────────────────────────
+  // 국내 금융·디지털자산 매체 (금융기관·제도권 소식 비중이 높다)
+  { url: "https://www.digitalasset.works/rss/allArticle.xml", name: "디지털애셋", region: "apac", lang: "ko", proven: false },
+  { url: "https://www.blockmedia.co.kr/feed", name: "블록미디어", region: "apac", lang: "ko", proven: false },
+  { url: "https://www.hankyung.com/feed/finance", name: "한국경제", region: "apac", lang: "ko", proven: false },
   { url: "https://kr.beincrypto.com/feed/", name: "BeInCrypto 한국", region: "apac", lang: "ko", proven: true },
   { url: "https://forkast.news/feed/", name: "Forkast", region: "apac", lang: "en", proven: false },
 

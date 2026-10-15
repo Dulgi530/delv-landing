@@ -89,6 +89,57 @@ function countMatches(text: string, keywords: string[]) {
 }
 
 /**
+ * 금융·기관 관련도.
+ * 뉴스레터는 '크립토가 제도권 금융과 만나는 지점'을 다룬다. 은행·증권·운용사·
+ * 결제사·감독당국이 등장하거나 ETF·수탁·토큰화·스테이블코인 같은 제도권
+ * 상품이 주제인 기사를 우선하고, 시세·밈코인 기사는 뒤로 민다.
+ */
+const INSTITUTIONAL_TERMS = [
+  // 금융기관·기업
+  "bank", "banks", "banking", "jpmorgan", "goldman", "citi", "citigroup",
+  "hsbc", "standard chartered", "bny", "state street", "morgan stanley",
+  "blackrock", "fidelity", "franklin templeton", "vanguard", "invesco",
+  "asset manager", "asset management", "fund", "funds", "pension",
+  "insurer", "brokerage", "broker", "securities", "nasdaq", "nyse", "cme",
+  "visa", "mastercard", "paypal", "stripe", "payments", "payment",
+  "remittance", "settlement", "fintech", "institutional", "institutions",
+  "treasury", "treasuries", "money market",
+  // 제도권 상품
+  "etf", "etfs", "custody", "custodian", "tokenization", "tokenized",
+  "tokenise", "rwa", "real-world asset", "stablecoin", "stablecoins",
+  "cbdc", "deposit token", "bond", "bonds",
+  // 감독·규제
+  "regulator", "regulators", "regulation", "regulatory", "license",
+  "licence", "licenses", "charter", "sec", "cftc", "occ", "fca", "mas",
+  "esma", "mica", "central bank", "fed", "federal reserve", "bill", "law",
+  "approval", "approves", "framework", "compliance",
+  // 한국어
+  "은행", "증권사", "증권", "자산운용", "운용사", "카드사", "보험사",
+  "연기금", "국민연금", "금융위", "금감원", "금융당국", "한국은행", "한은",
+  "토큰증권", "스테이블코인", "원화", "수탁", "결제", "송금", "법인",
+  "기관", "제도권", "규제", "법안", "인가", "라이선스", "상장지수", "ETF",
+  "예금토큰", "디지털자산", "가상자산", "핀테크",
+  // 일본어·독일어
+  "銀行", "証券", "金融庁", "ステーブルコイン", "bank", "banken",
+  "regulierung", "börse",
+];
+
+const NOISE_TERMS = [
+  "price", "prices", "rally", "rallies", "surge", "surges", "soar",
+  "plunge", "plunges", "dips", "dump", "pump", "prediction", "predicts",
+  "forecast", "memecoin", "meme coin", "meme", "airdrop", "whale",
+  "whales", "chart", "technical analysis", "bull run", "breakout",
+  "시세", "급등", "급락", "폭락", "폭등", "전망", "밈코인", "에어드랍",
+];
+
+export function institutionalScore(item: FeedItem): number {
+  const text = item.title.toLowerCase();
+  const positive = countMatches(text, INSTITUTIONAL_TERMS);
+  const noise = countMatches(text, NOISE_TERMS);
+  return positive * 2 - noise * 2;
+}
+
+/**
  * "US" 는 대문자일 때만 미국으로 본다.
  * 소문자로 바꾸면 대명사 "us" 와 구분할 수 없기 때문이다.
  */
@@ -123,6 +174,8 @@ function normalizeTitle(title: string) {
     .replace(/[^a-z0-9가-힣]/g, "")
     .slice(0, 40);
 }
+
+const MIN_PER_REGION = 3;
 
 export type RegionDigest = Record<Region, ClassifiedItem[]>;
 
@@ -165,14 +218,35 @@ export function buildRegionDigest(
     regions[item.region].push(item);
   }
 
+  const byRecency = (a: ClassifiedItem, b: ClassifiedItem) =>
+    new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+
   let total = 0;
   for (const region of REGION_ORDER) {
-    regions[region].sort(
-      (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-    );
-    regions[region] = regions[region].slice(0, perRegion);
-    total += regions[region].length;
+    const scored = regions[region].map((item) => ({
+      item,
+      score: institutionalScore(item),
+    }));
+
+    // 금융·기관 기사(점수 > 0)를 점수순, 같은 점수면 최신순으로 먼저 채운다.
+    const institutional = scored
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score || byRecency(a.item, b.item))
+      .map((x) => x.item);
+
+    // 권역이 비어 보이지 않도록 MIN_PER_REGION 까지만, 시세성 기사가 아닌 것으로 채운다.
+    const filler = scored
+      .filter((x) => x.score === 0)
+      .map((x) => x.item)
+      .sort(byRecency);
+
+    const picked = institutional.slice(0, perRegion);
+    if (picked.length < MIN_PER_REGION) {
+      picked.push(...filler.slice(0, MIN_PER_REGION - picked.length));
+    }
+
+    regions[region] = picked;
+    total += picked.length;
   }
 
   return { regions, total };
