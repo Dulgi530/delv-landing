@@ -56,6 +56,29 @@ function hasKeyword(text: string, keyword: string) {
   return text.includes(keyword);
 }
 
+/**
+ * 크립토와 무관한 기사를 걸러낸다.
+ * 일반 경제·AI 매체의 기사도 섞여 들어오므로, 제목에 크립토 용어가 있어야 통과한다.
+ */
+const CRYPTO_TERMS = [
+  "crypto", "bitcoin", "btc", "ether", "eth", "stablecoin", "stablecoins",
+  "blockchain", "token", "tokens", "tokenization", "tokenized", "defi", "nft",
+  "wallet", "exchange", "coinbase", "binance", "kraken", "coins.ph", "coin",
+  "xrp", "solana", "polygon", "lido", "ripple", "altcoin", "web3", "cbdc",
+  "stablecoin", "etf", "mining", "miner", "staking", "custody", "digital asset",
+  "가상자산", "암호화폐", "비트코인", "이더리움", "스테이블코인", "블록체인",
+  "토큰", "디지털자산", "코인", "지갑", "거래소", "디파이", "웹3",
+  // 독일어 (BTC-ECHO)
+  "krypto", "kryptowährung", "kryptowährungen", "ledger",
+  // 일본어 (코인텔레그래프 JP)
+  "暗号資産", "仮想通貨", "ビットコイン", "イーサリアム", "ステーブルコイン", "ブロックチェーン", "トークン",
+];
+
+export function isCryptoRelevant(item: FeedItem): boolean {
+  const text = item.title.toLowerCase();
+  return CRYPTO_TERMS.some((term) => hasKeyword(text, term));
+}
+
 function countMatches(text: string, keywords: string[]) {
   let n = 0;
   for (const kw of keywords) if (hasKeyword(text, kw)) n++;
@@ -115,13 +138,15 @@ export function buildRegionDigest(
     return true;
   });
 
-  const recent = unique.filter((item) => {
+  const crypto = unique.filter(isCryptoRelevant);
+
+  const recent = crypto.filter((item) => {
     const t = new Date(item.publishedAt).getTime();
     return Number.isFinite(t) && t >= cutoff;
   });
 
   // 최근 한 주 분량이 너무 적으면 기간 제한 없이 채운다.
-  const pool = recent.length >= 12 ? recent : unique;
+  const pool = recent.length >= 12 ? recent : crypto;
 
   const regions = { apac: [], us: [], europe: [] } as RegionDigest;
   for (const item of pool.map(classify)) {

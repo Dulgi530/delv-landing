@@ -25,11 +25,11 @@ export interface NewsSource {
 
 export const NEWS_SOURCES: NewsSource[] = [
   // ── APAC ────────────────────────────────────────────────
-  { url: "https://kr.cointelegraph.com/rss", name: "코인텔레그래프 KR", region: "apac", lang: "ko", proven: true },
   { url: "https://kr.beincrypto.com/feed/", name: "BeInCrypto 한국", region: "apac", lang: "ko", proven: true },
-  { url: "https://rss.app/feeds/mYPCACzVBKWfuCiC.xml", name: "토큰포스트", region: "apac", lang: "ko", proven: true },
   { url: "https://forkast.news/feed/", name: "Forkast", region: "apac", lang: "en", proven: false },
-  { url: "https://coinpost.jp/rss", name: "CoinPost", region: "apac", lang: "ja", proven: false },
+
+  { url: "https://jp.cointelegraph.com/rss", name: "코인텔레그래프 JP", region: "apac", lang: "ja", proven: false },
+  { url: "https://coingape.com/feed/", name: "CoinGape", region: "apac", lang: "en", proven: false },
 
   // ── 미국 ────────────────────────────────────────────────
   { url: "https://www.coindesk.com/arc/outboundfeeds/rss/", name: "CoinDesk", region: "us", lang: "en", proven: true },
@@ -37,6 +37,8 @@ export const NEWS_SOURCES: NewsSource[] = [
   { url: "https://decrypt.co/feed", name: "Decrypt", region: "us", lang: "en", proven: true },
   { url: "https://cryptoslate.com/feed/", name: "CryptoSlate", region: "us", lang: "en", proven: true },
   { url: "https://blockworks.co/feed", name: "Blockworks", region: "us", lang: "en", proven: false },
+
+  { url: "https://bitcoinmagazine.com/.rss/full/", name: "Bitcoin Magazine", region: "us", lang: "en", proven: false },
 
   // ── 유럽 ────────────────────────────────────────────────
   { url: "https://cointelegraph.com/rss", name: "Cointelegraph", region: "europe", lang: "en", proven: true },
