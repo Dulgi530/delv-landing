@@ -104,6 +104,18 @@ export interface SourceResult {
   error: string | null;
 }
 
+/**
+ * 제목 앞의 편집 머리표를 지운다. ([전문] [인터뷰] [영상] …)
+ * [단독]은 기사 성격을 알려주므로 남긴다.
+ */
+const TITLE_TAG = /^\s*[\[［【<〈]\s*(전문|인터뷰|영상|포토|카드뉴스|기고|칼럼|사설|종합|속보|PICK|Interview|Video|Podcast|Opinion|Sponsored)\s*[\]］】>〉]\s*/i;
+
+export function stripTitleTags(title: string) {
+  let t = title;
+  while (TITLE_TAG.test(t)) t = t.replace(TITLE_TAG, "");
+  return t.trim();
+}
+
 const FETCH_TIMEOUT_MS = 12000;
 const ITEMS_PER_FEED = 20;
 
@@ -130,7 +142,7 @@ async function fetchOne(source: NewsSource): Promise<FeedItem[]> {
     const feed = await new Parser({ timeout: FETCH_TIMEOUT_MS }).parseString(xml);
 
     return (feed.items ?? []).slice(0, ITEMS_PER_FEED).flatMap((item) => {
-      const title = (item.title ?? "").replace(/\s+/g, " ").trim();
+      const title = stripTitleTags((item.title ?? "").replace(/\s+/g, " ").trim());
       const link = (item.link ?? "").trim();
       if (!title || !link) return [];
       return [

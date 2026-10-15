@@ -165,11 +165,23 @@ const NOISE_TERMS = [
   "kurs", "prognose", "価格", "急騰", "急落",
 ];
 
+/**
+ * 매일 반복되는 집계 기사 (ETF 순유입·순유출 등).
+ * ETF·기관 단어가 함께 나와 점수가 높게 잡히므로, 기관 기사 1건분보다
+ * 크게 깎아 기관 기사 뒤로 보내고 보충 후보에서도 뺀다.
+ */
+const ROUTINE_TERMS = [
+  "inflow", "inflows", "outflow", "outflows", "net flows", "netflows",
+  "순유입", "순유출", "자금 유입", "자금 유출", "자금유입", "자금유출",
+  "zuflüsse", "abflüsse", "流入", "流出",
+];
+
 export function institutionalScore(item: FeedItem): number {
   const text = item.title.toLowerCase();
   const positive = countMatches(text, INSTITUTIONAL_TERMS);
   const noise = countMatches(text, NOISE_TERMS);
-  return positive * 2 - noise * 2;
+  const routine = countMatches(text, ROUTINE_TERMS) > 0 ? 8 : 0;
+  return positive * 2 - noise * 2 - routine;
 }
 
 /**
@@ -312,28 +324,53 @@ const byRecency = (a: ClassifiedItem, b: ClassifiedItem) =>
  * 먼저 나라마다 가장 금융·기관다운 기사를 하나씩 넣어 한 나라가 권역을
  * 독차지하지 않게 하고, 남은 자리는 점수순으로 채운다.
  */
+/**
+ * 기사 주제를 대표하는 약어 (CARF, BNY, RLUSD 등).
+ * 흔한 기관·용어 약어(SEC, ETF, OCC …)는 주제를 가르지 못하므로 뺀다.
+ */
+function topicAcronyms(title: string) {
+  const common = getCommonTokens();
+  const found = title.match(/(?<![A-Za-z0-9])[A-Z][A-Z0-9]{1,5}(?![A-Za-z0-9])/g) ?? [];
+  return new Set(found.map((t) => t.toLowerCase()).filter((t) => !common.has(t)));
+}
+
 function pickForRegion(items: ClassifiedItem[], perRegion: number) {
   const scored = items
-    .map((item) => ({ item, score: institutionalScore(item) }))
+    .map((item) => ({
+      item,
+      score: institutionalScore(item),
+      topics: topicAcronyms(item.title),
+    }))
     .sort((a, b) => b.score - a.score || byRecency(a.item, b.item));
 
   const institutional = scored.filter((x) => x.score > 0);
   const picked: typeof scored = [];
 
+  // 같은 주제(예: CARF 인터뷰 두 건)는 한 권역에 한 번만 싣는다.
+  const sameTopicAsPicked = (x: (typeof scored)[number]) =>
+    picked.some((p) => [...x.topics].some((t) => p.topics.has(t)));
+  const tryPick = (x: (typeof scored)[number]) => {
+    if (picked.includes(x) || sameTopicAsPicked(x)) return;
+    picked.push(x);
+  };
+
   for (const country of COUNTRY_ORDER) {
-    const first = institutional.find((x) => x.item.country === country);
-    if (first && picked.length < perRegion) picked.push(first);
+    if (picked.length >= perRegion) break;
+    const first = institutional.find(
+      (x) => x.item.country === country && !sameTopicAsPicked(x)
+    );
+    if (first) tryPick(first);
   }
   for (const x of institutional) {
     if (picked.length >= perRegion) break;
-    if (!picked.includes(x)) picked.push(x);
+    tryPick(x);
   }
 
   // 권역이 비어 보이지 않도록, 시세성이 아닌 기사로 최소 건수만 채운다.
   if (picked.length < MIN_PER_REGION) {
     for (const x of scored) {
       if (picked.length >= MIN_PER_REGION) break;
-      if (x.score === 0 && !picked.includes(x)) picked.push(x);
+      if (x.score === 0) tryPick(x);
     }
   }
 
