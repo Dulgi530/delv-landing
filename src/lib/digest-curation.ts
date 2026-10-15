@@ -71,6 +71,9 @@ const CRYPTO_TERMS = [
   "stablecoin", "etf", "mining", "miner", "staking", "custody", "digital asset",
   "가상자산", "암호화폐", "비트코인", "이더리움", "스테이블코인", "블록체인",
   "토큰", "디지털자산", "코인", "지갑", "거래소", "디파이", "웹3",
+  // 중앙은행 디지털화폐·예금토큰
+  "digital euro", "digital pound", "digital dollar", "e-cny", "deposit token",
+  "디지털 유로", "디지털유로", "디지털화폐", "디지털 화폐", "예금토큰", "중앙은행 디지털",
   // 독일어 (BTC-ECHO)
   "krypto", "kryptowährung", "kryptowährungen", "ledger",
   // 일본어 (코인텔레그래프 JP)
@@ -112,12 +115,14 @@ const INSTITUTIONAL_TERMS = [
   "regulator", "regulators", "regulation", "regulatory", "license",
   "licence", "licenses", "charter", "sec", "cftc", "occ", "fca", "mas",
   "esma", "mica", "central bank", "fed", "federal reserve", "bill", "law",
+  "ecb", "boe", "boj", "pboc", "bis", "fsa", "sfc", "hkma", "finma", "bafin",
   "approval", "approves", "framework", "compliance",
   // 한국어
   "은행", "증권사", "증권", "자산운용", "운용사", "카드사", "보험사",
   "연기금", "국민연금", "금융위", "금감원", "금융당국", "한국은행", "한은",
   "토큰증권", "스테이블코인", "원화", "수탁", "결제", "송금", "법인",
   "기관", "제도권", "규제", "법안", "인가", "라이선스", "상장지수", "ETF",
+  "중앙은행", "디지털 유로", "디지털유로", "디지털화폐",
   "예금토큰", "디지털자산", "가상자산", "핀테크",
   // 일본어·독일어
   "銀行", "証券", "金融庁", "ステーブルコイン", "bank", "banken",
