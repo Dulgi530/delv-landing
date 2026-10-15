@@ -230,8 +230,8 @@ export function buildKakaoText(digest: Digest, periodLabel: string) {
   return lines.join("\n");
 }
 
-/** 붙여넣기용 브리프를 운영자 메일로 보낸다. */
-export async function sendKakaoBriefToAdmin(text: string, periodLabel: string) {
+/** 운영자에게 보내는 카카오톡 브리프 메일 본문 */
+export function buildKakaoBriefHtml(text: string) {
   const body = `
     <h1 style="margin:0 0 8px;font-size:19px;color:#0f172a;">카카오톡 브리프</h1>
     <p style="margin:0 0 20px;font-size:14px;line-height:1.7;color:#64748b;">
@@ -240,13 +240,17 @@ export async function sendKakaoBriefToAdmin(text: string, periodLabel: string) {
     <div style="background-color:#fef9c3;border:1px solid #fde68a;border-radius:10px;padding:18px;font-size:14px;line-height:1.75;color:#1f2937;white-space:pre-wrap;word-break:break-all;font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;">${escapeHtml(text)}</div>`;
 
   const footer = `구독자용 뉴스레터와 같은 내용을 권역당 ${KAKAO_PER_REGION}건으로 줄인 것입니다.`;
+  return shell(body, footer);
+}
 
+/** 붙여넣기용 브리프를 운영자 메일로 보낸다. */
+export async function sendKakaoBriefToAdmin(text: string, periodLabel: string) {
   const resend = getResend();
   const { error } = await resend.emails.send({
     from: FROM,
     to: [KAKAO_BRIEF_TO],
     subject: `[DELV] 카카오톡 브리프 (${periodLabel})`,
-    html: shell(body, footer),
+    html: buildKakaoBriefHtml(text),
     // 메일 앱에서 텍스트 보기로 열면 그대로 복사할 수 있다.
     text,
   });
