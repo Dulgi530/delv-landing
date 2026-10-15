@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { getSiteUrl } from "./supabase-admin";
 import type { ClassifiedItem, Digest, Region } from "./digest-curation";
-import { REGION_ORDER, REGION_LABELS } from "./news-sources";
+import { COUNTRY_LABELS, REGION_ORDER, REGION_LABELS } from "./news-sources";
 
 const FROM = "DELV <hello@delv.team>";
 
@@ -85,6 +85,7 @@ function renderItem(item: ClassifiedItem, accent: string) {
     <tr>
       <td style="padding:7px 0;vertical-align:top;width:18px;color:${accent};font-size:11px;line-height:1.7;">▲</td>
       <td style="padding:7px 0;vertical-align:top;font-size:14px;line-height:1.7;">
+        <span style="color:${accent};font-weight:600;">[${COUNTRY_LABELS[item.country]}]</span>
         <a href="${encodeURI(item.url)}" style="color:#0f172a;text-decoration:none;">${escapeHtml(item.title)}</a>
         <span style="color:#94a3b8;"> (${escapeHtml(item.source)})</span>
       </td>
@@ -115,7 +116,7 @@ export function buildDigestHtml(
     <div style="font-size:13px;color:#4FD1C7;font-weight:600;margin-bottom:8px;">${escapeHtml(periodLabel)}</div>
     <h1 style="margin:0 0 10px;font-size:21px;color:#0f172a;">이번 주 Web3 소식</h1>
     <p style="margin:0;font-size:14px;line-height:1.7;color:#64748b;">
-      APAC · 미국 · 유럽 크립토 매체의 한 주간 주요 기사를 권역별로 정리했습니다.
+      한국·일본·홍콩·싱가포르, 미국, 스위스·독일의 한 주간 크립토·금융 주요 기사를 정리했습니다.
     </p>
     ${REGION_ORDER.map((region) => renderRegion(region, digest.regions[region])).join("")}
     <div style="margin-top:30px;">
@@ -221,7 +222,7 @@ export function buildKakaoText(digest: Digest, periodLabel: string) {
     if (items.length === 0) continue;
     lines.push("", `□ ${REGION_LABELS[region].ko}`);
     for (const item of items) {
-      lines.push(`▲ ${item.title} (${item.source})`, item.url);
+      lines.push(`▲ [${COUNTRY_LABELS[item.country]}] ${item.title} (${item.source})`, item.url);
     }
   }
 

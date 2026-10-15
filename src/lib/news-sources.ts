@@ -1,76 +1,111 @@
 // 주간 다이제스트용 뉴스 소스.
 //
 // 모든 소스는 공개 RSS 라 API 키가 필요 없다.
-// region 은 '매체의 소재 권역'이고, 개별 기사는 본문에서 다루는 권역이
-// 잡히면 그쪽으로 재분류된다 (digest-curation 참고).
+// 다루는 나라는 아래 7개로 한정한다.
+//   APAC : 한국 · 일본 · 홍콩 · 싱가포르
+//   미국 : 미국
+//   유럽 : 스위스 · 독일
+// 매체마다 소재국(country)을 붙여 두고, 기사 제목에서 나라가 잡히지 않을 때
+// 그 소재국으로 분류한다. 소재국이 null 인 글로벌 매체는 제목에 대상 국가가
+// 나올 때만 쓴다 (digest-curation 참고).
 
 export type Region = "apac" | "us" | "europe";
+export type Country = "kr" | "jp" | "hk" | "sg" | "us" | "ch" | "de";
 
 export const REGION_ORDER: Region[] = ["apac", "us", "europe"];
 
 export const REGION_LABELS: Record<Region, { ko: string; en: string }> = {
-  apac: { ko: "APAC 아시아", en: "APAC" },
+  apac: { ko: "APAC · 한국 · 일본 · 홍콩 · 싱가포르", en: "APAC" },
   us: { ko: "미국", en: "United States" },
-  europe: { ko: "유럽", en: "Europe" },
+  europe: { ko: "유럽 · 스위스 · 독일", en: "Europe" },
 };
+
+export const COUNTRY_REGION: Record<Country, Region> = {
+  kr: "apac",
+  jp: "apac",
+  hk: "apac",
+  sg: "apac",
+  us: "us",
+  ch: "europe",
+  de: "europe",
+};
+
+export const COUNTRY_LABELS: Record<Country, string> = {
+  kr: "한국",
+  jp: "일본",
+  hk: "홍콩",
+  sg: "싱가포르",
+  us: "미국",
+  ch: "스위스",
+  de: "독일",
+};
+
+/** 권역 안에서 나라를 보여줄 순서 */
+export const COUNTRY_ORDER: Country[] = ["kr", "jp", "hk", "sg", "us", "ch", "de"];
 
 export interface NewsSource {
   url: string;
   name: string;
-  region: Region;
+  /** 매체 소재국. null 이면 글로벌 매체라 제목 기준으로만 분류한다. */
+  country: Country | null;
   lang: "ko" | "ja" | "en" | "de";
-  /** 기존 /api/news 에서 수집이 확인된 피드인지 (운영 중 점검용) */
+  /** 운영 dry-run 에서 수집이 확인된 피드인지 (점검용 메모) */
   proven: boolean;
 }
 
 export const NEWS_SOURCES: NewsSource[] = [
-  // ── APAC ────────────────────────────────────────────────
-  // 국내 금융·디지털자산 매체 (금융기관·제도권 소식 비중이 높다)
-  { url: "https://www.digitalasset.works/rss/allArticle.xml", name: "디지털애셋", region: "apac", lang: "ko", proven: false },
-  { url: "https://www.blockmedia.co.kr/feed", name: "블록미디어", region: "apac", lang: "ko", proven: false },
-  { url: "https://www.hankyung.com/feed/finance", name: "한국경제", region: "apac", lang: "ko", proven: false },
-  { url: "https://kr.beincrypto.com/feed/", name: "BeInCrypto 한국", region: "apac", lang: "ko", proven: true },
-  { url: "https://forkast.news/feed/", name: "Forkast", region: "apac", lang: "en", proven: false },
+  // ── 한국 ────────────────────────────────────────────────
+  { url: "https://www.digitalasset.works/rss/allArticle.xml", name: "디지털애셋", country: "kr", lang: "ko", proven: false },
+  { url: "https://www.blockmedia.co.kr/feed", name: "블록미디어", country: "kr", lang: "ko", proven: false },
+  { url: "https://www.hankyung.com/feed/finance", name: "한국경제", country: "kr", lang: "ko", proven: false },
+  { url: "https://kr.beincrypto.com/feed/", name: "BeInCrypto 한국", country: "kr", lang: "ko", proven: true },
 
-  { url: "https://jp.cointelegraph.com/rss", name: "코인텔레그래프 JP", region: "apac", lang: "ja", proven: false },
-  { url: "https://coingape.com/feed/", name: "CoinGape", region: "apac", lang: "en", proven: false },
+  // ── 일본 ────────────────────────────────────────────────
+  { url: "https://jp.cointelegraph.com/rss", name: "코인텔레그래프 JP", country: "jp", lang: "ja", proven: false },
+  { url: "https://coinpost.jp/?feed=rss2", name: "CoinPost", country: "jp", lang: "ja", proven: false },
+
+  // ── 홍콩 · 싱가포르 ─────────────────────────────────────
+  { url: "https://forkast.news/feed/", name: "Forkast", country: "hk", lang: "en", proven: true },
 
   // ── 미국 ────────────────────────────────────────────────
-  { url: "https://www.coindesk.com/arc/outboundfeeds/rss/", name: "CoinDesk", region: "us", lang: "en", proven: true },
-  { url: "https://www.theblock.co/rss.xml", name: "The Block", region: "us", lang: "en", proven: true },
-  { url: "https://decrypt.co/feed", name: "Decrypt", region: "us", lang: "en", proven: true },
-  { url: "https://cryptoslate.com/feed/", name: "CryptoSlate", region: "us", lang: "en", proven: true },
-  { url: "https://blockworks.co/feed", name: "Blockworks", region: "us", lang: "en", proven: false },
+  { url: "https://www.coindesk.com/arc/outboundfeeds/rss/", name: "CoinDesk", country: "us", lang: "en", proven: true },
+  { url: "https://www.theblock.co/rss.xml", name: "The Block", country: "us", lang: "en", proven: true },
+  { url: "https://decrypt.co/feed", name: "Decrypt", country: "us", lang: "en", proven: true },
+  { url: "https://blockworks.co/feed", name: "Blockworks", country: "us", lang: "en", proven: true },
+  { url: "https://bitcoinmagazine.com/.rss/full/", name: "Bitcoin Magazine", country: "us", lang: "en", proven: true },
 
-  { url: "https://bitcoinmagazine.com/.rss/full/", name: "Bitcoin Magazine", region: "us", lang: "en", proven: false },
+  // ── 스위스 · 독일 ───────────────────────────────────────
+  { url: "https://cvj.ch/feed/", name: "Crypto Valley Journal", country: "ch", lang: "de", proven: false },
+  { url: "https://www.finews.ch/?format=feed&type=rss", name: "finews.ch", country: "ch", lang: "de", proven: false },
+  { url: "https://www.btc-echo.de/feed/", name: "BTC-ECHO", country: "de", lang: "de", proven: true },
 
-  // ── 유럽 ────────────────────────────────────────────────
-  { url: "https://cointelegraph.com/rss", name: "Cointelegraph", region: "europe", lang: "en", proven: true },
-  { url: "https://cryptonews.com/news/feed/", name: "CryptoNews", region: "europe", lang: "en", proven: true },
-  { url: "https://www.cryptopolitan.com/feed/", name: "Cryptopolitan", region: "europe", lang: "en", proven: false },
-  { url: "https://www.btc-echo.de/feed/", name: "BTC-ECHO", region: "europe", lang: "de", proven: false },
-  { url: "https://coinjournal.net/feed/", name: "CoinJournal", region: "europe", lang: "en", proven: false },
+  // ── 글로벌 (제목에 대상 국가가 있을 때만 사용) ──────────
+  { url: "https://cointelegraph.com/rss", name: "Cointelegraph", country: null, lang: "en", proven: true },
+  { url: "https://cryptonews.com/news/feed/", name: "CryptoNews", country: null, lang: "en", proven: true },
+  { url: "https://cryptoslate.com/feed/", name: "CryptoSlate", country: null, lang: "en", proven: true },
+  { url: "https://www.cryptopolitan.com/feed/", name: "Cryptopolitan", country: null, lang: "en", proven: true },
+  { url: "https://coingape.com/feed/", name: "CoinGape", country: null, lang: "en", proven: true },
 ];
 
 export interface FeedItem {
   title: string;
   url: string;
   source: string;
-  /** 매체 소재 권역 (기사 본문 기준 재분류 전) */
-  sourceRegion: Region;
+  /** 매체 소재국 (null 이면 글로벌 매체) */
+  sourceCountry: Country | null;
   lang: string;
   publishedAt: string;
 }
 
 export interface SourceResult {
   name: string;
-  region: Region;
+  country: Country | null;
   count: number;
   error: string | null;
 }
 
 const FETCH_TIMEOUT_MS = 12000;
-const ITEMS_PER_FEED = 15;
+const ITEMS_PER_FEED = 20;
 
 async function fetchOne(source: NewsSource): Promise<FeedItem[]> {
   const controller = new AbortController();
@@ -95,7 +130,7 @@ async function fetchOne(source: NewsSource): Promise<FeedItem[]> {
     const feed = await new Parser({ timeout: FETCH_TIMEOUT_MS }).parseString(xml);
 
     return (feed.items ?? []).slice(0, ITEMS_PER_FEED).flatMap((item) => {
-      const title = (item.title ?? "").trim();
+      const title = (item.title ?? "").replace(/\s+/g, " ").trim();
       const link = (item.link ?? "").trim();
       if (!title || !link) return [];
       return [
@@ -103,7 +138,7 @@ async function fetchOne(source: NewsSource): Promise<FeedItem[]> {
           title,
           url: link,
           source: source.name,
-          sourceRegion: source.region,
+          sourceCountry: source.country,
           lang: source.lang,
           publishedAt: item.isoDate ?? item.pubDate ?? new Date().toISOString(),
         },
@@ -129,12 +164,12 @@ export async function fetchAllSources(): Promise<{
     const source = NEWS_SOURCES[i];
     if (result.status === "fulfilled") {
       items.push(...result.value);
-      return { name: source.name, region: source.region, count: result.value.length, error: null };
+      return { name: source.name, country: source.country, count: result.value.length, error: null };
     }
     const message =
       result.reason instanceof Error ? result.reason.message : String(result.reason);
     console.error(`피드 수집 실패 · ${source.name}: ${message}`);
-    return { name: source.name, region: source.region, count: 0, error: message };
+    return { name: source.name, country: source.country, count: 0, error: message };
   });
 
   return { items, diagnostics };

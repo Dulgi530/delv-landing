@@ -8,7 +8,7 @@ import {
 } from "@/lib/newsletter-email";
 import { buildRegionDigest, type Digest } from "@/lib/digest-curation";
 import { translateItems } from "@/lib/digest-translate";
-import { fetchAllSources, REGION_ORDER } from "@/lib/news-sources";
+import { COUNTRY_LABELS, fetchAllSources, REGION_ORDER } from "@/lib/news-sources";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -54,7 +54,9 @@ async function buildWeeklyDigest() {
   // 세 권역을 한 번에 번역해 API 호출을 한 번으로 줄인다.
   // 키가 없거나 실패하면 원문이 그대로 돌아온다.
   const flat = REGION_ORDER.flatMap((region) => digest.regions[region]);
-  const translated = await translateItems(flat);
+  const { items: translated, report: translation } = await translateItems(flat);
+  // dry-run 에서 번역 전후를 나란히 보여주기 위해 원문을 남겨 둔다.
+  const originals = new Map(flat.map((item) => [item.url, item.title]));
 
   let cursor = 0;
   const regions = { ...digest.regions };
@@ -68,6 +70,8 @@ async function buildWeeklyDigest() {
     digest: { regions, total: digest.total } as Digest,
     diagnostics,
     collected: items.length,
+    translation,
+    originals,
   };
 }
 
@@ -85,7 +89,8 @@ export async function GET(request: NextRequest) {
   const dryRun = request.nextUrl.searchParams.get("dry") === "1";
 
   try {
-    const { digest, diagnostics, collected } = await buildWeeklyDigest();
+    const { digest, diagnostics, collected, translation, originals } =
+      await buildWeeklyDigest();
 
     if (dryRun) {
       return NextResponse.json({
@@ -94,10 +99,16 @@ export async function GET(request: NextRequest) {
         collected,
         sources: diagnostics,
         kakao: buildKakaoText(digest, formatPeriodLabel(now)),
+        translation,
         preview: Object.fromEntries(
           REGION_ORDER.map((region) => [
             region,
-            digest.regions[region].map((i) => `${i.title} (${i.source})`),
+            digest.regions[region].map((i) => ({
+              country: COUNTRY_LABELS[i.country],
+              title: i.title,
+              original: originals.get(i.url) ?? i.title,
+              source: i.source,
+            })),
           ])
         ),
       });
