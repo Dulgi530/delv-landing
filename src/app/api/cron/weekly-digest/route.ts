@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
-import { sendWeeklyDigest, type DigestRecipient } from "@/lib/newsletter-email";
+import {
+  buildKakaoText,
+  sendKakaoBriefToAdmin,
+  sendWeeklyDigest,
+  type DigestRecipient,
+} from "@/lib/newsletter-email";
 import { buildRegionDigest, type Digest } from "@/lib/digest-curation";
 import { translateItems } from "@/lib/digest-translate";
 import { fetchAllSources, REGION_ORDER } from "@/lib/news-sources";
@@ -88,6 +93,7 @@ export async function GET(request: NextRequest) {
         periodKey,
         collected,
         sources: diagnostics,
+        kakao: buildKakaoText(digest, formatPeriodLabel(now)),
         preview: Object.fromEntries(
           REGION_ORDER.map((region) => [
             region,
@@ -106,25 +112,11 @@ export async function GET(request: NextRequest) {
     }
 
     const supabase = getSupabaseAdmin();
-
-    const { data: subscribers, error: subError } = await supabase
-      .from("newsletter_subscribers")
-      .select("email, unsubscribe_token")
-      .eq("status", "confirmed");
-
-    if (subError) {
-      console.error("Subscriber fetch failed:", subError);
-      return NextResponse.json({ error: "구독자 조회 실패" }, { status: 500 });
-    }
-
-    if (!subscribers || subscribers.length === 0) {
-      return NextResponse.json({ skipped: "no_subscribers", periodKey });
-    }
-
-    const subject = `[DELV] 이번 주 Web3 소식 (${formatPeriodLabel(now)})`;
+    const periodLabel = formatPeriodLabel(now);
+    const subject = `[DELV] 이번 주 Web3 소식 (${periodLabel})`;
 
     // 발송 전에 주차를 선점한다. period_key 가 UNIQUE 라 크론이 중복
-    // 실행돼도 같은 주에 두 번 나가지 않는다.
+    // 실행돼도 같은 주에 메일과 카카오 브리프가 두 번 나가지 않는다.
     const { data: claim, error: claimError } = await supabase
       .from("newsletter_sends")
       .insert({ period_key: periodKey, subject, item_count: digest.total })
@@ -139,17 +131,41 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "발송 기록 생성 실패" }, { status: 500 });
     }
 
-    const recipients: DigestRecipient[] = subscribers.map((s) => ({
+    // 카카오톡 브리프는 구독자 수와 관계없이 운영자에게 보낸다.
+    // 실패해도 구독자 발송은 계속한다.
+    let kakaoSent = false;
+    try {
+      await sendKakaoBriefToAdmin(buildKakaoText(digest, periodLabel), periodLabel);
+      kakaoSent = true;
+    } catch (e) {
+      console.error(
+        "Kakao brief mail failed:",
+        JSON.stringify(e, Object.getOwnPropertyNames(e))
+      );
+    }
+
+    const { data: subscribers, error: subError } = await supabase
+      .from("newsletter_subscribers")
+      .select("email, unsubscribe_token")
+      .eq("status", "confirmed");
+
+    if (subError) {
+      console.error("Subscriber fetch failed:", subError);
+      return NextResponse.json(
+        { error: "구독자 조회 실패", kakaoSent },
+        { status: 500 }
+      );
+    }
+
+    const recipients: DigestRecipient[] = (subscribers ?? []).map((s) => ({
       email: s.email,
       unsubscribeToken: s.unsubscribe_token,
     }));
 
-    const { sent, failed } = await sendWeeklyDigest(
-      recipients,
-      digest,
-      subject,
-      formatPeriodLabel(now)
-    );
+    const { sent, failed } =
+      recipients.length > 0
+        ? await sendWeeklyDigest(recipients, digest, subject, periodLabel)
+        : { sent: 0, failed: 0 };
 
     await supabase
       .from("newsletter_sends")
@@ -160,6 +176,7 @@ export async function GET(request: NextRequest) {
       periodKey,
       sent,
       failed,
+      kakaoSent,
       apac: digest.regions.apac.length,
       us: digest.regions.us.length,
       europe: digest.regions.europe.length,

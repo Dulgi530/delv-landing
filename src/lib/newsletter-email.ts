@@ -200,3 +200,55 @@ export async function sendWeeklyDigest(
 
   return { sent, failed };
 }
+
+// ─────────────────────────────────────────────────────────────
+// 카카오톡 브리프
+//
+// 카카오는 단톡방·오픈채팅방에 메시지를 올리는 API 를 제공하지 않는다.
+// 그래서 붙여넣기용 텍스트를 만들어 운영자에게 메일로 보내고,
+// 운영자가 단톡방에 직접 붙여넣는다.
+// ─────────────────────────────────────────────────────────────
+
+const KAKAO_BRIEF_TO = "admin@delv.team";
+// 카카오톡은 링크마다 미리보기를 길게 펼치므로 권역당 건수를 줄인다.
+const KAKAO_PER_REGION = 4;
+
+export function buildKakaoText(digest: Digest, periodLabel: string) {
+  const lines = [`📌 DELV Weekly Brief | ${periodLabel}`];
+
+  for (const region of REGION_ORDER) {
+    const items = digest.regions[region].slice(0, KAKAO_PER_REGION);
+    if (items.length === 0) continue;
+    lines.push("", `□ ${REGION_LABELS[region].ko}`);
+    for (const item of items) {
+      lines.push(`▲ ${item.title} (${item.source})`, item.url);
+    }
+  }
+
+  lines.push("", "구독하기 · https://www.delv.team");
+  return lines.join("\n");
+}
+
+/** 붙여넣기용 브리프를 운영자 메일로 보낸다. */
+export async function sendKakaoBriefToAdmin(text: string, periodLabel: string) {
+  const body = `
+    <h1 style="margin:0 0 8px;font-size:19px;color:#0f172a;">카카오톡 브리프</h1>
+    <p style="margin:0 0 20px;font-size:14px;line-height:1.7;color:#64748b;">
+      아래 상자 안의 내용을 길게 눌러 전체 복사한 뒤 단톡방에 붙여넣어 주세요.
+    </p>
+    <div style="background-color:#fef9c3;border:1px solid #fde68a;border-radius:10px;padding:18px;font-size:14px;line-height:1.75;color:#1f2937;white-space:pre-wrap;word-break:break-all;font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;">${escapeHtml(text)}</div>`;
+
+  const footer = `구독자용 뉴스레터와 같은 내용을 권역당 ${KAKAO_PER_REGION}건으로 줄인 것입니다.`;
+
+  const resend = getResend();
+  const { error } = await resend.emails.send({
+    from: FROM,
+    to: [KAKAO_BRIEF_TO],
+    subject: `[DELV] 카카오톡 브리프 (${periodLabel})`,
+    html: shell(body, footer),
+    // 메일 앱에서 텍스트 보기로 열면 그대로 복사할 수 있다.
+    text,
+  });
+
+  if (error) throw error;
+}
