@@ -25,14 +25,16 @@ const REGION_KEYWORDS: Record<Region, string[]> = {
     "singapore", "mas",
     "india", "indian", "sebi",
     "thailand", "vietnam", "indonesia", "taiwan",
-    "philippines", "malaysia", "australia", "austrac",
+    "philippines", "philippine", "filipino", "coins.ph", "manila",
+    "malaysia", "australia", "austrac", "dubai", "uae", "abu dhabi",
     "한국", "일본", "중국", "홍콩", "싱가포르", "인도", "호주", "아시아",
   ],
   us: [
     "united states", "u.s.", "sec", "cftc", "occ", "finra",
     "treasury", "white house", "congress", "senate", "irs",
     "federal reserve", "nasdaq", "nyse", "wall street",
-    "california", "texas", "new york", "washington",
+    "california", "texas", "new york", "washington", "brooklyn",
+    "manhattan", "florida", "wyoming", "american", "doj", "fbi",
     "미국", "연준", "뉴욕",
   ],
   europe: [
@@ -43,7 +45,8 @@ const REGION_KEYWORDS: Record<Region, string[]> = {
     "switzerland", "swiss", "finma", "zurich",
     "netherlands", "dutch", "spain", "spanish", "italy", "italian",
     "poland", "lithuania", "ireland", "sweden", "norway",
-    "유럽", "독일", "프랑스", "영국", "스위스",
+    "russia", "russian", "ukraine", "ukrainian", "europe", "european",
+    "유럽", "독일", "프랑스", "영국", "스위스", "러시아", "우크라이나",
   ],
 };
 
@@ -85,13 +88,22 @@ function countMatches(text: string, keywords: string[]) {
   return n;
 }
 
+/**
+ * "US" 는 대문자일 때만 미국으로 본다.
+ * 소문자로 바꾸면 대명사 "us" 와 구분할 수 없기 때문이다.
+ */
+function mentionsUS(title: string) {
+  return /(^|[^A-Za-z])US([^A-Za-z]|$)/.test(title);
+}
+
 function classify(item: FeedItem): ClassifiedItem {
   const text = item.title.toLowerCase();
 
   let best: Region | null = null;
   let bestScore = 0;
   for (const region of REGION_ORDER) {
-    const score = countMatches(text, REGION_KEYWORDS[region]);
+    let score = countMatches(text, REGION_KEYWORDS[region]);
+    if (region === "us" && mentionsUS(item.title)) score++;
     // 동점이면 매체 소재 권역을 우선한다.
     if (score > bestScore || (score > 0 && score === bestScore && region === item.sourceRegion)) {
       best = region;
